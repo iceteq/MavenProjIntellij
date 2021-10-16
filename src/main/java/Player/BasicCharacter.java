@@ -1,36 +1,27 @@
 package Player;
 
-class BasicCharacter implements Character {
-	protected Character character;
-	private int health;
-	//private int level;
-	
-	protected BasicCharacter() {
-		this.health = 1;
-		//this.level = 1;
-	}
-	
-	@Override
-	public String getDescription() {
-		return "Basic Character.";
-		
-	}
+public abstract class BasicCharacter implements Character {
+    int health;
 
-	@Override
-	public int getHealth() {
-		// TODO Auto-generated method stub
-		return this.health;
-	}
-	
-	@Override
-	public void changeHealth(int newHealth) {
-		this.health = newHealth;
-		
-	}
-	
-	
+    public BasicCharacter(int health) {
+        this.health = health;
+    }
 
+    public BasicCharacter() {
+        this(0);
+    }
 
-	
-		
+    public int getHealth() {
+        return this.health;
+    }
+
+    @Override
+    public void setHealth(int newHealth) {
+        this.health = newHealth;
+    }
+
+    @Override
+    public String toString() {
+        return "BasicCharacter{}";
+    }
 }
