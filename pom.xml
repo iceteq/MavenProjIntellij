@@ -11,7 +11,14 @@
 		<maven.compiler.source>15</maven.compiler.source>
 		<maven.compiler.target>15</maven.compiler.target>
 	</properties>
-
+	
+	<repositories>
+		<repository>
+    		<id>Jitpack</id>
+    		<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+	
 	<dependencies>
 
 		<dependency>
@@ -31,6 +38,11 @@
 			<artifactId>junit-platform-launcher</artifactId>
 			<version>1.4.0</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+    		<groupId>com.github.Articdive</groupId>
+    		<artifactId>JNoise</artifactId>
+    		<version>2.1.0</version>
 		</dependency>
 
 	</dependencies>
