@@ -13,6 +13,14 @@ public class Knight extends Profession {
     public int getHealth(){
         return character.getHealth();
     }
+    public int getDamage(){
+        return character.getDamage();
+    }
+
+    @Override
+    public void setDamage(int newDamage) {
+        
+    }
 
     @Override
     public void setHealth(int newHealth) {
