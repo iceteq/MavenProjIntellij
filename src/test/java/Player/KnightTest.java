@@ -7,9 +7,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class KnightTest {
 
     @Test
-    void knightHealthTest() {
-        Knight kn = new Knight(new Player(1));
-        assertEquals(1, kn.getHealth());
+    void knightInitialHealthTest() {
+
+        Archer archer = new Archer(new Player(1));
+        Knight knight = new Knight(new Player(1));
+
+        double healthRatio = knight.getHealth() / archer.getHealth();
+
+        assertEquals(2.0, healthRatio);
     }
 
     @Test
@@ -18,5 +23,7 @@ class KnightTest {
         kn.setHealth(2);
         assertEquals(2, kn.getHealth());
     }
+
+
 
 }
