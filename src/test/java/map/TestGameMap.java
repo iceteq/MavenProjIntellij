@@ -12,6 +12,8 @@ public class TestGameMap {
 	
 	private static final int HEIGHT = 100;
 	private static final int WIDTH = 100;
+	private static final int SMALLER_HEIGHT = 2;
+	private static final int SMALLER_WIDTH = 2;
 	private static final int INDEX_TOO_LOW = -1;
 	private static final int INDEX_HEIGHT_TOO_HIGH = HEIGHT+1;
 	private static final int INDEX_WIDTH_TOO_HIGH = WIDTH+1;
@@ -129,6 +131,7 @@ public class TestGameMap {
 			});
 	}
 	
+	@Test
 	public void testGetTileYIndexTooLow() {
 		GameMap gameMap = new GameMap(HEIGHT,WIDTH);
 		assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -136,6 +139,7 @@ public class TestGameMap {
 			});
 	}
 	
+	@Test
 	public void testGetTileXIndexTooHigh() {
 		GameMap gameMap = new GameMap(HEIGHT,WIDTH);
 		assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -143,10 +147,55 @@ public class TestGameMap {
 			});
 	}
 	
+	@Test
 	public void testGetTileYIndexTooHigh() {
 		GameMap gameMap = new GameMap(HEIGHT,WIDTH);
 		assertThrows(IndexOutOfBoundsException.class, () -> {
 			gameMap.getTile(0,INDEX_HEIGHT_TOO_HIGH);
 			});
+	}
+	
+	@Test
+	public void testDefaultMapToString() {
+		GameMap map = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
+		assertEquals("Map height: 2, Map width: 2\r\n"
+				+ "\r\n"
+				+ "Height: 0, Biome: none, Accessibility: none, Symbol: \r\n"
+				+ "Height: 0, Biome: none, Accessibility: none, Symbol: \r\n"
+				+ "Height: 0, Biome: none, Accessibility: none, Symbol: \r\n"
+				+ "Height: 0, Biome: none, Accessibility: none, Symbol: \r\n", map.toString());
+	}
+	
+	@Test
+	public void testMapToString() {
+		GameMap map = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
+		map.setTile(0,0,98);
+		map.setTile(0,1,6);
+		map.setTile(1,0,199);
+		map.setTile(1,1,62);
+		assertEquals("Map height: 2, Map width: 2\r\n"
+				+ "\r\n"
+				+ "Height: 98, Biome: plains, Accessibility: walking, Symbol: .\r\n"
+				+ "Height: 6, Biome: ocean, Accessibility: swimming, Symbol: ˜\r\n"
+				+ "Height: 199, Biome: mountain, Accessibility: flight, Symbol: ∧\r\n"
+				+ "Height: 62, Biome: plains, Accessibility: walking, Symbol: .\r\n", map.toString());
+	}
+	
+	@Test
+	public void testRenderDefaultMap() {
+		GameMap map = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
+		assertEquals("\r\n"
+				+ "\r\n", map.renderMap());
+	}
+	
+	@Test
+	public void testRenderMap() {
+		GameMap map = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
+		map.setTile(0,0,132);
+		map.setTile(0,1,93);
+		map.setTile(1,0,26);
+		map.setTile(1,1,80);
+		assertEquals("∧.\r\n"
+				+ "˜.\r\n", map.renderMap());
 	}
 }

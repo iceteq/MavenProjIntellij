@@ -82,18 +82,33 @@ public class TestMapTile {
 	}
 	
 	@Test
+	public void testGetSymbolMountain() {
+		assertEquals("∧", mountainTile.getSymbol());
+	}
+	
+	@Test
+	public void testGetSymbolOcean() {
+		assertEquals("˜", oceanTile.getSymbol());
+	}
+	
+	@Test
+	public void testGetSymbolPlains() {
+		assertEquals(".", plainsTile.getSymbol());
+	}
+	
+	@Test
 	public void testToStringMountain() {
-		assertEquals("∧", mountainTile.toString());
+		assertEquals("Height: 200, Biome: mountain, Accessibility: flight, Symbol: ∧", mountainTile.toString());
 	}
 	
 	@Test
 	public void testToStringOcean() {
-		assertEquals("˜", oceanTile.toString());
+		assertEquals("Height: 40, Biome: ocean, Accessibility: swimming, Symbol: ˜", mountainTile.toString());
 	}
 	
 	@Test
 	public void testToStringPlains() {
-		assertEquals(".", plainsTile.toString());
+		assertEquals("Height: 110, Biome: plains, Accessibility: walking, Symbol: .", mountainTile.toString());
 	}
 	
 	@Test
