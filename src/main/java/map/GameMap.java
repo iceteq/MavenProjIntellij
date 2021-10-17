@@ -59,4 +59,27 @@ public class GameMap {
 	protected MapTile[][] getMap() {
 		return map;
 	}
+	
+	public String renderMap() {
+		StringBuilder output = new StringBuilder();
+		for(int x = 0; x < map[0].length; x++) {
+			for(int y = 0; y < map.length; y++) {
+				output.append(map[x][y].getSymbol());
+			}
+			output.append("\r\n");
+		}
+		return output.toString();
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder output = new StringBuilder();
+		output.append("Map height: " + map.length + ", Map width: " + map[0].length + "\r\n\r\n");
+		for(int x = 0; x < map[0].length; x++) {
+			for(int y = 0; y < map.length; y++) {
+				output.append(map[x][y].toString() + "\r\n");
+			}
+		}
+		return output.toString();
+	}
 }

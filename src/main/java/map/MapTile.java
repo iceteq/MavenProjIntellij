@@ -77,9 +77,13 @@ public class MapTile {
 		return biome.name;
 	}
 	
+	public String getSymbol() {
+		return biome.symbol;
+	}
+	
 	@Override
 	public String toString() {
-		return biome.symbol;
+		return "Height: " + height + ", Biome: " + biome.name + ", Accessibility: " + biome.accessibility + ", Symbol: " + biome.symbol;
 	}
 	
 	@Override
