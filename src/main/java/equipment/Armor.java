@@ -6,8 +6,7 @@ public class Armor extends Equipment {
 		
 		private double armorTypeModifier;
 
-		//Modifier?
-		ArmorType(double armorTypeModifier) {
+		private ArmorType(double armorTypeModifier) {
 			this.armorTypeModifier = armorTypeModifier;
 		}
 
@@ -21,8 +20,7 @@ public class Armor extends Equipment {
 		
 		private double armorPieceModifier;
 		
-		//Modifier?
-		ArmorPiece(double armorPieceModifier) {
+		private ArmorPiece(double armorPieceModifier) {
 			this.armorPieceModifier = armorPieceModifier;
 		}
 

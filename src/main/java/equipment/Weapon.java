@@ -7,8 +7,7 @@ public class Weapon extends Equipment {
 		
 		private double weaponDamageModifier;
 		
-		//modifier?
-		WeaponType(double weaponDamageModifier) {
+		private WeaponType(double weaponDamageModifier) {
 			this.weaponDamageModifier = weaponDamageModifier;
 		}
 

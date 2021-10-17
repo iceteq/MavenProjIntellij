@@ -38,8 +38,5 @@ class EquipmentTest {
 	assertTrue(newArmor.getArmorValue() >= 675 && newArmor.getArmorValue() <= 1075);
 		
 	}
-	
-	
-	
-
+		
 }
