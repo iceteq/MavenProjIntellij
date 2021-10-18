@@ -26,8 +26,6 @@ public class Weapon extends Equipment {
 		super(name);
 		this.type = type;
 		this.weaponDamage = initializeWeaponDamageValue();
-		
-		
 	}	
 	
 	public WeaponType getWeaponType() {

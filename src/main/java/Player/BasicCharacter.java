@@ -1,11 +1,15 @@
 package Player;
 
+import equipment.Weapon;
+
 public abstract class BasicCharacter implements Character {
     int health;
-    int damage;
+    double damage;
+    Weapon weapon;
 
     public BasicCharacter(int health) {
         this.health = health;
+        this.damage = 100.0;
     }
 
     public BasicCharacter() {
@@ -15,7 +19,7 @@ public abstract class BasicCharacter implements Character {
     public int getHealth() {
         return this.health;
     }
-    public int getDamage() {
+    public double getDamage() {
         return this.damage;
     }
 
@@ -24,7 +28,7 @@ public abstract class BasicCharacter implements Character {
         this.health = newHealth;
     }
     @Override
-    public void setDamage(int newDamage) {
+    public void setDamage(double newDamage) {
         this.damage = newDamage;
     }
 
