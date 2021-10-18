@@ -15,7 +15,6 @@ public class Weapon extends Equipment {
 			return weaponDamageModifier;
 		}
 	
-	
 	}
 	
 	private static final double BASE_DAMAGE = 100.00;
@@ -26,7 +25,6 @@ public class Weapon extends Equipment {
 		super(name);
 		this.type = type;
 		this.weaponDamage = initializeWeaponDamageValue();
-		
 		
 	}	
 	

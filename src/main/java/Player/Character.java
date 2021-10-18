@@ -6,5 +6,9 @@ public interface Character {
     int getDamage();
     void setDamage(int newDamage);
     void setHealth(int newHealth);
+    QuestLog getQuestLog();
+    void setQuestLogForThisCharacter();
+    
+
 
 }

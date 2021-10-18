@@ -24,4 +24,10 @@ public class Archer extends Profession {
     public void setHealth(int newHealth) {
         character.setHealth(newHealth);
     }
+
+	
+
+
+
+	
 }

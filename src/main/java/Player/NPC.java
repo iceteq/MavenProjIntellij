@@ -12,4 +12,8 @@ class NPC extends BasicCharacter {
     public String toString() {
         return "NPC{}";
     }
+
+
+
+
 }

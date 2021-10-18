@@ -1,6 +1,6 @@
 package Player;
 
-class Player extends BasicCharacter {
+class Player extends BasicCharacter  {
 
 	public Player(int health) {
 		super(health);
@@ -13,4 +13,12 @@ class Player extends BasicCharacter {
 	public String toString() {
 		return "Player{}";
 	}
+
+
+
+	
+
+	
+
+	
 }

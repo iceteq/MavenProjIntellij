@@ -26,4 +26,9 @@ public class Knight extends Profession {
     public void setHealth(int newHealth) {
         character.setHealth(newHealth);
     }
+
+
+
+
+
 }

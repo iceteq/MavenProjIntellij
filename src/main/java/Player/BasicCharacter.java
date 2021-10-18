@@ -1,11 +1,15 @@
 package Player;
 
 public abstract class BasicCharacter implements Character {
+	
     int health;
     int damage;
-
+    QuestLog questLog;
+    
     public BasicCharacter(int health) {
         this.health = health;
+        this.questLog = new QuestLog();
+
     }
 
     public BasicCharacter() {
@@ -32,4 +36,15 @@ public abstract class BasicCharacter implements Character {
     public String toString() {
         return "BasicCharacter{}";
     }
+    
+    @Override
+	public QuestLog getQuestLog() {
+		return questLog;
+	}
+	
+	@Override
+	public void setQuestLogForThisCharacter() {
+		this.questLog.setQuestLog(this);
+	}
+    
 }
