@@ -3,6 +3,7 @@ package map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -153,6 +154,51 @@ public class TestGameMap {
 		assertThrows(IndexOutOfBoundsException.class, () -> {
 			gameMap.getTile(0,INDEX_HEIGHT_TOO_HIGH);
 			});
+	}
+	
+	@Test
+	public void testEqualsDefaultMap() {
+		GameMap map = new GameMap(HEIGHT,WIDTH);
+		GameMap comparandMap = new GameMap(HEIGHT,WIDTH);
+		assertTrue(map.equals(comparandMap));
+	}
+	
+	@Test
+	public void testNotEqualsDefaultMap() {
+		GameMap map = new GameMap(HEIGHT,WIDTH);
+		map.setTile(0, 0, HEIGHT);
+		GameMap comparandMap = new GameMap(HEIGHT,WIDTH);
+		assertFalse(map.equals(comparandMap));
+	}
+	
+	@Test
+	public void testEqualsMap() {
+		GameMap map = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
+		map.setTile(0,0,98);
+		map.setTile(0,1,6);
+		map.setTile(1,0,199);
+		map.setTile(1,1,62);
+		GameMap comparandMap = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
+		comparandMap.setTile(0,0,98);
+		comparandMap.setTile(0,1,6);
+		comparandMap.setTile(1,0,199);
+		comparandMap.setTile(1,1,62);
+		assertTrue(map.equals(comparandMap));
+	}
+	
+	@Test
+	public void testNotEqualsMap() {
+		GameMap map = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
+		map.setTile(0,0,98);
+		map.setTile(0,1,6);
+		map.setTile(1,0,199);
+		map.setTile(1,1,62);
+		GameMap comparandMap = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
+		comparandMap.setTile(0,0,25);
+		comparandMap.setTile(0,1,89);
+		comparandMap.setTile(1,0,1);
+		comparandMap.setTile(1,1,180);
+		assertFalse(map.equals(comparandMap));
 	}
 	
 	@Test
