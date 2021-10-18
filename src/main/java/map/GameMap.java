@@ -1,4 +1,7 @@
 package map;
+
+import java.util.Arrays;
+
 public class GameMap {
 	
 	private static final int MIN_INDEX = 0;
@@ -81,5 +84,15 @@ public class GameMap {
 			}
 		}
 		return output.toString();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if ((o instanceof GameMap)) {
+			if (Arrays.deepEquals(map, ((GameMap) o).getMap())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
