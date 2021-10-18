@@ -42,9 +42,9 @@ class PlayerTest {
 		Weapon weapon = new Weapon("x", Weapon.WeaponType.ONEHANDEDSWORD);
 		player.setWeapon(weapon);
 		double weaponDamage = weapon.getWeaponDamage();
-		double expectedMinimum = playerBaseDamage + 81;
+		double expectedMinimum = playerBaseDamage + 81; 
 		double expectedMaximum = playerBaseDamage + 130;
-		assertTrue(player.getDamage() >= expectedMinimum && player.getDamage() <= expectedMaximum);
+		assertTrue(player.getDamage() >= expectedMinimum && player.getDamage() <= expectedMaximum, " expected a value between " + expectedMinimum + " and " + expectedMaximum + " but is " + player.getDamage());
 	}
 
 }
