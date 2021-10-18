@@ -17,7 +17,8 @@ class NPC extends BasicCharacter {
 
 
     @Override
-    public void setWeapon(String weaponName, Weapon.WeaponType weaponType) {
-        this.weapon = new Weapon(weaponName, weaponType);
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+        this.damage += weapon.getWeaponDamage();
     }
 }

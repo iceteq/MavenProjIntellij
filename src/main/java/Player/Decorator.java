@@ -18,11 +18,9 @@ public abstract class Decorator implements Character {
 
     public Decorator(Character character){
         this.character = character;
-
     }
 
     public int getHealth(){
-
         return character.getHealth();
     }
 }

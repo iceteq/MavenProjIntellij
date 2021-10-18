@@ -33,12 +33,18 @@ class PlayerTest {
 		double expected = 100.0;
 		assertEquals(expected, player.getDamage());
 	}
+
+
 	@Test
 	public void playerDamageWithWeapon(){
 		Player player = new Player();
-		player.setWeapon("oneHandedAxe", Weapon.WeaponType.ONEHANDEDAXE);
-		double expected = 100.0 + (100.0 * 1.20);
-		assertEquals(expected, player.getDamage());
+		double playerBaseDamage = player.getDamage();
+		Weapon weapon = new Weapon("x", Weapon.WeaponType.ONEHANDEDSWORD);
+		player.setWeapon(weapon);
+		double weaponDamage = weapon.getWeaponDamage();
+		double expectedMinimum = playerBaseDamage + 81;
+		double expectedMaximum = playerBaseDamage + 130;
+		assertTrue(player.getDamage() >= expectedMinimum && player.getDamage() <= expectedMaximum);
 	}
 
 }

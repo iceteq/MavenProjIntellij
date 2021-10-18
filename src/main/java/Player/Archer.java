@@ -28,8 +28,10 @@ public class Archer extends Profession {
     }
 
     @Override
-    public void setWeapon(String weaponName, Weapon.WeaponType weaponType) {
-        character.setWeapon(weaponName, weaponType);
+    public void setWeapon(Weapon weapon) {
+        character.setWeapon(weapon);
+        character.setDamage(weapon.getWeaponDamage());
+
     }
 
 

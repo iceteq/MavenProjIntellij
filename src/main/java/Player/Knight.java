@@ -29,9 +29,13 @@ public class Knight extends Profession {
         character.setHealth(newHealth);
     }
 
+//    @Override
+//    public void setWeapon(String weaponName, Weapon.WeaponType weaponType) {
+//        character.setWeapon(weaponName, weaponType);
+//    }
     @Override
-    public void setWeapon(String weaponName, Weapon.WeaponType weaponType) {
-        character.setWeapon(weaponName, weaponType);
+    public void setWeapon(Weapon weapon) {
+        character.setWeapon(weapon);
     }
 
 

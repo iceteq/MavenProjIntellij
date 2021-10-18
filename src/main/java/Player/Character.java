@@ -8,6 +8,6 @@ public interface Character {
     double getDamage();
     void setDamage(double newDamage);
     void setHealth(int newHealth);
-    void setWeapon(String weaponName, Weapon.WeaponType weaponType);
+    void setWeapon(Weapon weapon);
 
 }
