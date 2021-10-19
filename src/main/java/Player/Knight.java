@@ -40,4 +40,5 @@ public class Knight extends Profession {
 
 
 
+
 }

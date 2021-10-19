@@ -33,4 +33,5 @@ public class Archer extends Profession {
         character.setDamage(weapon.getWeaponDamage());
 
     }
+
 }

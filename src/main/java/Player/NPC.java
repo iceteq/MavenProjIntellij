@@ -20,5 +20,5 @@ class NPC extends BasicCharacter {
         this.weapon = weapon;
         this.damage += weapon.getWeaponDamage();
     }
-
+    
 }

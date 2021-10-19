@@ -11,6 +11,7 @@ public interface Character {
     QuestLog getQuestLog();
     void setQuestLogForThisCharacter();
     void setWeapon(Weapon weapon);
+    String getTypeOfCharacter();
 
 
 }
