@@ -24,7 +24,7 @@ public class QuestLog {
 				this.archerQuests = database.getArcherQuests();
 		}
 		else
-			throw new IllegalArgumentException("Character must be a player and have a class");
+			throw new IllegalArgumentException("Character must be a player");
 	}
 
 
