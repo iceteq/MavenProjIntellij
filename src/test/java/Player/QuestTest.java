@@ -44,7 +44,7 @@ class QuestTest {
 	
 	@Test
 	public void testArcherGetsCorrectQuestLines() {
-		Character archer = new Barbarian(new Player());
+		Character archer = new Archer(new Player());
 		archer.setQuestLogForThisCharacter();
 		assertEquals(QuestType.ALL, archer.getQuestLog().getMainQuests().get(0).getClassType());
 		assertEquals(QuestType.ARCHER, archer.getQuestLog().getArcherQuests().get(0).getClassType());

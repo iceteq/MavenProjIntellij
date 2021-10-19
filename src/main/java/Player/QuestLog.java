@@ -28,7 +28,7 @@ public class QuestLog {
 			
 			
 		}
-		else if(character instanceof Barbarian && !(character instanceof NPC)) {
+		else if(character instanceof Archer && !(character instanceof NPC)) {
 			this.mainQuests = database.getMainQuests();
 			this.archerQuests = database.getArcherQuests();
 			

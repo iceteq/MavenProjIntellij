@@ -2,8 +2,8 @@ package Player;
 
 import equipment.Weapon;
 
-public class Barbarian extends Profession {
-    public Barbarian(Character ch) {
+public class Archer extends Profession {
+    public Archer(Character ch) {
         super(ch);
         character.setDamage(character.getDamage() * 2);
     }
@@ -43,5 +43,5 @@ public class Barbarian extends Profession {
 <<<<<<< Updated upstream:src/main/java/Player/Archer.java
 =======
 
->>>>>>> Stashed changes:src/main/java/Player/Barbarian.java
+>>>>>>> Stashed changes:src/main/java/Player/Archer.java
 }

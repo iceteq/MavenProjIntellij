@@ -46,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="Player.Barbarian" project="MavenProjIntellij"
+  <class id="6" language="java" name="Player.Archer" project="MavenProjIntellij"
     file="/MavenProjIntellij/src/main/java/Player/Archer.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2032" y="976"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
