@@ -11,7 +11,7 @@ class EquipmentTest {
 
 	@Test
 	public void WeaponConstructor_ValidParameters_ShouldSucceed() {
-		Weapon newWeapon = new Weapon("NewWeapon", WeaponType.ONEHANDEDAXE);
+		Weapon newWeapon = new Weapon(WeaponType.ONEHANDEDAXE, "NewWeapon");
 		assertEquals("NewWeapon", newWeapon.getName());
 		assertEquals(WeaponType.ONEHANDEDAXE, newWeapon.getWeaponType());
 		
@@ -28,7 +28,7 @@ class EquipmentTest {
 	
 	@Test
 	public void testInitializeWeaponDamage_IsWithinRange_ShouldSucceed() {
-		Weapon newWeapon = new Weapon("NewWeapon", WeaponType.ONEHANDEDSWORD);
+		Weapon newWeapon = new Weapon(WeaponType.ONEHANDEDSWORD, "NewWeapon");
 		assertTrue(newWeapon.getWeaponDamage() >= 81 && newWeapon.getWeaponDamage() <= 130);
 	}
 	
@@ -42,16 +42,16 @@ class EquipmentTest {
 	// boundary values for weapon damage
 	@Test
 	public void weaponAccaptableDamage() {
-		Weapon newWeapon = new Weapon("NewWeapon", WeaponType.ONEHANDEDSWORD, 0.0);
+		Weapon newWeapon = new Weapon(WeaponType.ONEHANDEDSWORD, 0.0);
 		assertEquals(81, newWeapon.getWeaponDamage());
 
-		newWeapon = new Weapon("NewWeapon", WeaponType.ONEHANDEDSWORD, 0.5);
+		newWeapon = new Weapon(WeaponType.ONEHANDEDSWORD, 0.5);
 		assertEquals(106, newWeapon.getWeaponDamage());
 	}
 
 	@Test
 	public void weaponDamageTooLow() {
-		Weapon newWeapon = new Weapon("NewWeapon", WeaponType.ONEHANDEDSWORD, 0.0);
+		Weapon newWeapon = new Weapon(WeaponType.ONEHANDEDSWORD, 0.0);
 		assertNotEquals(80, newWeapon.getWeaponDamage());
 	}
 
