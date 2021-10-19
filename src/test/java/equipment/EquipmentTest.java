@@ -38,5 +38,23 @@ class EquipmentTest {
 	assertTrue(newArmor.getArmorValue() >= 675 && newArmor.getArmorValue() <= 1075);
 		
 	}
+
+	// boundary values for weapon damage
+	@Test
+	public void weaponAccaptableDamage() {
+		Weapon newWeapon = new Weapon("NewWeapon", WeaponType.ONEHANDEDSWORD, 0.0);
+		assertEquals(81, newWeapon.getWeaponDamage());
+
+		newWeapon = new Weapon("NewWeapon", WeaponType.ONEHANDEDSWORD, 0.5);
+		assertEquals(106, newWeapon.getWeaponDamage());
+	}
+
+	@Test
+	public void weaponDamageTooLow() {
+		Weapon newWeapon = new Weapon("NewWeapon", WeaponType.ONEHANDEDSWORD, 0.0);
+		assertNotEquals(80, newWeapon.getWeaponDamage());
+	}
+
+
 		
 }

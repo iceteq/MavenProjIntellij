@@ -22,18 +22,24 @@ public class Weapon extends Equipment {
 	private double weaponDamage;
 	
 	public Weapon(String name, WeaponType type) {
+		this(name, type, Math.random());
+	}
+
+	// math random is for unit testing, to control
+	public Weapon(String name, WeaponType type, double mathRandom) {
 		super(name);
 		this.type = type;
-		this.weaponDamage = initializeWeaponDamageValue();
+		this.weaponDamage = initializeWeaponDamageValue(mathRandom);
+	}
 
-	}	
-	
 	public WeaponType getWeaponType() {
 		return this.type;
 	}
-	
-	private double initializeWeaponDamageValue() {
-		return BASE_DAMAGE * this.type.getWeaponDamageModifier() + (1 + Math.random() * 50); //playerLevel kan också komma in här på lämpligt sätt.
+
+
+
+	private double initializeWeaponDamageValue(double mathRandom) {
+		return BASE_DAMAGE * this.type.getWeaponDamageModifier() + (1 + mathRandom * 50); //playerLevel kan också komma in här på lämpligt sätt.
 		
 	}
 
