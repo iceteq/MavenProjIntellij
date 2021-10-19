@@ -79,8 +79,6 @@ class QuestTest {
 		});
 	}
 	
-	
-	
 	@Test
 	public void test_Quest_getLevel() {
 		ArrayList<Object> testObjects = new ArrayList<>();
@@ -98,9 +96,6 @@ class QuestTest {
 		Quest quest = new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
 		assertEquals(QuestType.ALL, quest.getQuestType());
 	}
-	
-	
-	
 	
 	@Test
 	public void test_Quest_ToString_ShouldSucceed() {
@@ -137,7 +132,7 @@ class QuestTest {
 		for(Quest q: player.getQuestLog().getMainQuests()) {
 			assertEquals(QuestType.ALL, q.getQuestType());
 		}
-		
+
 		assertTrue(player.getQuestLog().getKnightQuests().isEmpty());
 		assertTrue(player.getQuestLog().getArcherQuests().isEmpty());
 	}

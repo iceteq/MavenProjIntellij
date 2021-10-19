@@ -18,21 +18,11 @@ public class QuestLog {
 		
 		if(character.getTypeOfCharacter().equals("PLAYER")) {
 			this.mainQuests = database.getMainQuests();
-
 			if(character instanceof Knight)
 				this.knightQuests = database.getKnightQuests();
 			else if(character instanceof Archer)
-				this.archerQuests = database.getArcherQuests();
-
-			this.knightQuests = database.getKnightQuests();
+				this.archerQuests = database.getArcherQuests();	
 			
-			
-		}
-		else if(character instanceof Archer && !(character instanceof NPC)) {
-			this.mainQuests = database.getMainQuests();
-			this.archerQuests = database.getArcherQuests();
-			
-
 		}
 		else
 			throw new IllegalArgumentException("Character must be a player");

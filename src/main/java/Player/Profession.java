@@ -10,7 +10,7 @@ public abstract class Profession extends Decorator  {
 	public static final double INITIAL_BARBARIAN_DAMAGE = 15;
 
 
-	QuestLog questLog;
+
 
     public Profession(Character ch) {
         super(ch);
@@ -35,10 +35,7 @@ public abstract class Profession extends Decorator  {
 
 	public abstract void setLevel(int level);
 
-	@Override
-	public void setQuestLogForThisCharacter() {
-		this.questLog.setQuestLog(this);
-	}
+
 	
 	@Override
 	public String getTypeOfCharacter() {
