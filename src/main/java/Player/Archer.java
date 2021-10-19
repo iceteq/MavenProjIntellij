@@ -40,8 +40,5 @@ public class Archer extends Profession {
 
     }
 
-<<<<<<< Updated upstream:src/main/java/Player/Archer.java
-=======
 
->>>>>>> Stashed changes:src/main/java/Player/Archer.java
 }
