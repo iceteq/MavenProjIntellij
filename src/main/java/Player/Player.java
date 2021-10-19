@@ -1,6 +1,9 @@
 package Player;
 
-class Player extends BasicCharacter  {
+import equipment.Weapon;
+
+class Player extends BasicCharacter {
+
 
 	public Player(int health) {
 		super(health);
@@ -14,11 +17,15 @@ class Player extends BasicCharacter  {
 		return "Player{}";
 	}
 
+//	@Override
+//	public void setWeapon(String weaponName, Weapon.WeaponType weaponType) {
+//		this.weapon = new Weapon(weaponName, weaponType);
+//		this.damage += weapon.getWeaponDamage();
+//	}
+	@Override
+	public void setWeapon(Weapon weapon) {
+		this.weapon = weapon;
+		this.damage += weapon.getWeaponDamage();
+	}
 
-
-	
-
-	
-
-	
 }

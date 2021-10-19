@@ -24,7 +24,6 @@ public abstract class Decorator implements Character {
     }
 
     public int getHealth(){
-
         return character.getHealth();
     }
     

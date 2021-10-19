@@ -1,5 +1,7 @@
 package Player;
 
+import equipment.Weapon;
+
 /**
  *
  */
@@ -13,12 +15,12 @@ public class Knight extends Profession {
     public int getHealth(){
         return character.getHealth();
     }
-    public int getDamage(){
+    public double getDamage(){
         return character.getDamage();
     }
 
     @Override
-    public void setDamage(int newDamage) {
+    public void setDamage(double newDamage) {
         
     }
 
@@ -27,7 +29,14 @@ public class Knight extends Profession {
         character.setHealth(newHealth);
     }
 
-
+//    @Override
+//    public void setWeapon(String weaponName, Weapon.WeaponType weaponType) {
+//        character.setWeapon(weaponName, weaponType);
+//    }
+    @Override
+    public void setWeapon(Weapon weapon) {
+        character.setWeapon(weapon);
+    }
 
 
 
