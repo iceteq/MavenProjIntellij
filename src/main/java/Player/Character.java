@@ -11,7 +11,15 @@ public interface Character {
     QuestLog getQuestLog();
     void setQuestLogForThisCharacter();
     void setWeapon(Weapon weapon);
+<<<<<<< Updated upstream
     String getTypeOfCharacter();
 
+=======
+
+    void levelUp();
+
+    int getLevel();
+    void setLevel(int level);
+>>>>>>> Stashed changes
 
 }

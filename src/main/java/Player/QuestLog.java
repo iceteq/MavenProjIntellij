@@ -18,10 +18,21 @@ public class QuestLog {
 		
 		if(character.getTypeOfCharacter().equals("PLAYER")) {
 			this.mainQuests = database.getMainQuests();
+<<<<<<< Updated upstream
 			if(character instanceof Knight)
 				this.knightQuests = database.getKnightQuests();
 			else if(character instanceof Archer)
 				this.archerQuests = database.getArcherQuests();
+=======
+			this.knightQuests = database.getKnightQuests();
+			
+			
+		}
+		else if(character instanceof Barbarian && !(character instanceof NPC)) {
+			this.mainQuests = database.getMainQuests();
+			this.archerQuests = database.getArcherQuests();
+			
+>>>>>>> Stashed changes
 		}
 		else
 			throw new IllegalArgumentException("Character must be a player and have a class");

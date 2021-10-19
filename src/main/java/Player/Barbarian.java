@@ -2,11 +2,17 @@ package Player;
 
 import equipment.Weapon;
 
-public class Archer extends Profession {
-    public Archer(Character ch) {
+public class Barbarian extends Profession {
+    public Barbarian(Character ch) {
         super(ch);
         character.setDamage(character.getDamage() * 2);
     }
+
+    @Override
+    public void setLevel(int level) {
+
+    }
+
 
     public int getHealth(){
         return character.getHealth();
@@ -34,4 +40,8 @@ public class Archer extends Profession {
 
     }
 
+<<<<<<< Updated upstream:src/main/java/Player/Archer.java
+=======
+
+>>>>>>> Stashed changes:src/main/java/Player/Barbarian.java
 }

@@ -1,8 +1,10 @@
 package Player;
 
+import equipment.Armor;
 import equipment.Weapon;
 
 public abstract class BasicCharacter implements Character {
+<<<<<<< Updated upstream
 	
     
     QuestLog questLog;
@@ -10,9 +12,23 @@ public abstract class BasicCharacter implements Character {
     String playerOrNPC;
     double damage;
     int health;
+=======
 
+    public static final double INITIAL_BASICCHARACTER_DAMAGE = 5;
+    public static final double INITIAL_BASICCHARACTER_DEFENSE = 0;
+    public static final int INITIAL_LEVEL = 1;
+
+    int health;
+    QuestLog questLog;
+    double damage;
+    Weapon weapon;
+    Armor armor;
+    double defense;
+    int level;
+>>>>>>> Stashed changes
 
     public BasicCharacter(int health) {
+<<<<<<< Updated upstream
         this.health = health;
         this.questLog = new QuestLog();
         this.damage = 100.0;
@@ -20,6 +36,13 @@ public abstract class BasicCharacter implements Character {
         	this.playerOrNPC = "PLAYER";
         else
         	this.playerOrNPC = "NPC";
+=======
+        this.health = health;
+        this.questLog = new QuestLog();
+        this.damage = INITIAL_BASICCHARACTER_DAMAGE;
+        this.defense = INITIAL_BASICCHARACTER_DEFENSE;
+        this.level = INITIAL_LEVEL;
+>>>>>>> Stashed changes
     }
 
     public BasicCharacter() {
@@ -56,10 +79,29 @@ public abstract class BasicCharacter implements Character {
 	public void setQuestLogForThisCharacter() {
 		this.questLog.setQuestLog(this);
 	}
+<<<<<<< Updated upstream
 	
 	@Override
 	public String getTypeOfCharacter() {
 		return this.playerOrNPC;
 	}
+=======
+
+	@Override
+    public void setLevel(int level){
+        this.level = level;
+    }
+
+    @Override
+    public void levelUp() {
+        this.level++;
+    }
+
+
+    @Override
+    public int getLevel() {
+        return this.level;
+    }
+>>>>>>> Stashed changes
     
 }

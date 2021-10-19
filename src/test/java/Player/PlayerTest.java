@@ -15,7 +15,6 @@ class PlayerTest {
 		player = new Player(1);
 	}
 
-
 	@Test
 	public void playerSetHealthTest() {
 		player.setHealth(2);
@@ -51,6 +50,19 @@ class PlayerTest {
 		double priorDamage = player.getDamage();
 		player.setWeapon(new Weapon(Weapon.WeaponType.ONEHANDEDSWORD, 0.0));
 		assertTrue(player.getDamage() > priorDamage);
+	}
+
+
+	@Test
+	void playerHealthPerLevel() {
+		player.setLevel(1);
+		assertEquals(305, player.getHealth());
+
+		player.setLevel(50);
+		assertEquals(550, player.getHealth());
+
+		player.setLevel(99);
+		assertEquals(795, player.getHealth());
 	}
 
 }
