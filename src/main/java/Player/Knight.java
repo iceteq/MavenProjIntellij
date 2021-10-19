@@ -7,9 +7,22 @@ import equipment.Weapon;
  */
 public class Knight extends Profession {
 
+
+
     public Knight(Character ch) {
         super(ch);
-        character.setHealth(character.getHealth() * 2);
+        character.setHealth(character.getHealth());
+        character.setDamage(INITIAL_KNIGHT_DAMAGE);
+    }
+
+    @Override
+    public void setLevel(int level) {
+        character.setLevel(level);
+        setHealthWithRegardsToLevel();
+    }
+
+    private void setHealthWithRegardsToLevel() {
+        character.setHealth(300 + character.getLevel() * 30);
     }
 
     public int getHealth(){
@@ -29,10 +42,9 @@ public class Knight extends Profession {
         character.setHealth(newHealth);
     }
 
-//    @Override
-//    public void setWeapon(String weaponName, Weapon.WeaponType weaponType) {
-//        character.setWeapon(weaponName, weaponType);
-//    }
+
+
+
     @Override
     public void setWeapon(Weapon weapon) {
         character.setWeapon(weapon);

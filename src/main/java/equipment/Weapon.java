@@ -20,13 +20,17 @@ public class Weapon extends Equipment {
 	private static final double BASE_DAMAGE = 100.00;
 	private WeaponType type;
 	private double weaponDamage;
-	
-	public Weapon(String name, WeaponType type) {
-		this(name, type, Math.random());
+
+	public Weapon(WeaponType type, double mathRandom) {
+		this(type, "randomname", mathRandom);
+	}
+
+	public Weapon(WeaponType type, String name) {
+		this(type, name, Math.random());
 	}
 
 	// math random is for unit testing, to control
-	public Weapon(String name, WeaponType type, double mathRandom) {
+	public Weapon(WeaponType type, String name, double mathRandom) {
 		super(name);
 		this.type = type;
 		this.weaponDamage = initializeWeaponDamageValue(mathRandom);

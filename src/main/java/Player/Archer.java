@@ -8,6 +8,12 @@ public class Archer extends Profession {
         character.setDamage(character.getDamage() * 2);
     }
 
+    @Override
+    public void setLevel(int level) {
+
+    }
+
+
     public int getHealth(){
         return character.getHealth();
     }
@@ -33,5 +39,6 @@ public class Archer extends Profession {
         character.setDamage(weapon.getWeaponDamage());
 
     }
+
 
 }
