@@ -4,17 +4,22 @@ import equipment.Weapon;
 
 public abstract class BasicCharacter implements Character {
 	
-    int health;
+    
     QuestLog questLog;
-    double damage;
     Weapon weapon;
+    String playerOrNPC;
+    double damage;
+    int health;
 
 
     public BasicCharacter(int health) {
         this.health = health;
         this.questLog = new QuestLog();
         this.damage = 100.0;
-
+        if(this instanceof Player)
+        	this.playerOrNPC = "PLAYER";
+        else
+        	this.playerOrNPC = "NPC";
     }
 
     public BasicCharacter() {
@@ -50,6 +55,11 @@ public abstract class BasicCharacter implements Character {
 	@Override
 	public void setQuestLogForThisCharacter() {
 		this.questLog.setQuestLog(this);
+	}
+	
+	@Override
+	public String getTypeOfCharacter() {
+		return this.playerOrNPC;
 	}
     
 }

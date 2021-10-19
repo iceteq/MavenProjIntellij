@@ -52,10 +52,9 @@ class QuestTest {
 	
 	@Test
 	public void Should_ThrowException_When_CharacterIsNPC_And_ReceivesQuestLog() {
-		Character npc = new Knight(new NPC());
-		System.out.println(npc.getClass());
+		Character npcKnight = new Knight(new NPC());
 		assertThrows(IllegalArgumentException.class, () -> {
-			npc.setQuestLogForThisCharacter();
+			npcKnight.setQuestLogForThisCharacter();
 		});
 	}
 
