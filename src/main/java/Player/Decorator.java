@@ -31,7 +31,9 @@ public abstract class Decorator implements Character {
     public QuestLog getQuestLog() {
     	return this.questLog;
     }
-    
+
+    public abstract void levelUp();
+
     @Override
     public void setQuestLogForThisCharacter(){
     	this.questLog.setQuestLog(this);

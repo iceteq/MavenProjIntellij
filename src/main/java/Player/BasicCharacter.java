@@ -78,23 +78,15 @@ public abstract class BasicCharacter implements Character {
 		this.questLog.setQuestLog(this);
 	}
 
-	
 	@Override
 	public String getTypeOfCharacter() {
 		return this.playerOrNPC;
 	}
 
-
 	@Override
     public void setLevel(int level){
         this.level = level;
     }
-
-    @Override
-    public void levelUp() {
-        this.level++;
-    }
-
 
     @Override
     public int getLevel() {

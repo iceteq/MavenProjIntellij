@@ -16,7 +16,6 @@ public interface Character {
 
 
 
-    void levelUp();
 
     int getLevel();
     void setLevel(int level);
