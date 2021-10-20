@@ -23,8 +23,8 @@ public abstract class Decorator implements Character {
 
     }
 
-    public int getHealth(){
-        return character.getHealth();
+    public int getMaxHealth(){
+        return character.getMaxHealth();
     }
     
     @Override 

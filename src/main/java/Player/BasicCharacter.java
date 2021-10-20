@@ -11,7 +11,7 @@ public abstract class BasicCharacter implements Character {
     Weapon weapon;
     String playerOrNPC;
     double damage;
-    int health;
+    int maxHealth;
 
 
     public static final double INITIAL_BASICCHARACTER_DAMAGE = 5;
@@ -25,9 +25,9 @@ public abstract class BasicCharacter implements Character {
     int level;
 
 
-    public BasicCharacter(int health) {
+    public BasicCharacter(int defaultMaxHealth) {
 
-        this.health = health;
+        this.maxHealth = defaultMaxHealth;
         this.questLog = new QuestLog();
         this.damage = 100.0;
         if(this instanceof Player)
@@ -35,7 +35,7 @@ public abstract class BasicCharacter implements Character {
         else
         	this.playerOrNPC = "NPC";
 
-        this.health = health;
+        this.maxHealth = defaultMaxHealth;
         this.questLog = new QuestLog();
         this.damage = INITIAL_BASICCHARACTER_DAMAGE;
         this.defense = INITIAL_BASICCHARACTER_DEFENSE;
@@ -47,16 +47,16 @@ public abstract class BasicCharacter implements Character {
         this(0);
     }
 
-    public int getHealth() {
-        return this.health;
+    public int getMaxHealth() {
+        return this.maxHealth;
     }
     public double getDamage() {
         return this.damage;
     }
 
     @Override
-    public void setHealth(int newHealth) {
-        this.health = newHealth;
+    public void setMaxHealth(int newHealth) {
+        this.maxHealth = newHealth;
     }
     @Override
     public void setDamage(double newDamage) {

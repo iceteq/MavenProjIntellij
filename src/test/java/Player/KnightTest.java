@@ -16,13 +16,13 @@ class KnightTest {
 
     @Test
     void knightInitialHealthTest() {
-        assertEquals(1, knight.getHealth());
+        assertEquals(1, knight.getMaxHealth());
     }
 
     @Test
     void knightSetHealthTest() {
-        knight.setHealth(999);
-        assertEquals(999, knight.getHealth());
+        knight.setMaxHealth(999);
+        assertEquals(999, knight.getMaxHealth());
     }
 
     @Test
@@ -33,13 +33,10 @@ class KnightTest {
     @Test
     void knightHealthPerLevel() {
         knight.setLevel(1);
-        assertEquals(330, knight.getHealth(), "knight should have 330 hp at level 1");
+        assertEquals(330, knight.getMaxHealth());
 
-        knight.setLevel(50);
-        assertEquals(1800, knight.getHealth(), "knight should have 1800 hp at level 50");
-
-        knight.setLevel(99);
-        assertEquals(3270, knight.getHealth(), "knight should have 3270 hp at level 99");
+        knight.setLevel(100);
+        assertEquals(3300, knight.getMaxHealth());
     }
 
 

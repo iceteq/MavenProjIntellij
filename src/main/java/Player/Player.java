@@ -30,7 +30,7 @@ class Player extends BasicCharacter {
 	}
 
 	private void setHealthWithRegardsToLevel() {
-		this.health = 300 + this.getLevel() * 5;
+		this.maxHealth = 300 + this.getLevel() * 5;
 	}
 
 }
