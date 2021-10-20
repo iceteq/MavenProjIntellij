@@ -15,12 +15,12 @@ class KnightTest {
     }
 
     @Test
-    void knightInitialHealthTest() {
+    void knightInitialMaxHealthTest() {
         assertEquals(1, knight.getMaxHealth());
     }
 
     @Test
-    void knightSetHealthTest() {
+    void knightSetMaxHealthTest() {
         knight.setMaxHealth(999);
         assertEquals(999, knight.getMaxHealth());
     }
@@ -31,7 +31,7 @@ class KnightTest {
     }
 
     @Test
-    void knightHealthPerLevel() {
+    void knightMaxHealthPerLevel() {
         knight.setLevel(1);
         assertEquals(330, knight.getMaxHealth());
 

@@ -54,15 +54,12 @@ class PlayerTest {
 
 
 	@Test
-	void playerHealthPerLevel() {
+	void playerMaxHealthPerLevel() {
 		player.setLevel(1);
 		assertEquals(305, player.getMaxHealth());
 
-		player.setLevel(50);
-		assertEquals(550, player.getMaxHealth());
-
-		player.setLevel(99);
-		assertEquals(795, player.getMaxHealth());
+		player.setLevel(100);
+		assertEquals(800, player.getMaxHealth());
 	}
 
 }
