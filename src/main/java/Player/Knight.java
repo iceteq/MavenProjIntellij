@@ -7,13 +7,26 @@ import equipment.Weapon;
  */
 public class Knight extends Profession {
 
+
+
     public Knight(Character ch) {
         super(ch);
-        character.setHealth(character.getHealth() * 2);
+        character.setMaxHealth(character.getMaxHealth());
+        character.setDamage(INITIAL_KNIGHT_DAMAGE);
     }
 
-    public int getHealth(){
-        return character.getHealth();
+    @Override
+    public void setLevel(int level) {
+        character.setLevel(level);
+        setHealthWithRegardsToLevel();
+    }
+
+    private void setHealthWithRegardsToLevel() {
+        character.setMaxHealth(300 + character.getLevel() * 30);
+    }
+
+    public int getMaxHealth(){
+        return character.getMaxHealth();
     }
     public double getDamage(){
         return character.getDamage();
@@ -25,18 +38,16 @@ public class Knight extends Profession {
     }
 
     @Override
-    public void setHealth(int newHealth) {
-        character.setHealth(newHealth);
+    public void setMaxHealth(int newHealth) {
+        character.setMaxHealth(newHealth);
     }
 
-//    @Override
-//    public void setWeapon(String weaponName, Weapon.WeaponType weaponType) {
-//        character.setWeapon(weaponName, weaponType);
-//    }
     @Override
     public void setWeapon(Weapon weapon) {
         character.setWeapon(weapon);
     }
+
+
 
 
 }

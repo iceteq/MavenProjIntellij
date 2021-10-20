@@ -15,12 +15,27 @@ new Archer(new Player())
 public abstract class Decorator implements Character {
 
     Character character;
-
+    QuestLog questLog;
+    
     public Decorator(Character character){
         this.character = character;
+        this.questLog = new QuestLog();
+
     }
 
-    public int getHealth(){
-        return character.getHealth();
+    public int getMaxHealth(){
+        return character.getMaxHealth();
+    }
+    
+    @Override 
+    public QuestLog getQuestLog() {
+    	return this.questLog;
+    }
+
+    public abstract void levelUp();
+
+    @Override
+    public void setQuestLogForThisCharacter(){
+    	this.questLog.setQuestLog(this);
     }
 }

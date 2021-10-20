@@ -8,8 +8,14 @@ public class Archer extends Profession {
         character.setDamage(character.getDamage() * 2);
     }
 
-    public int getHealth(){
-        return character.getHealth();
+    @Override
+    public void setLevel(int level) {
+
+    }
+
+
+    public int getMaxHealth(){
+        return character.getMaxHealth();
     }
 
     @Override
@@ -23,8 +29,8 @@ public class Archer extends Profession {
     }
 
     @Override
-    public void setHealth(int newHealth) {
-        character.setHealth(newHealth);
+    public void setMaxHealth(int newHealth) {
+        character.setMaxHealth(newHealth);
     }
 
     @Override

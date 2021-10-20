@@ -1,29 +1,42 @@
 package Player;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class KnightTest {
 
-    @Test
-    void knightInitialHealthTest() {
-        Knight knight = new Knight(new Player(1));
-        assertEquals(2, knight.getHealth());
+    Knight knight;
+
+    @BeforeEach
+    void setUp() {
+        knight = new Knight(new Player(1));
     }
 
     @Test
-    void knightSetHealthTest() {
-        Knight kn = new Knight(new Player());
-        kn.setHealth(2);
-        assertEquals(2, kn.getHealth());
+    void knightInitialMaxHealthTest() {
+        assertEquals(1, knight.getMaxHealth());
+    }
+
+    @Test
+    void knightSetMaxHealthTest() {
+        knight.setMaxHealth(999);
+        assertEquals(999, knight.getMaxHealth());
     }
 
     @Test
     void knightInitialDamageTest() {
+        knight.getDamage();
+    }
 
-        // beslutstabell för damage som beror på vilket vapen spelaren har?
+    @Test
+    void knightMaxHealthPerLevel() {
+        knight.setLevel(1);
+        assertEquals(330, knight.getMaxHealth());
 
+        knight.setLevel(100);
+        assertEquals(3300, knight.getMaxHealth());
     }
 
 

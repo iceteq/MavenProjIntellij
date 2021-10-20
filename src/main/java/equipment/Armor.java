@@ -26,12 +26,7 @@ public class Armor extends Equipment {
 
 		public double getArmorPieceModifier() {
 			return armorPieceModifier;
-		}
-		
-		
-	
-	
-	
+		}		
 	
 	} 
 	

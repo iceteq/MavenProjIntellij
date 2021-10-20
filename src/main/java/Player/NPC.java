@@ -15,10 +15,10 @@ class NPC extends BasicCharacter {
         return "NPC{}";
     }
 
-
     @Override
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
         this.damage += weapon.getWeaponDamage();
     }
+    
 }
