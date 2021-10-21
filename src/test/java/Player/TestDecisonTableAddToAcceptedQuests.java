@@ -55,12 +55,12 @@ class TestDecisonTableAddToAcceptedQuests {
 
 		Character playerKnight = new Knight(new Player());
 
-		playerKnight.setLevelAndOtherStats(5);
+		playerKnight.setLevelAndOtherStats(15);
 
 
 		ArrayList<Object> testObjects = new ArrayList<>();
 		testObjects.add(QuestType.ALL);
-		testObjects.add(10);
+		testObjects.add(20);
 
 		Quest requirementQuest1 = new Quest("RequirementQuest1", testObjects, 100, 10, "RequirementQuest1 blablabla");
 		Quest requirementQuest2 = new Quest("RequirementQuest2", testObjects, 100, 10, "RequirementQuest2 blablabla");
@@ -72,7 +72,7 @@ class TestDecisonTableAddToAcceptedQuests {
 
 		ArrayList<Object> testObjects1 = new ArrayList<>();
 		testObjects1.add(QuestType.ALL);
-		testObjects1.add(10);
+		testObjects1.add(20);
 		testObjects1.add(requirementQuest1);
 		testObjects1.add(requirementQuest2);
 		testObjects1.add(requirementQuest3);
@@ -131,12 +131,12 @@ class TestDecisonTableAddToAcceptedQuests {
 
 		Character playerKnight = new Knight(new Player());
 
-		playerKnight.setLevelAndOtherStats(5);
+		playerKnight.setLevelAndOtherStats(15);
 
 
 		ArrayList<Object> testObjects = new ArrayList<>();
 		testObjects.add(QuestType.ALL);
-		testObjects.add(10);
+		testObjects.add(20);
 
 		Quest requirementQuest1 = new Quest("RequirementQuest1", testObjects, 100, 10, "RequirementQuest1 blablabla");
 		Quest requirementQuest2 = new Quest("RequirementQuest2", testObjects, 100, 10, "RequirementQuest2 blablabla");
@@ -148,7 +148,7 @@ class TestDecisonTableAddToAcceptedQuests {
 
 		ArrayList<Object> testObjects1 = new ArrayList<>();
 		testObjects1.add(QuestType.ALL);
-		testObjects1.add(10);
+		testObjects1.add(50);
 		testObjects1.add(requirementQuest1);
 		testObjects1.add(requirementQuest2);
 		testObjects1.add(requirementQuest3);
