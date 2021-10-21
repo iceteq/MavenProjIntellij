@@ -1,16 +1,9 @@
 package Player;
 
-import equipment.Weapon;
+import javax.swing.plaf.basic.BasicIconFactory;
 
 class Player extends BasicCharacter {
 
-
-	public Player(int health) {
-		super(health);
-	}
-
-	public Player() {
-	}
 
 	@Override
 	public String toString() {
@@ -18,18 +11,12 @@ class Player extends BasicCharacter {
 	}
 
 	@Override
-	public void setWeapon(Weapon weapon) {
-		this.weapon = weapon;
-		this.damage += weapon.getWeaponDamage();
-	}
-
-	@Override
 	public void setLevel(int level) {
 		this.level = level;
-		setHealthWithRegardsToLevel();
+		setMaxHealthWithRegardsToLevel();
 	}
 
-	private void setHealthWithRegardsToLevel() {
+	private void setMaxHealthWithRegardsToLevel() {
 		this.maxHealth = 300 + this.getLevel() * 5;
 	}
 

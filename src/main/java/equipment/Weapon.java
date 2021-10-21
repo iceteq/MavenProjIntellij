@@ -29,7 +29,12 @@ public class Weapon extends Equipment {
 		this(type, name, Math.random());
 	}
 
-	// math random is for unit testing, to control
+	// default weapon for testing
+	public Weapon() {
+		this(WeaponType.ONEHANDEDSWORD, "someweapon", 0.0);
+	}
+
+	// mathRandom is for unit testing, to control
 	public Weapon(WeaponType type, String name, double mathRandom) {
 		super(name);
 		this.type = type;

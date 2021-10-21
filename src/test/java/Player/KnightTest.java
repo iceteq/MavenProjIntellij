@@ -1,5 +1,6 @@
 package Player;
 
+import equipment.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +12,12 @@ class KnightTest {
 
     @BeforeEach
     void setUp() {
-        knight = new Knight(new Player(1));
+        knight = new Knight(new Player());
     }
 
     @Test
     void knightInitialMaxHealthTest() {
-        assertEquals(1, knight.getMaxHealth());
+        assertEquals(Profession.KNIGHT_INITIAL_MAXHEALTH, knight.getMaxHealth());
     }
 
     @Test
@@ -38,7 +39,6 @@ class KnightTest {
         knight.setLevel(100);
         assertEquals(3300, knight.getMaxHealth());
     }
-
 
 
 }

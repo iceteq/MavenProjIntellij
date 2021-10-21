@@ -5,7 +5,6 @@ import equipment.Weapon;
 public interface Character {
 
     int getMaxHealth();
-    void setMaxHealth(int newHealth);
     
     void setWeapon(Weapon weapon);
     
@@ -23,8 +22,7 @@ public interface Character {
     boolean isNPC();
 
 
+    Weapon getWeapon();
 
-  
-
-
+    void setMaxHealth(int i);
 }

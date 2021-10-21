@@ -21,22 +21,14 @@ public abstract class Decorator implements Character {
     public Decorator(Character character){
         this.character = character;
         this.questLog = new QuestLog();
-  
         this.knightOrArcher = this.getClass().toString();
-        
 
-    }
-
-    public int getMaxHealth(){
-        return character.getMaxHealth();
     }
     
     @Override 
     public QuestLog getQuestLog() {
     	return this.questLog;
     }
-
-    public abstract void levelUp();
 
     @Override
     public void setQuestLogForThisCharacter(){
@@ -47,12 +39,10 @@ public abstract class Decorator implements Character {
     public void addCompletedQuestForThisPlayer(Quest completedQuest) {
     	this.questLog.addCompletedQuest(completedQuest, this);
     }
-    
     @Override
 	public void addQuestToAcceptForThisPlayer(Quest questToAccept) {
 		this.questLog.addToAcceptedQuests(questToAccept, this);
 	}
-    
     @Override 
     public String getTypeOfCharacter() {
     	return knightOrArcher;
