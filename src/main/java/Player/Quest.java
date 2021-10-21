@@ -64,6 +64,10 @@ public class Quest {
 		return toReturn;
 	}
 	
+	public ArrayList<Object> getRequirements() {
+		return new ArrayList<Object>(requirements);
+	}
+	
 	private boolean hasValidObjects(ArrayList<Object> requirements) {
 		
 		int integerCounter = 0;
@@ -112,8 +116,31 @@ public class Quest {
 		
 		return true;
 	}
-	
 
+	@Override 
+	public boolean equals(Object obj) {
+		
+		if(this == obj)
+			return true;
+		
+		if(obj == null)
+			return false;
+		
+		if(this.getClass() != obj.getClass())
+			return false;
+		
+		Quest quest = (Quest)obj;
+		
+		if(this.name == quest.getName())
+			if(this.getExperience() == quest.getExperience())
+				if(this.getCurrency() == quest.getCurrency())
+					if(this.getLevel() == quest.getLevel())
+						if(this.getQuestType() == quest.getQuestType())
+							if(this.getQuestDescription() == quest.getQuestDescription())
+								return true;
+		return false;
+	}
+	
 
 	
 }

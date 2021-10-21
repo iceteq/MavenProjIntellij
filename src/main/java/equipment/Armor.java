@@ -39,7 +39,7 @@ public class Armor extends Equipment {
 		super(name);
 		this.type = type;
 		this.piece = piece;
-		this.armorValue = initializeArmorValue();
+		this.armorValue = initialiseArmorValue();
 	}
 
 	public ArmorType getType() {
@@ -50,7 +50,7 @@ public class Armor extends Equipment {
 		return piece;
 	}
 	
-	private double initializeArmorValue() {
+	private double initialiseArmorValue() {
 		return BASE_ARMOR_VALUE * this.type.getArmorTypeModifier() * this.piece.getArmorPieceModifier() + ( 100 + Math.random() * 500); //playerLevel kan också komma in här på lämpligt sätt.
 	}
 

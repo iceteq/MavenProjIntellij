@@ -33,7 +33,7 @@ public class Weapon extends Equipment {
 	public Weapon(WeaponType type, String name, double mathRandom) {
 		super(name);
 		this.type = type;
-		this.weaponDamage = initializeWeaponDamageValue(mathRandom);
+		this.weaponDamage = initialiseWeaponDamageValue(mathRandom);
 	}
 
 	public WeaponType getWeaponType() {
@@ -42,7 +42,7 @@ public class Weapon extends Equipment {
 
 
 
-	private double initializeWeaponDamageValue(double mathRandom) {
+	private double initialiseWeaponDamageValue(double mathRandom) {
 		return BASE_DAMAGE * this.type.getWeaponDamageModifier() + (1 + mathRandom * 50); //playerLevel kan också komma in här på lämpligt sätt.
 		
 	}

@@ -32,16 +32,8 @@ public abstract class Profession extends Decorator  {
 	public int getLevel() {
 		return character.getLevel();
 	}
-
-	public abstract void setLevel(int level);
-
-
 	
-	@Override
-	public String getTypeOfCharacter() {
-		// TODO Auto-generated method stub
-		return character.getTypeOfCharacter();
-	}
-
+	public abstract void setLevel(int level);
+	
 
 }
