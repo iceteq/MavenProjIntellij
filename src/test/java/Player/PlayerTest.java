@@ -37,6 +37,10 @@ class PlayerTest {
 	is not responsible for weapon damage at all. Maybe I should test whether damage has increased,
 	instead of testing for exact damage?
 	 */
+	/*
+	 Agreed. Weapon damage should be initialised upon creation in the equipment class 
+	 and further modified by the characters own variable stats(eg. strength, agility, intelligence).
+	 */
 	@Test
 	public void playerDamageWithWeapon(){
 		Weapon weapon = new Weapon(Weapon.WeaponType.ONEHANDEDSWORD, 0.0);

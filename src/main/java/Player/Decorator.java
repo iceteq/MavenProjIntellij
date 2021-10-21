@@ -16,10 +16,14 @@ public abstract class Decorator implements Character {
 
     Character character;
     QuestLog questLog;
+    String knightOrArcher;
     
     public Decorator(Character character){
         this.character = character;
         this.questLog = new QuestLog();
+  
+        this.knightOrArcher = this.getClass().toString();
+        
 
     }
 
@@ -35,5 +39,25 @@ public abstract class Decorator implements Character {
     @Override
     public void setQuestLogForThisCharacter(){
     	this.questLog.setQuestLog(this);
+    }
+    
+    @Override
+    public void addCompletedQuestForThisPlayer(Quest completedQuest) {
+    	this.questLog.addCompletedQuest(completedQuest, this);
+    }
+    
+    @Override
+	public void addQuestToAcceptForThisPlayer(Quest questToAccept) {
+		this.questLog.addToAcceptedQuests(questToAccept, this);
+	}
+    
+    @Override 
+    public String getTypeOfCharacter() {
+    	return knightOrArcher;
+    }
+    
+    @Override
+    public boolean isNPC() {
+    	return character.isNPC();
     }
 }

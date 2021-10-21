@@ -27,13 +27,13 @@ class EquipmentTest {
 	}
 	
 	@Test
-	public void testInitializeWeaponDamage_IsWithinRange_ShouldSucceed() {
+	public void testInitialiseWeaponDamage_IsWithinRange_ShouldSucceed() {
 		Weapon newWeapon = new Weapon(WeaponType.ONEHANDEDSWORD, "NewWeapon");
 		assertTrue(newWeapon.getWeaponDamage() >= 81 && newWeapon.getWeaponDamage() <= 130);
 	}
 	
 	@Test
-	public void testInitializeArmorValue_IsWithinRange_ShouldSucceed() {
+	public void testInitialiseArmorValue_IsWithinRange_ShouldSucceed() {
 	Armor newArmor = new Armor("NewArmor", ArmorType.LEATHER, ArmorPiece.GLOVES);
 	assertTrue(newArmor.getArmorValue() >= 675 && newArmor.getArmorValue() <= 1075);
 		
