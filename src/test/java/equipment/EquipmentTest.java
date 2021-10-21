@@ -47,6 +47,9 @@ class EquipmentTest {
 
 		newWeapon = new Weapon(WeaponType.ONEHANDEDSWORD, 0.5);
 		assertEquals(106, newWeapon.getWeaponDamage());
+
+		newWeapon = new Weapon(WeaponType.ONEHANDEDSWORD, 1.0);
+		assertEquals(131, newWeapon.getWeaponDamage());
 	}
 
 	@Test
@@ -55,6 +58,11 @@ class EquipmentTest {
 		assertNotEquals(80, newWeapon.getWeaponDamage());
 	}
 
+	@Test
+	public void weaponDamageTooHigh() {
+		Weapon newWeapon = new Weapon(WeaponType.ONEHANDEDSWORD, 1.0);
+		assertNotEquals(132, newWeapon.getWeaponDamage());
+	}
 
 		
 }

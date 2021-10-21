@@ -15,14 +15,14 @@ public abstract class BasicCharacter implements Character {
     String className;
     boolean NPC;
     double damage;
-    int health;
+    int maxHealth;
     double defense;
     int level;
     
 
-    public BasicCharacter(int health) {
+    public BasicCharacter(int defaultMaxHealth) {
 
-        this.health = health;
+        this.maxHealth = defaultMaxHealth;
         this.questLog = new QuestLog();
         this.damage = 100.0;
         
@@ -31,7 +31,7 @@ public abstract class BasicCharacter implements Character {
         
         this.className = this.getClass().toString();
         
-
+        this.maxHealth = defaultMaxHealth;
         this.questLog = new QuestLog();
         this.damage = INITIAL_BASICCHARACTER_DAMAGE;
         this.defense = INITIAL_BASICCHARACTER_DEFENSE;
@@ -43,16 +43,16 @@ public abstract class BasicCharacter implements Character {
         this(0);
     }
 
-    public int getHealth() {
-        return this.health;
+    public int getMaxHealth() {
+        return this.maxHealth;
     }
     public double getDamage() {
         return this.damage;
     }
 
     @Override
-    public void setHealth(int newHealth) {
-        this.health = newHealth;
+    public void setMaxHealth(int newHealth) {
+        this.maxHealth = newHealth;
     }
     
     @Override
@@ -85,23 +85,15 @@ public abstract class BasicCharacter implements Character {
 		this.questLog.addToAcceptedQuests(questToAccept, this);
 	}
 
-	
 	@Override
 	public String getTypeOfCharacter() {
 		return this.className;
 	}
-	
 
 	@Override
     public void setLevel(int level){
         this.level = level;
     }
-
-    @Override
-    public void levelUp() {
-        this.level++;
-    }
-
 
     @Override
     public int getLevel() {

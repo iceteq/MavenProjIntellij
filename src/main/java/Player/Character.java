@@ -4,14 +4,14 @@ import equipment.Weapon;
 
 public interface Character {
 
-    int getHealth();
-    void setHealth(int newHealth);
+    int getMaxHealth();
+    void setMaxHealth(int newHealth);
+    
+    void setWeapon(Weapon weapon);
     
     double getDamage();
     void setDamage(double newDamage);
-    void setWeapon(Weapon weapon);
-    
-    void levelUp();
+
     int getLevel();
     void setLevel(int level);
     
