@@ -11,7 +11,6 @@ public class Quest {
 	private ArrayList<Object> requirements = new ArrayList<>();
 	private String name;
 	private String questDescription;
-
 	
 	
 	Quest(String name, ArrayList<Object> requirements, int experience, int currency, String questDescription) {
@@ -80,8 +79,7 @@ public class Quest {
 		}
 			
 		for(Object o: requirements) {
-			
-			
+
 			if(o instanceof Integer || o instanceof QuestType || o instanceof Quest) {
 				//kommer inte på bättre logik för tillfället.
 			}

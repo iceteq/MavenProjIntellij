@@ -21,7 +21,7 @@ public class QuestDatabase {
 		//Här kan man skriva egna quests istället(eller tillsammans) med dom autogenererade 
 		for(int i = 0; i < 10; i++)
 			this.mainQuests.add(new Quest("MainQuest" + String.valueOf(i), createTestObjects(QuestType.ALL, 10), 100, 10, "MainQuest blablabla"));
-		
+	
 		Quest requirementQuest1 = new Quest("RequirementQuest1", createTestObjects(QuestType.ALL, 10), 100, 10, "RequirementQuest1 blablabla");
 		Quest requirementQuest2 = new Quest("RequirementQuest2", createTestObjects(QuestType.ALL, 10), 100, 10, "RequirementQuest2 blablabla");
 		Quest requirementQuest3 = new Quest("RequirementQuest3", createTestObjects(QuestType.ALL, 10), 100, 10, "RequirementQuest3 blablabla");

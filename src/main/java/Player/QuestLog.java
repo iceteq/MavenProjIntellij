@@ -66,18 +66,50 @@ public class QuestLog {
 		if(character.getQuestLog().getCompletedQuests().contains(completedQuest))
 			throw new IllegalArgumentException("This quest is already in completedQuests");
 		
-		if(completedQuest.getQuestType().name().equals("ALL")) {
-			this.completedQuests.add(completedQuest);
+		
+		if(character.getTypeOfCharacter().contains("Knight")) {
+			
+			if(completedQuest.getQuestType().name().equals("ALL")) {
+				this.completedQuests.add(completedQuest);
+			}
+			
+			else if(completedQuest.getQuestType().name().equals("KNIGHT")) {
+				this.completedQuests.add(completedQuest);
+			}
+			
+			else if(completedQuest.getQuestType().name().equals("ARCHER")) {
+				throw new IllegalArgumentException("Character type is Knight. Quest type is Archer");
+			}
+				
 		}
-		else if(completedQuest.getQuestType().name().equals("KNIGHT") && character.getTypeOfCharacter().contains("Knight")) {
-			this.completedQuests.add(completedQuest);
-		}
-		else if(completedQuest.getQuestType().name().equals("ARCHER") && character.getTypeOfCharacter().contains("Archer")) {
-			this.completedQuests.add(completedQuest);
+		else if(character.getTypeOfCharacter().contains("Archer"))  {
+			
+			if(completedQuest.getQuestType().name().equals("ALL")) {
+				this.completedQuests.add(completedQuest);
+			}
+			
+			else if(completedQuest.getQuestType().name().equals("ARCHER")) {
+				this.completedQuests.add(completedQuest);
+			}
+			
+			else if(completedQuest.getQuestType().name().equals("KNIGHT")) {
+				throw new IllegalArgumentException("Character type is Archer. Quest type is Knight");
+			}
+			
 		}
 		else {
-			throw new IllegalArgumentException("Quest-type doesn't match class-type");
+			
+			if(completedQuest.getQuestType().name().equals("ALL")) {
+				this.completedQuests.add(completedQuest);
+			}
+			
+			else {
+				throw new IllegalArgumentException("Character is of no Class. Quest type is of "
+						+ completedQuest.getQuestType().name() + " type");
+			}
+			
 		}
+		
 			
 	}
 	
