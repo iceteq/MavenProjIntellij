@@ -1,12 +1,9 @@
 package Player;
 
-import equipment.Weapon;
-
 /**
  *
  */
 public class Knight extends Profession {
-
 
 
     public Knight(Character ch) {
@@ -16,38 +13,39 @@ public class Knight extends Profession {
     }
 
     @Override
-    public void setLevel(int level) {
-        character.setLevel(level);
-        setHealthWithRegardsToLevel();
+    public void setLevelAndOtherStats(int level) {
+        character.setLevelAndOtherStats(level);
+        setMaxHealthWithRegardToLevel();
+        updateHealingAbility();
     }
 
-    private void setHealthWithRegardsToLevel() {
-        character.setMaxHealth(300 + character.getLevel() * 30);
-    }
 
-    public int getMaxHealth(){
-        return character.getMaxHealth();
-    }
-    public double getDamage(){
-        return character.getDamage();
+
+
+    @Override
+    protected void setMaxHealthWithRegardToLevel() {
+        character.setMaxHealth(KNIGHT_INITIAL_MAXHEALTH + (character.getLevel() * KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL));
     }
 
     @Override
-    public void setDamage(double newDamage) {
-        
+    void updateHealingAbility() {
+
+        int level = character.getLevel();
+
+        if (level >= 30) {
+            healingAbility = new GrandHeal();
+            return;
+        } else if (level >= 20) {
+            healingAbility = new Heal();
+            return;
+        } else if (level >= 10) {
+            healingAbility = new Meditate();
+            return;
+        } else if (level >= 0) {
+            throw new IllegalArgumentException("can't set an ability for someone below level 10");
+        }
+
     }
-
-    @Override
-    public void setMaxHealth(int newHealth) {
-        character.setMaxHealth(newHealth);
-    }
-
-    @Override
-    public void setWeapon(Weapon weapon) {
-        character.setWeapon(weapon);
-    }
-
-
 
 
 }

@@ -1,10 +1,8 @@
 package Player;
 
-import equipment.Weapon;
-
 class NPC extends BasicCharacter {
     public NPC(int health) {
-        super(health);
+        super();
     }
 
     public NPC() {
@@ -15,10 +13,5 @@ class NPC extends BasicCharacter {
         return "NPC{}";
     }
 
-    @Override
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-        this.damage += weapon.getWeaponDamage();
-    }
     
 }
