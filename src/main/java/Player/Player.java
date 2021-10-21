@@ -11,7 +11,7 @@ class Player extends BasicCharacter {
 	}
 
 	@Override
-	public void setLevel(int level) {
+	public void setLevelAndOtherStats(int level) {
 		this.level = level;
 		setMaxHealthWithRegardsToLevel();
 	}

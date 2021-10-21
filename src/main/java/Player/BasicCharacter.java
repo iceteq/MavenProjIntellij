@@ -101,7 +101,7 @@ public abstract class BasicCharacter implements Character {
 	}
 
 	@Override
-    public void setLevel(int level){
+    public void setLevelAndOtherStats(int level){
         this.level = level;
     }
 

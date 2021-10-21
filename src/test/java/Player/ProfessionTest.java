@@ -3,7 +3,6 @@ package Player;
 import equipment.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,10 +40,10 @@ class ProfessionTest {
 
     @Test
     void setLevel() {
-        knight.setLevel(100);
+        knight.setLevelAndOtherStats(100);
         assertEquals(100, knight.getLevel());
 
-        archer.setLevel(100);
+        archer.setLevelAndOtherStats(100);
         assertEquals(100, archer.getLevel());
     }
 

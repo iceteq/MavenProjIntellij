@@ -355,7 +355,7 @@ class QuestTest {
 		
 		Character playerKnight = new Knight(new Player());
 		
-		playerKnight.setLevel(10);
+		playerKnight.setLevelAndOtherStats(10);
 		
 		
 		ArrayList<Object> testObjects = new ArrayList<>();
@@ -394,7 +394,7 @@ class QuestTest {
 		
 		Character playerKnight = new Knight(new Player());
 		
-		playerKnight.setLevel(5);
+		playerKnight.setLevelAndOtherStats(5);
 		
 		
 		ArrayList<Object> testObjects = new ArrayList<>();

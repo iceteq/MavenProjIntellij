@@ -12,7 +12,7 @@ public interface Character {
     void setDamage(double newDamage);
 
     int getLevel();
-    void setLevel(int level);
+    void setLevelAndOtherStats(int level);
     
     QuestLog getQuestLog();
     void setQuestLogForThisCharacter();

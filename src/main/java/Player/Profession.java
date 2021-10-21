@@ -17,6 +17,7 @@ public abstract class Profession extends Decorator  {
 	public static final int KNIGHT_INITIAL_MAXHEALTH = 300;
 	public static final int ARCHER_INITIAL_MAXHEALTH = 300;
 
+	Ability healingAbility;
 
     public Profession(Character ch) {
         super(ch);
@@ -38,8 +39,8 @@ public abstract class Profession extends Decorator  {
 	}
 
 	@Override
-	public void setLevel(int level){
-		character.setLevel(level);
+	public void setLevelAndOtherStats(int level){
+		character.setLevelAndOtherStats(level);
 	};
 
 	@Override
@@ -67,7 +68,21 @@ public abstract class Profession extends Decorator  {
 		character.setWeapon(weapon);
 	};
 
-	protected abstract void setMaxHealthWithRegardsToLevel(); // how health is adjusted is a responsibility of each concrete profession
+	@Override
+	public void setLevel(int level) {
+		character.setLevelAndOtherStats(level);
+	}
 
+	protected abstract void setMaxHealthWithRegardToLevel(); // how health is adjusted is a responsibility of each concrete profession
+
+	public Ability getHealingAbility() {
+		return healingAbility;
+	}
+
+	public void setHealingAbility(Ability healingAbility) {
+		this.healingAbility = healingAbility;
+	}
+
+	abstract void updateHealingAbility();
 
 }

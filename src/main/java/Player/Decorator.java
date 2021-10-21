@@ -52,4 +52,6 @@ public abstract class Decorator implements Character {
     public boolean isNPC() {
     	return character.isNPC();
     }
+
+    public abstract void setLevel(int level);
 }

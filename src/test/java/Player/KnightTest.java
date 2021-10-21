@@ -1,6 +1,5 @@
 package Player;
 
-import equipment.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,11 +33,49 @@ class KnightTest {
     @Test
     void knightMaxHealthPerLevel() {
         knight.setLevel(1);
+        knight.setMaxHealthWithRegardToLevel();
         assertEquals(330, knight.getMaxHealth());
 
         knight.setLevel(100);
+        knight.setMaxHealthWithRegardToLevel();
         assertEquals(3300, knight.getMaxHealth());
     }
 
 
+    @Test
+    void setLevel() {
+    }
+
+    @Test
+    void setMaxHealthWithRegardsToLevel() {
+    }
+
+    @Test
+    void updateHealingAbility() {
+        knight.setLevelAndOtherStats(10);
+        assertEquals(Meditate.class, knight.getHealingAbility().getClass());
+        knight.setLevelAndOtherStats(20);
+        assertEquals(Heal.class, knight.getHealingAbility().getClass());
+        knight.setLevelAndOtherStats(30);
+        assertEquals(GrandHeal.class, knight.getHealingAbility().getClass());
+    }
+
+    @Test
+    void cantMeditateYet() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            knight.setLevelAndOtherStats(9);
+        });
+    }
+
+    @Test
+    void cantHealYet() {
+        knight.setLevelAndOtherStats(19);
+        assertNotEquals(Heal.class, knight.getHealingAbility().getClass());
+    }
+
+    @Test
+    void cantGrandHealYet() {
+        knight.setLevelAndOtherStats(29);
+        assertNotEquals(GrandHeal.class, knight.getHealingAbility().getClass());
+    }
 }
