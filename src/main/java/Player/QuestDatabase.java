@@ -18,33 +18,51 @@ public class QuestDatabase {
 	}
 	
 	private void createMainQuests() {
-		//Här kan man skriva egna quests istället(eller tillsammans) med dom autogenererade 
-		for(int i = 0; i < 10; i++)
-			this.mainQuests.add(new Quest("MainQuest" + String.valueOf(i), createTestObjects(QuestType.ALL, 10), 100, 10, "MainQuest blablabla"));
-	
-		Quest requirementQuest1 = new Quest("RequirementQuest1", createTestObjects(QuestType.ALL, 10), 100, 10, "RequirementQuest1 blablabla");
-		Quest requirementQuest2 = new Quest("RequirementQuest2", createTestObjects(QuestType.ALL, 10), 100, 10, "RequirementQuest2 blablabla");
-		Quest requirementQuest3 = new Quest("RequirementQuest3", createTestObjects(QuestType.ALL, 10), 100, 10, "RequirementQuest3 blablabla");
+		//Här kan man skriva egna quests
 		
-		this.mainQuests.add(requirementQuest1);
-		this.mainQuests.add(requirementQuest2);
-		this.mainQuests.add(requirementQuest3);
+		Quest mainQuest01 = new Quest("MainQuest01", createTestObjects(QuestType.ALL, 1), 100, 10, "Go do this and that noob", true);
+		this.mainQuests.add(mainQuest01);
+		Quest mainQuest02 = new Quest("MainQuest02", createTestObjects(QuestType.ALL, 1, mainQuest01), 500, 50, "Go do this and that noob", false);
+		this.mainQuests.add(mainQuest02);
+		Quest mainQuest03 = new Quest("MainQuest03", createTestObjects(QuestType.ALL, 1, mainQuest01, mainQuest02), 1000, 100, "Go do this and that noob", true);
+		this.mainQuests.add(mainQuest03);
+		Quest mainQuest04 = new Quest("MainQuest04", createTestObjects(QuestType.ALL, 1, mainQuest01, mainQuest02, mainQuest03), 2000, 200, "Go do this and that noob", true);
+		this.mainQuests.add(mainQuest04);
+		Quest mainQuest05 = new Quest("MainQuest05", createTestObjects(QuestType.ALL, 1, mainQuest01, mainQuest02, mainQuest03, mainQuest04), 5000, 500, "Go do this and that noob", false);
+		this.mainQuests.add(mainQuest05);
 		
-		this.mainQuests.add(new Quest("TestQuest", createTestObjects(QuestType.ALL, 10, requirementQuest1, requirementQuest2, requirementQuest3), 100, 10, "TestQuest blablabla"));
-		
-		
+		 
 	}
 	
 	private void createKnightQuests() {
-		//Här kan man skriva egna quests istället(eller tillsammans) med dom autogenererade 
-		for(int i = 0; i < 10; i++)
-			this.knightQuests.add(new Quest("KnightQuest" + String.valueOf(i), createTestObjects(QuestType.KNIGHT, 10), 100, 10, "KnightQuest blablabla"));
+		//Här kan man skriva egna quests 
+
+		Quest knightQuest01 = new Quest("KnightQuest01", createTestObjects(QuestType.KNIGHT, 1, searchMainQuest("MainQuest01"), searchMainQuest("MainQuest02"), searchMainQuest("MainQuest03")), 100, 10, "Go do this and that noob", false);
+		this.knightQuests.add(knightQuest01);
+		Quest knightQuest02 = new Quest("KnightQuest02", createTestObjects(QuestType.KNIGHT, 1, searchMainQuest("MainQuest01"), searchMainQuest("MainQuest02"), searchMainQuest("MainQuest03"), knightQuest01), 500, 50, "Go do this and that noob", false);
+		this.knightQuests.add(knightQuest02);
+		Quest knightQuest03 = new Quest("KnightQuest03", createTestObjects(QuestType.KNIGHT, 1, searchMainQuest("MainQuest01"), searchMainQuest("MainQuest02"), searchMainQuest("MainQuest03"), knightQuest01, knightQuest02), 1000, 100, "Go do this and that noob", false);
+		this.knightQuests.add(knightQuest03);
 	}
 	
 	private void createArcherQuests() {
-		//Här kan man skriva egna quests istället(eller tillsammans) med dom autogenererade 
-		for(int i = 0; i < 10; i++)
-			this.archerQuests.add(new Quest("ArcherQuest" + String.valueOf(i), createTestObjects(QuestType.ARCHER, 10), 100, 10, "ArcherQuest blablabla"));
+		//Här kan man skriva egna quests
+		
+		Quest archerQuest01 = new Quest("ArcherQuest01", createTestObjects(QuestType.ARCHER, 1), 100, 10, "Go do this and that noob", false);
+		this.archerQuests.add(archerQuest01);
+		Quest archerQuest02 = new Quest("archerQuest02", createTestObjects(QuestType.ARCHER, 1, searchMainQuest("MainQuest01"), searchMainQuest("MainQuest02"), archerQuest01), 500, 50, "Go do this and that noob", false);
+		this.archerQuests.add(archerQuest02);
+		Quest archerQuest03 = new Quest("archerQuest03", createTestObjects(QuestType.ARCHER, 1, searchMainQuest("MainQuest01"), searchMainQuest("MainQuest02"), archerQuest02), 1000, 100, "Go do this and that noob", false);
+		this.archerQuests.add(archerQuest03);
+	}
+		
+	
+	private ArrayList<Object> createTestObjects(QuestType questType, int level, Quest... requirementQuests) {
+		ArrayList<Object> testObjects = new ArrayList<>();
+		testObjects.add(questType);
+		testObjects.add(level);
+		testObjects.addAll(Arrays.asList(requirementQuests));
+		return testObjects;
 	}
 	
 	
@@ -60,12 +78,12 @@ public class QuestDatabase {
 		return new ArrayList<>(archerQuests);
 	}
 	
-	private ArrayList<Object> createTestObjects(QuestType questType, int level, Quest... requirementQuests) {
-		ArrayList<Object> testObjects = new ArrayList<>();
-		testObjects.add(questType);
-		testObjects.add(level);
-		testObjects.addAll(Arrays.asList(requirementQuests));
-		return testObjects;
+	private Quest searchMainQuest(String nameOfQuest) {
+		for(Quest q: this.getMainQuests()) {
+			if(q.getName().equals(nameOfQuest))
+				return q;
+		}
+		throw new IllegalArgumentException("No quest with that name");
 	}
-
+	
 }

@@ -10,7 +10,7 @@ import Player.Quest.QuestType;
 
 class TestDecisionTableAddCompletedQuest {
 
-	//addCompletedQuest() is called from within addCompletedQuestForThisPlayer().
+	//addCompletedQuest() is called from within completeQuest().
 	
 		//Decison table for addCompletedQuest; R1.
 		@Test
@@ -22,14 +22,14 @@ class TestDecisionTableAddCompletedQuest {
 			testObjects.add(QuestType.ALL);
 			testObjects.add(10);
 			
-			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla");
+			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla", false);
 			
 			assertThrows(IllegalArgumentException.class, () -> {
 				
-				npc.addCompletedQuestForThisPlayer(testQuest);
+				npc.completeQuest(testQuest);
 
 			});		
-			
+			 
 		}
 		
 		//Decison table for addCompletedQuest; R2.
@@ -42,13 +42,13 @@ class TestDecisionTableAddCompletedQuest {
 			testObjects.add(QuestType.ALL);
 			testObjects.add(10);
 			
-			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla");
+			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla", false);
 			
-			player.addCompletedQuestForThisPlayer(testQuest);
+			player.completeQuest(testQuest);
 			
 			assertThrows(IllegalArgumentException.class, () -> {
 
-				player.addCompletedQuestForThisPlayer(testQuest);
+				player.completeQuest(testQuest);
 
 			});	
 			
@@ -65,9 +65,9 @@ class TestDecisionTableAddCompletedQuest {
 			testObjects.add(QuestType.ALL);
 			testObjects.add(10);
 			
-			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla");
+			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla",false);
 			
-			player.addCompletedQuestForThisPlayer(testQuest);
+			player.completeQuest(testQuest);
 			
 			assertEquals(testQuest, player.getQuestLog().getCompletedQuests().get(0));
 			
@@ -84,11 +84,11 @@ class TestDecisionTableAddCompletedQuest {
 			testObjects.add(QuestType.KNIGHT);
 			testObjects.add(10);
 
-			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla");
+			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla",false);
 
 			assertThrows(IllegalArgumentException.class, () -> {
 				
-				player.addCompletedQuestForThisPlayer(testQuest);
+				player.completeQuest(testQuest);
 				
 			});
 		}
@@ -104,12 +104,12 @@ class TestDecisionTableAddCompletedQuest {
 			testObjects.add(QuestType.ARCHER);
 			testObjects.add(10);
 
-			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla");
+			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla", false);
 
 
 			assertThrows(IllegalArgumentException.class, () -> {
 
-				player.addCompletedQuestForThisPlayer(testQuest);
+				player.completeQuest(testQuest);
 
 			});
 
@@ -125,8 +125,8 @@ class TestDecisionTableAddCompletedQuest {
 			testObjectsKnight.add(QuestType.ALL);
 			testObjectsKnight.add(10);
 
-			Quest testQuest = new Quest("TestQuest", testObjectsKnight, 1000, 10, "TestQuest  blablabla");
-			playerKnight.addCompletedQuestForThisPlayer(testQuest);
+			Quest testQuest = new Quest("TestQuest", testObjectsKnight, 1000, 10, "TestQuest  blablabla", false);
+			playerKnight.completeQuest(testQuest);
 
 			assertEquals(testQuest, playerKnight.getQuestLog().getCompletedQuests().get(0));
 
@@ -142,9 +142,9 @@ class TestDecisionTableAddCompletedQuest {
 			testObjects.add(QuestType.KNIGHT);
 			testObjects.add(10);
 
-			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla");
+			Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla", false);
 			
-			playerKnight.addCompletedQuestForThisPlayer(testQuest);
+			playerKnight.completeQuest(testQuest);
 
 			assertEquals(testQuest, playerKnight.getQuestLog().getCompletedQuests().get(0));
 		}
@@ -160,12 +160,12 @@ class TestDecisionTableAddCompletedQuest {
 			testObjectsArcher.add(QuestType.ARCHER);
 			testObjectsArcher.add(10);
 
-			Quest testQuest = new Quest("TestQuest", testObjectsArcher, 1000, 10, "TestQuest  blablabla");
+			Quest testQuest = new Quest("TestQuest", testObjectsArcher, 1000, 10, "TestQuest  blablabla", false);
 			
 
 			assertThrows(IllegalArgumentException.class, () -> {
 				
-				playerKnight.addCompletedQuestForThisPlayer(testQuest);
+				playerKnight.completeQuest(testQuest);
 				
 			});
 		}
@@ -181,9 +181,9 @@ class TestDecisionTableAddCompletedQuest {
 			testObjectsArcher.add(QuestType.ARCHER);
 			testObjectsArcher.add(10);
 
-			Quest testQuest = new Quest("TestQuest", testObjectsArcher, 1000, 10, "TestQuest  blablabla");
+			Quest testQuest = new Quest("TestQuest", testObjectsArcher, 1000, 10, "TestQuest  blablabla", false);
 			
-			playerArcher.addCompletedQuestForThisPlayer(testQuest);
+			playerArcher.completeQuest(testQuest);
 			
 			assertEquals(testQuest, playerArcher.getQuestLog().getCompletedQuests().get(0));
 					
@@ -199,11 +199,11 @@ class TestDecisionTableAddCompletedQuest {
 			testObjectsArcher.add(QuestType.ARCHER);
 			testObjectsArcher.add(10);
 
-			Quest testQuest = new Quest("TestQuest", testObjectsArcher, 1000, 10, "TestQuest  blablabla");
+			Quest testQuest = new Quest("TestQuest", testObjectsArcher, 1000, 10, "TestQuest  blablabla", false);
 
 			assertThrows(IllegalArgumentException.class, () -> {
 
-				playerKnight.addCompletedQuestForThisPlayer(testQuest);
+				playerKnight.completeQuest(testQuest);
 
 			});
 			
@@ -219,9 +219,9 @@ class TestDecisionTableAddCompletedQuest {
 			testObjectsArcher.add(QuestType.ARCHER);
 			testObjectsArcher.add(10);
 
-			Quest testQuest = new Quest("TestQuest", testObjectsArcher, 1000, 10, "TestQuest  blablabla");
+			Quest testQuest = new Quest("TestQuest", testObjectsArcher, 1000, 10, "TestQuest  blablabla", false);
 
-			playerArcher.addCompletedQuestForThisPlayer(testQuest);
+			playerArcher.completeQuest(testQuest);
 			
 			assertEquals(testQuest, playerArcher.getQuestLog().getCompletedQuests().get(0));
 

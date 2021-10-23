@@ -17,7 +17,7 @@ class TestDecisionTableHasValidObjects {
 		ArrayList<Object> testObjects = new ArrayList<>();
 
 		assertThrows(IllegalStateException.class, () -> {
-			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
+			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
 		});
 
 	}
@@ -30,7 +30,7 @@ class TestDecisionTableHasValidObjects {
 		testObjects.add(10.0);
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
+			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
 		});
 	}
 
@@ -44,7 +44,7 @@ class TestDecisionTableHasValidObjects {
 		testObjects.add(QuestType.ALL);
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
+			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
 		});
 	}
 
@@ -56,7 +56,7 @@ class TestDecisionTableHasValidObjects {
 		testObjects.add(QuestType.ALL);
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
+			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
 		});
 	}
 
@@ -70,7 +70,7 @@ class TestDecisionTableHasValidObjects {
 		testObjects.add(10);
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
+			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
 		});
 	}
 
@@ -82,7 +82,7 @@ class TestDecisionTableHasValidObjects {
 		testObjects.add(10);
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
+			new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
 		});
 	}
 
@@ -94,7 +94,7 @@ class TestDecisionTableHasValidObjects {
 		testObjects.add(QuestType.ALL);
 		testObjects.add(10);
 
-		Quest quest = new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
+		Quest quest = new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
 
 		assertEquals("TestQuest", quest.getName());
 		assertEquals(1000, quest.getExperience());

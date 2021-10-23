@@ -17,18 +17,18 @@ class MiscellaneousQuestTests {
 		ArrayList<Object> testObjects = new ArrayList<>();
 		testObjects.add(QuestType.ALL);
 		testObjects.add(10);
-		Quest quest = new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
+		Quest quest = new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
 		
 		assertEquals(10, quest.getLevel());
 	}
-	
+	 
 	@Test
 	public void test_Quest_getQuestType() {
 		
 		ArrayList<Object> testObjects = new ArrayList<>();
 		testObjects.add(QuestType.ALL);
 		testObjects.add(10);
-		Quest quest = new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
+		Quest quest = new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
 		
 		assertEquals(QuestType.ALL, quest.getQuestType());
 	}
@@ -39,7 +39,7 @@ class MiscellaneousQuestTests {
 		ArrayList<Object> testObjects = new ArrayList<>();
 		testObjects.add(QuestType.ALL);
 		testObjects.add(10);
-		Quest quest = new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla");
+		Quest quest = new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
 		String expected = "Name: TestQuest\nClassType: ALL\nLevel: 10\nExperience: 1000\nCurrency: 100";
 		
 		assertEquals(expected, quest.toString());
@@ -53,7 +53,7 @@ class MiscellaneousQuestTests {
 		
 		assertThrows(IllegalArgumentException.class, () -> {
 			
-			npcKnight.setQuestLogForThisCharacter();
+			npcKnight.setQuestLogForPlayer();
 			
 		});
 	}
@@ -62,15 +62,15 @@ class MiscellaneousQuestTests {
 	public void test_setCompletedQuest_NotNull() {
 		
 		Character playerKnight = new Knight(new Player());
-		playerKnight.setQuestLogForThisCharacter();
+		playerKnight.setQuestLogForPlayer();
 		
 		ArrayList<Object> testObjects = new ArrayList<>();
 		testObjects.add(QuestType.ALL);
 		testObjects.add(10);
 		
-		Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla");
+		Quest testQuest = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla", false);
 		
-		playerKnight.addCompletedQuestForThisPlayer(testQuest);
+		playerKnight.completeQuest(testQuest);
 		
 		assertNotNull(playerKnight.getQuestLog().getCompletedQuests());
 		
@@ -85,8 +85,8 @@ class MiscellaneousQuestTests {
 		testObjects.add(QuestType.ARCHER);
 		testObjects.add(10);
 		
-		Quest q1 = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla");
-		Quest q2 = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla");
+		Quest q1 = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla", false);
+		Quest q2 = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla", false);
 		
 		assertEquals(q1, q2);
 	}

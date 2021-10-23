@@ -11,15 +11,18 @@ public class Quest {
 	private ArrayList<Object> requirements = new ArrayList<>();
 	private String name;
 	private String questDescription;
+	private boolean checkPoint;
+	private boolean questFailed;
 	
 	
-	Quest(String name, ArrayList<Object> requirements, int experience, int currency, String questDescription) {
+	Quest(String name, ArrayList<Object> requirements, int experience, int currency, String questDescription, boolean checkPoint) {
 		this.name = name;
 		if(hasValidObjects(requirements))
 			this.requirements = new ArrayList<>(requirements);
 		this.rewards[0] = experience;
 		this.rewards[1] = currency;
 		this.questDescription = questDescription;
+		this.checkPoint = checkPoint;
 	
 		
 	}
@@ -86,7 +89,7 @@ public class Quest {
 			else {
 				throw new IllegalArgumentException("Requirements may only contain one Integer, one QuestType, and zero or more Quests");
 			}
-			
+		
 			if(o instanceof Integer) {
 				integerCounter += 1;
 				if(integerCounter > 1) {
@@ -138,7 +141,18 @@ public class Quest {
 								return true;
 		return false;
 	}
-	
+
+	public boolean isCheckPoint() {
+		return checkPoint;
+	}
+
+	public boolean isQuestFailed() {
+		return questFailed;
+	}
+
+	public void setQuestFailed(boolean questFailed) {
+		this.questFailed = questFailed;
+	}
 
 	
 }

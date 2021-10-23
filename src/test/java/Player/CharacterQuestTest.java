@@ -15,7 +15,7 @@ class CharacterQuestTest {
 	@Test void testPlayerGetsCorrectQuestLine() {
 		
 		Character player = new Player();
-		player.setQuestLogForThisCharacter();
+		player.setQuestLogForPlayer();
 		
 		for(Quest q: player.getQuestLog().getMainQuests()) {
 			assertEquals(QuestType.ALL, q.getQuestType());
@@ -29,7 +29,7 @@ class CharacterQuestTest {
 	public void testKnightGetsCorrectQuestLines() {
 		
 		Character knight = new Knight(new Player());
-		knight.setQuestLogForThisCharacter();
+		knight.setQuestLogForPlayer();
 		
 		for(Quest q: knight.getQuestLog().getMainQuests()) {
 			assertEquals(QuestType.ALL, q.getQuestType());
@@ -46,7 +46,7 @@ class CharacterQuestTest {
 	public void testArcherGetsCorrectQuestLines() {
 		
 		Character archer = new Archer(new Player());
-		archer.setQuestLogForThisCharacter();
+		archer.setQuestLogForPlayer();
 		
 		for(Quest q: archer.getQuestLog().getMainQuests()) {
 			assertEquals(QuestType.ALL, q.getQuestType());

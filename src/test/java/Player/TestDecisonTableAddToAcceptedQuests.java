@@ -23,14 +23,14 @@ class TestDecisonTableAddToAcceptedQuests {
 		ArrayList<Object> testObjects = new ArrayList<>();
 		testObjects.add(QuestType.ALL);
 		testObjects.add(10);
+ 
+		Quest requirementQuest1 = new Quest("RequirementQuest1", testObjects, 100, 10, "RequirementQuest1 blablabla", false);
+		Quest requirementQuest2 = new Quest("RequirementQuest2", testObjects, 100, 10, "RequirementQuest2 blablabla", false);
+		Quest requirementQuest3 = new Quest("RequirementQuest3", testObjects, 100, 10, "RequirementQuest3 blablabla", false);
 
-		Quest requirementQuest1 = new Quest("RequirementQuest1", testObjects, 100, 10, "RequirementQuest1 blablabla");
-		Quest requirementQuest2 = new Quest("RequirementQuest2", testObjects, 100, 10, "RequirementQuest2 blablabla");
-		Quest requirementQuest3 = new Quest("RequirementQuest3", testObjects, 100, 10, "RequirementQuest3 blablabla");
-
-		playerKnight.addCompletedQuestForThisPlayer(requirementQuest1);
-		playerKnight.addCompletedQuestForThisPlayer(requirementQuest2);
-		playerKnight.addCompletedQuestForThisPlayer(requirementQuest3);
+		playerKnight.completeQuest(requirementQuest1);
+		playerKnight.completeQuest(requirementQuest2);
+		playerKnight.completeQuest(requirementQuest3);
 
 		ArrayList<Object> testObjects1 = new ArrayList<>();
 		testObjects1.add(QuestType.ALL);
@@ -39,9 +39,9 @@ class TestDecisonTableAddToAcceptedQuests {
 		testObjects1.add(requirementQuest2);
 		testObjects1.add(requirementQuest3);
 
-		Quest testQuest = new Quest("TestQuest", testObjects1, 1000, 10, "TestQuest  blablabla");
+		Quest testQuest = new Quest("TestQuest", testObjects1, 1000, 10, "TestQuest  blablabla", false);
 
-		playerKnight.addQuestToAcceptForThisPlayer(testQuest);
+		playerKnight.acceptQuest(testQuest);
 
 
 		assertEquals(testQuest, playerKnight.getQuestLog().getAcceptedQuests().get(0));
@@ -62,13 +62,13 @@ class TestDecisonTableAddToAcceptedQuests {
 		testObjects.add(QuestType.ALL);
 		testObjects.add(20);
 
-		Quest requirementQuest1 = new Quest("RequirementQuest1", testObjects, 100, 10, "RequirementQuest1 blablabla");
-		Quest requirementQuest2 = new Quest("RequirementQuest2", testObjects, 100, 10, "RequirementQuest2 blablabla");
-		Quest requirementQuest3 = new Quest("RequirementQuest3", testObjects, 100, 10, "RequirementQuest3 blablabla");
+		Quest requirementQuest1 = new Quest("RequirementQuest1", testObjects, 100, 10, "RequirementQuest1 blablabla", false);
+		Quest requirementQuest2 = new Quest("RequirementQuest2", testObjects, 100, 10, "RequirementQuest2 blablabla", false);
+		Quest requirementQuest3 = new Quest("RequirementQuest3", testObjects, 100, 10, "RequirementQuest3 blablabla", false);
 
-		playerKnight.addCompletedQuestForThisPlayer(requirementQuest1);
-		playerKnight.addCompletedQuestForThisPlayer(requirementQuest2);
-		playerKnight.addCompletedQuestForThisPlayer(requirementQuest3);
+		playerKnight.completeQuest(requirementQuest1);
+		playerKnight.completeQuest(requirementQuest2);
+		playerKnight.completeQuest(requirementQuest3);
 
 		ArrayList<Object> testObjects1 = new ArrayList<>();
 		testObjects1.add(QuestType.ALL);
@@ -77,12 +77,12 @@ class TestDecisonTableAddToAcceptedQuests {
 		testObjects1.add(requirementQuest2);
 		testObjects1.add(requirementQuest3);
 
-		Quest testQuest = new Quest("TestQuest", testObjects1, 1000, 10, "TestQuest  blablabla");
+		Quest testQuest = new Quest("TestQuest", testObjects1, 1000, 10, "TestQuest  blablabla", false);
 
 
 
 		assertThrows(IllegalStateException.class, () -> {
-			playerKnight.addQuestToAcceptForThisPlayer(testQuest);
+			playerKnight.acceptQuest(testQuest);
 		});
 
 	}
@@ -100,12 +100,12 @@ class TestDecisonTableAddToAcceptedQuests {
 		testObjects.add(QuestType.ALL);
 		testObjects.add(10);
 
-		Quest requirementQuest1 = new Quest("RequirementQuest1", testObjects, 100, 10, "RequirementQuest1 blablabla");
-		Quest requirementQuest2 = new Quest("RequirementQuest2", testObjects, 100, 10, "RequirementQuest2 blablabla");
-		Quest requirementQuest3 = new Quest("RequirementQuest3", testObjects, 100, 10, "RequirementQuest3 blablabla");
+		Quest requirementQuest1 = new Quest("RequirementQuest1", testObjects, 100, 10, "RequirementQuest1 blablabla", false);
+		Quest requirementQuest2 = new Quest("RequirementQuest2", testObjects, 100, 10, "RequirementQuest2 blablabla", false);
+		Quest requirementQuest3 = new Quest("RequirementQuest3", testObjects, 100, 10, "RequirementQuest3 blablabla", false);
 
-		playerKnight.addCompletedQuestForThisPlayer(requirementQuest1);
-		playerKnight.addCompletedQuestForThisPlayer(requirementQuest2);
+		playerKnight.completeQuest(requirementQuest1);
+		playerKnight.completeQuest(requirementQuest2);
 
 
 		ArrayList<Object> testObjects1 = new ArrayList<>();
@@ -115,12 +115,12 @@ class TestDecisonTableAddToAcceptedQuests {
 		testObjects1.add(requirementQuest2);
 		testObjects1.add(requirementQuest3);
 
-		Quest testQuest = new Quest("TestQuest", testObjects1, 1000, 10, "TestQuest  blablabla");
+		Quest testQuest = new Quest("TestQuest", testObjects1, 1000, 10, "TestQuest  blablabla", false);
 
 
 
 		assertThrows(IllegalStateException.class, () -> {
-			playerKnight.addQuestToAcceptForThisPlayer(testQuest);
+			playerKnight.acceptQuest(testQuest);
 		});
 
 	}
@@ -138,12 +138,12 @@ class TestDecisonTableAddToAcceptedQuests {
 		testObjects.add(QuestType.ALL);
 		testObjects.add(20);
 
-		Quest requirementQuest1 = new Quest("RequirementQuest1", testObjects, 100, 10, "RequirementQuest1 blablabla");
-		Quest requirementQuest2 = new Quest("RequirementQuest2", testObjects, 100, 10, "RequirementQuest2 blablabla");
-		Quest requirementQuest3 = new Quest("RequirementQuest3", testObjects, 100, 10, "RequirementQuest3 blablabla");
+		Quest requirementQuest1 = new Quest("RequirementQuest1", testObjects, 100, 10, "RequirementQuest1 blablabla", false);
+		Quest requirementQuest2 = new Quest("RequirementQuest2", testObjects, 100, 10, "RequirementQuest2 blablabla", false);
+		Quest requirementQuest3 = new Quest("RequirementQuest3", testObjects, 100, 10, "RequirementQuest3 blablabla", false);
 
-		playerKnight.addCompletedQuestForThisPlayer(requirementQuest1);
-		playerKnight.addCompletedQuestForThisPlayer(requirementQuest2);
+		playerKnight.completeQuest(requirementQuest1);
+		playerKnight.completeQuest(requirementQuest2);
 
 
 		ArrayList<Object> testObjects1 = new ArrayList<>();
@@ -153,12 +153,12 @@ class TestDecisonTableAddToAcceptedQuests {
 		testObjects1.add(requirementQuest2);
 		testObjects1.add(requirementQuest3);
 
-		Quest testQuest = new Quest("TestQuest", testObjects1, 1000, 10, "TestQuest  blablabla");
+		Quest testQuest = new Quest("TestQuest", testObjects1, 1000, 10, "TestQuest  blablabla", false);
 
 
 
 		assertThrows(IllegalStateException.class, () -> {
-			playerKnight.addQuestToAcceptForThisPlayer(testQuest);
+			playerKnight.acceptQuest(testQuest);
 		});
 
 	}

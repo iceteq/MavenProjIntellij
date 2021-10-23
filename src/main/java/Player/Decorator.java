@@ -31,16 +31,46 @@ public abstract class Decorator implements Character {
     }
 
     @Override
-    public void setQuestLogForThisCharacter(){
-    	this.questLog.setQuestLog(this);
+    public void setQuestLogForPlayer(){
+    	this.questLog.setQuestLogForPlayer(this);
     }
     
     @Override
-    public void addCompletedQuestForThisPlayer(Quest completedQuest) {
+	public void addQuestToNPC(Quest quest) {
+		this.questLog.addQuestToNPC(quest);
+	}
+    
+	public Quest getNPCQuest(Quest quest) {
+		return this.questLog.getNPCQuest(quest, this);
+	}
+    
+	@Override
+	public boolean getQuestFailed(Quest quest) {
+		return this.questLog.getQuestFailed(quest);
+	}
+	
+	@Override
+	public void setQuestFailed(Quest quest, boolean trueOrFalse) {
+		this.questLog.setQuestFailed(quest, trueOrFalse, this);
+	}
+	
+    @Override
+    public void completeQuest(Quest completedQuest) {
     	this.questLog.addCompletedQuest(completedQuest, this);
     }
+    
     @Override
-	public void addQuestToAcceptForThisPlayer(Quest questToAccept) {
+	public void removeCompletedQuest(Quest quest) {
+		this.questLog.removeCompletedQuestFromPlayer(quest, this);
+	}
+    
+	@Override
+	public void removeFailedQuestFromPlayer(Quest quest) {
+		this.questLog.removeFailedQuestFromPlayer(quest, this);
+	}
+	
+    @Override
+	public void acceptQuest(Quest questToAccept) {
 		this.questLog.addToAcceptedQuests(questToAccept, this);
 	}
     @Override 
