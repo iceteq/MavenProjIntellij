@@ -5,9 +5,6 @@ import Player.Quest.QuestType;
 
 public class QuestLog {
 	
-	private ArrayList<Quest> mainQuests = new ArrayList<>();
-	private ArrayList<Quest> knightQuests = new ArrayList<>();
-	private ArrayList<Quest> archerQuests = new ArrayList<>();
 	private ArrayList<Quest> completedQuests = new ArrayList<>();
 	private ArrayList<Quest> acceptedQuests = new ArrayList<>();
 	private ArrayList<Quest> npcQuests = new ArrayList<>();
@@ -17,45 +14,12 @@ public class QuestLog {
 
 	}
 	
-	public ArrayList<Quest> getMainQuests() {
-		return new ArrayList<>(mainQuests);
-	}
-
-
-	public ArrayList<Quest> getKnightQuests() {
-		return new ArrayList<>(knightQuests);
-	}
-
-
-	public ArrayList<Quest> getArcherQuests() {
-		return new ArrayList<>(archerQuests);
-	}
-
 	public ArrayList<Quest> getCompletedQuests() {
 		return new ArrayList<>(completedQuests);
 	}
 	
 	public ArrayList<Quest> getAcceptedQuests() {
 		return new ArrayList<>(acceptedQuests);
-	}
-	
-	
-	public void setQuestLogForPlayer(Character character) {
-		
-		QuestDatabase database = new QuestDatabase();
-		
-		if(character.isNPC())
-			throw new IllegalArgumentException("Character must be a player");
-		
-		if(character.getTypeOfCharacter().equals("class Player.Player"))  
-			this.mainQuests = database.getMainQuests();
-			
-		else if(character.getTypeOfCharacter().equals("class Player.Knight"))
-			this.knightQuests = database.getKnightQuests();
-		
-		else if(character.getTypeOfCharacter().equals("class Player.Archer"))
-			this.archerQuests = database.getArcherQuests();	
-			
 	}
 	
 	public boolean getQuestFailed(Quest quest) {
@@ -124,7 +88,7 @@ public class QuestLog {
 				this.completedQuests.add(quest);
 			}
 			
-			else if(quest.getQuestType().name().equals("ARCHER")) {
+			else  {
 				throw new IllegalArgumentException("Character type is Knight. Quest type is Archer");
 			}
 				
@@ -139,7 +103,7 @@ public class QuestLog {
 				this.completedQuests.add(quest);
 			}
 			
-			else if(quest.getQuestType().name().equals("KNIGHT")) {
+			else {
 				throw new IllegalArgumentException("Character type is Archer. Quest type is Knight");
 			}
 			
@@ -171,16 +135,6 @@ public class QuestLog {
 		else 
 			throw new IllegalArgumentException("Quest not in completedQuests");
 			
-	}
-	
-	public void removeAcceptedQuestFromPlayer(Quest quest, Character character) {
-		
-		if(character.isNPC())
-			throw new IllegalArgumentException("Character must be  player");
-		else if(acceptedQuests.contains(quest)) 
-			acceptedQuests.remove(quest);
-		else 
-			throw new IllegalArgumentException("Quest not in acceptedQuests");
 	}
 	
 	public void addToAcceptedQuests(Quest questToAccept, Character character) {

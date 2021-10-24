@@ -32,7 +32,6 @@ public abstract class BasicCharacter implements Character {
         
         this.className = this.getClass().toString();
 
-        this.questLog = new QuestLog();
         this.damage = INITIAL_BASICCHARACTER_DAMAGE;
         this.defense = INITIAL_BASICCHARACTER_DEFENSE;
         this.level = INITIAL_LEVEL;
@@ -80,10 +79,7 @@ public abstract class BasicCharacter implements Character {
 		return questLog;
 	}
 	
-	@Override
-	public void setQuestLogForPlayer() {
-		this.questLog.setQuestLogForPlayer(this);
-	}
+	
 	
 	@Override
 	public boolean getQuestFailed(Quest quest) {
@@ -111,7 +107,7 @@ public abstract class BasicCharacter implements Character {
 	}
 	
 	@Override
-	public void removeFailedQuestFromPlayer(Quest quest) {
+	public void removeAcceptedQuestIfFailed(Quest quest) {
 		this.questLog.removeFailedQuestFromPlayer(quest, this);
 	}
 	

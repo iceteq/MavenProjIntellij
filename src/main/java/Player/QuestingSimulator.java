@@ -64,14 +64,14 @@ public class QuestingSimulator {
 
 		if(player.getQuestFailed(mainQuest03) && !mainQuest02.isCheckPoint()) {
 			
-			player.removeFailedQuestFromPlayer(mainQuest03);
+			player.removeAcceptedQuestIfFailed(mainQuest03);
 			player.removeCompletedQuest(mainQuest02);
 			player.setQuestFailed(mainQuest03, false);
 		}
 		else {
 			
-			player.removeFailedQuestFromPlayer(mainQuest03);
-			player.setQuestFailed(mainQuest03, false);
+//			player.removeAcceptedQuestIfFailed(mainQuest03);
+//			player.setQuestFailed(mainQuest03, false);
 		
 		}
 			
@@ -80,14 +80,14 @@ public class QuestingSimulator {
 		
 		if(player.getQuestFailed(mainQuest02) && !mainQuest01.isCheckPoint()) {
 			
-			player.removeFailedQuestFromPlayer(mainQuest02);
-			player.removeCompletedQuest(mainQuest01);
-			player.setQuestFailed(mainQuest02, false);
+//			player.removeAcceptedQuestIfFailed(mainQuest02);
+//			player.removeCompletedQuest(mainQuest01);
+//			player.setQuestFailed(mainQuest02, false);
 			
 		}
 		else {
 			
-			player.removeFailedQuestFromPlayer(mainQuest02);
+			player.removeAcceptedQuestIfFailed(mainQuest02);
 			player.setQuestFailed(mainQuest02, false);
 			
 		}

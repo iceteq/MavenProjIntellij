@@ -15,7 +15,6 @@ public interface Character {
     void setLevelAndOtherStats(int level);
     
     QuestLog getQuestLog();
-    void setQuestLogForPlayer();
     void addQuestToNPC(Quest quest);
     void removeCompletedQuest(Quest quest);
     Quest getNPCQuest(Quest quest);
@@ -25,7 +24,7 @@ public interface Character {
     boolean isNPC();
     boolean getQuestFailed(Quest quest);
     void setQuestFailed(Quest quest, boolean trueOrFalse);
-    void removeFailedQuestFromPlayer(Quest quest);
+    void removeAcceptedQuestIfFailed(Quest quest);
 
 
     Weapon getWeapon();

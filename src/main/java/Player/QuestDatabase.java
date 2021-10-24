@@ -78,7 +78,7 @@ public class QuestDatabase {
 		return new ArrayList<>(archerQuests);
 	}
 	
-	private Quest searchMainQuest(String nameOfQuest) {
+	public Quest searchMainQuest(String nameOfQuest) {
 		for(Quest q: this.getMainQuests()) {
 			if(q.getName().equals(nameOfQuest))
 				return q;

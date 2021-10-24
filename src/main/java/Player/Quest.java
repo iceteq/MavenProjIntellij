@@ -23,7 +23,7 @@ public class Quest {
 		this.rewards[1] = currency;
 		this.questDescription = questDescription;
 		this.checkPoint = checkPoint;
-	
+
 		
 	}
 
@@ -132,14 +132,12 @@ public class Quest {
 		
 		Quest quest = (Quest)obj;
 		
-		if(this.name == quest.getName())
-			if(this.getExperience() == quest.getExperience())
-				if(this.getCurrency() == quest.getCurrency())
-					if(this.getLevel() == quest.getLevel())
-						if(this.getQuestType() == quest.getQuestType())
-							if(this.getQuestDescription() == quest.getQuestDescription())
-								return true;
-		return false;
+		if(this.name == quest.getName() && this.getExperience() == quest.getExperience() && this.getCurrency() == quest.getCurrency() 
+				&& this.getLevel() == quest.getLevel() && this.getQuestDescription().equals(quest.getQuestDescription()))
+			return true;
+		else
+			return false;			
+
 	}
 
 	public boolean isCheckPoint() {

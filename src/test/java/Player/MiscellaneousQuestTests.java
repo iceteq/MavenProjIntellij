@@ -4,17 +4,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Player.Quest.QuestType;
 
 class MiscellaneousQuestTests {
-
-
+	
+	ArrayList<Object> testObjects;
+	
+	@BeforeEach
+	public void beforeEach() {
+		testObjects = new ArrayList<>();
+	}
+	
 	@Test
 	public void test_Quest_getLevel() {
 		
-		ArrayList<Object> testObjects = new ArrayList<>();
+		 
 		testObjects.add(QuestType.ALL);
 		testObjects.add(10);
 		Quest quest = new Quest("TestQuest", testObjects,  1000, 100, "TestQuest blablabla", false);
@@ -46,23 +53,10 @@ class MiscellaneousQuestTests {
 	}
 	
 	
-	@Test
-	public void Should_ThrowException_When_CharacterIsNPC_And_ReceivesQuestLog() {
-		
-		Character npcKnight = new Knight(new NPC());
-		
-		assertThrows(IllegalArgumentException.class, () -> {
-			
-			npcKnight.setQuestLogForPlayer();
-			
-		});
-	}
-	
 	@Test 
 	public void test_setCompletedQuest_NotNull() {
 		
 		Character playerKnight = new Knight(new Player());
-		playerKnight.setQuestLogForPlayer();
 		
 		ArrayList<Object> testObjects = new ArrayList<>();
 		testObjects.add(QuestType.ALL);
@@ -91,5 +85,30 @@ class MiscellaneousQuestTests {
 		assertEquals(q1, q2);
 	}
 	
+	@Test	
+	public void test_QuestEquality_WhenComparedWithNull() {
+		
+		ArrayList<Object> testObjects = new ArrayList<>();
+		testObjects.add(QuestType.ARCHER);
+		testObjects.add(10);
+		
+		Quest q1 = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla", false);
+		Quest q2 = null;
+		
+		assertNotEquals(q1, q2);
+	}
+	
+	@Test	
+	public void test_QuestEquality_WhenComparedOtherClass() {
+		
+		ArrayList<Object> testObjects = new ArrayList<>();
+		testObjects.add(QuestType.ARCHER);
+		testObjects.add(10);
+		
+		Quest q1 = new Quest("TestQuest", testObjects, 1000, 10, "TestQuest  blablabla", false);
+		int q2 = 5;
+		
+		assertNotEquals(q1, q2);
+	}
 
 }

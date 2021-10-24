@@ -30,10 +30,6 @@ public abstract class Decorator implements Character {
     	return this.questLog;
     }
 
-    @Override
-    public void setQuestLogForPlayer(){
-    	this.questLog.setQuestLogForPlayer(this);
-    }
     
     @Override
 	public void addQuestToNPC(Quest quest) {
@@ -65,7 +61,7 @@ public abstract class Decorator implements Character {
 	}
     
 	@Override
-	public void removeFailedQuestFromPlayer(Quest quest) {
+	public void removeAcceptedQuestIfFailed(Quest quest) {
 		this.questLog.removeFailedQuestFromPlayer(quest, this);
 	}
 	
