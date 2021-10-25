@@ -5,31 +5,15 @@ import Player.Quest.QuestType;
 
 public class QuestLog {
 	
-	private ArrayList<Quest> mainQuests = new ArrayList<>();
-	private ArrayList<Quest> knightQuests = new ArrayList<>();
-	private ArrayList<Quest> archerQuests = new ArrayList<>();
 	private ArrayList<Quest> completedQuests = new ArrayList<>();
 	private ArrayList<Quest> acceptedQuests = new ArrayList<>();
+	private ArrayList<Quest> npcQuests = new ArrayList<>();
 	
 	
 	QuestLog() {
 
 	}
 	
-	public ArrayList<Quest> getMainQuests() {
-		return new ArrayList<>(mainQuests);
-	}
-
-
-	public ArrayList<Quest> getKnightQuests() {
-		return new ArrayList<>(knightQuests);
-	}
-
-
-	public ArrayList<Quest> getArcherQuests() {
-		return new ArrayList<>(archerQuests);
-	}
-
 	public ArrayList<Quest> getCompletedQuests() {
 		return new ArrayList<>(completedQuests);
 	}
@@ -38,46 +22,118 @@ public class QuestLog {
 		return new ArrayList<>(acceptedQuests);
 	}
 	
-	
-	public void setQuestLog(Character character) {
-		
-		QuestDatabase database = new QuestDatabase();
+	public boolean getQuestFailed(Quest quest) {
+		return quest.isQuestFailed();
+	}
+
+	public void setQuestFailed(Quest quest, boolean trueOrFalse, Character character) {
 		
 		if(character.isNPC())
 			throw new IllegalArgumentException("Character must be a player");
 		
-		if(character.getTypeOfCharacter().equals("class Player.Player"))  
-			this.mainQuests = database.getMainQuests();
-			
-		else if(character.getTypeOfCharacter().equals("class Player.Knight"))
-			this.knightQuests = database.getKnightQuests();
+		for(Quest q: acceptedQuests) {
+			if(q == quest)
+				q.setQuestFailed(trueOrFalse);
+		}
+	}
+	
+	public void removeFailedQuestFromPlayer(Quest quest, Character character) {
 		
-		else if(character.getTypeOfCharacter().equals("class Player.Archer"))
-			this.archerQuests = database.getArcherQuests();	
+		if(character.isNPC())
+			throw new IllegalArgumentException("Character must be a player");
+		
+		if(quest.isQuestFailed() && acceptedQuests.contains(quest))
+			acceptedQuests.remove(quest);
 			
+	}
+	
+	public void addQuestToNPC(Quest quest) {
+		this.npcQuests.add(quest);
+	}
+	
+	public ArrayList<Quest> getNPCQuests() {
+		return new ArrayList<>(npcQuests);
+	}
+	
+	public Quest getNPCQuest(Quest quest, Character character) {
+		
+		if(!(character.isNPC()))
+			throw new IllegalArgumentException("Character must be an NPC");
+		
+		for(Quest q: this.getNPCQuests()) {
+			if(q == quest)
+				return q;
+		}
+		
+		throw new IllegalArgumentException("No quest with that name found in npcQuests");
 	}
 
 
-	public void addCompletedQuest(Quest completedQuest, Character character) {
+	public void addCompletedQuest(Quest quest, Character character) {
 		
 		if(character.isNPC())
 			throw new IllegalArgumentException("Character must be a player");
 		
-		if(character.getQuestLog().getCompletedQuests().contains(completedQuest))
+		if(character.getQuestLog().getCompletedQuests().contains(quest))
 			throw new IllegalArgumentException("This quest is already in completedQuests");
 		
-		if(completedQuest.getQuestType().name().equals("ALL")) {
-			this.completedQuests.add(completedQuest);
+		
+		if(character.getTypeOfCharacter().contains("Knight")) {
+			
+			if(quest.getQuestType().name().equals("ALL")) {
+				this.completedQuests.add(quest);
+			}
+			
+			else if(quest.getQuestType().name().equals("KNIGHT")) {
+				this.completedQuests.add(quest);
+			}
+			
+			else  {
+				throw new IllegalArgumentException("Character type is Knight. Quest type is Archer");
+			}
+				
 		}
-		else if(completedQuest.getQuestType().name().equals("KNIGHT") && character.getTypeOfCharacter().contains("Knight")) {
-			this.completedQuests.add(completedQuest);
-		}
-		else if(completedQuest.getQuestType().name().equals("ARCHER") && character.getTypeOfCharacter().contains("Archer")) {
-			this.completedQuests.add(completedQuest);
+		else if(character.getTypeOfCharacter().contains("Archer"))  {
+			
+			if(quest.getQuestType().name().equals("ALL")) {
+				this.completedQuests.add(quest);
+			}
+			
+			else if(quest.getQuestType().name().equals("ARCHER")) {
+				this.completedQuests.add(quest);
+			}
+			
+			else {
+				throw new IllegalArgumentException("Character type is Archer. Quest type is Knight");
+			}
+			
 		}
 		else {
-			throw new IllegalArgumentException("Quest-type doesn't match class-type");
+			
+			if(quest.getQuestType().name().equals("ALL")) {
+				this.completedQuests.add(quest);
+			}
+			
+			else {
+				throw new IllegalArgumentException("Character is of no Class. Quest type is of "
+						+ quest.getQuestType().name() + " type");
+			}
+			
 		}
+		
+		acceptedQuests.remove(quest);
+		
+			
+	}
+	
+	public void removeCompletedQuestFromPlayer(Quest quest, Character character) {
+		
+		if(character.isNPC())
+			throw new IllegalArgumentException("Character must be  player");
+		else if(completedQuests.contains(quest)) 
+			completedQuests.remove(quest);
+		else 
+			throw new IllegalArgumentException("Quest not in completedQuests");
 			
 	}
 	
@@ -111,7 +167,7 @@ public class QuestLog {
 			}	
 		}
 		else {
-			throw new IllegalStateException("Player does not meet requirements");
+			throw new IllegalStateException("Player doesn't meet requirements");
 		}
 	}
 	

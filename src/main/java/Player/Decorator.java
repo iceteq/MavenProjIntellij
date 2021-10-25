@@ -21,14 +21,8 @@ public abstract class Decorator implements Character {
     public Decorator(Character character){
         this.character = character;
         this.questLog = new QuestLog();
-  
         this.knightOrArcher = this.getClass().toString();
-        
 
-    }
-
-    public int getMaxHealth(){
-        return character.getMaxHealth();
     }
     
     @Override 
@@ -36,23 +30,45 @@ public abstract class Decorator implements Character {
     	return this.questLog;
     }
 
-    public abstract void levelUp();
-
-    @Override
-    public void setQuestLogForThisCharacter(){
-    	this.questLog.setQuestLog(this);
-    }
     
     @Override
-    public void addCompletedQuestForThisPlayer(Quest completedQuest) {
+	public void addQuestToNPC(Quest quest) {
+		this.questLog.addQuestToNPC(quest);
+	}
+    
+	public Quest getNPCQuest(Quest quest) {
+		return this.questLog.getNPCQuest(quest, this);
+	}
+    
+	@Override
+	public boolean getQuestFailed(Quest quest) {
+		return this.questLog.getQuestFailed(quest);
+	}
+	
+	@Override
+	public void setQuestFailed(Quest quest, boolean trueOrFalse) {
+		this.questLog.setQuestFailed(quest, trueOrFalse, this);
+	}
+	
+    @Override
+    public void completeQuest(Quest completedQuest) {
     	this.questLog.addCompletedQuest(completedQuest, this);
     }
     
     @Override
-	public void addQuestToAcceptForThisPlayer(Quest questToAccept) {
-		this.questLog.addToAcceptedQuests(questToAccept, this);
+	public void removeCompletedQuest(Quest quest) {
+		this.questLog.removeCompletedQuestFromPlayer(quest, this);
 	}
     
+	@Override
+	public void removeAcceptedQuestIfFailed(Quest quest) {
+		this.questLog.removeFailedQuestFromPlayer(quest, this);
+	}
+	
+    @Override
+	public void acceptQuest(Quest questToAccept) {
+		this.questLog.addToAcceptedQuests(questToAccept, this);
+	}
     @Override 
     public String getTypeOfCharacter() {
     	return knightOrArcher;
@@ -62,4 +78,6 @@ public abstract class Decorator implements Character {
     public boolean isNPC() {
     	return character.isNPC();
     }
+
+    public abstract void setLevel(int level);
 }

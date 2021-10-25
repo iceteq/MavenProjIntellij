@@ -8,7 +8,24 @@ import equipment.Armor.ArmorType;
 import equipment.Weapon.WeaponType;
 
 class EquipmentTest {
-
+	
+	@Test
+	public void test_getName() {
+		Weapon newWeapon = new Weapon(WeaponType.ONEHANDEDAXE, "NewWeapon");
+		Armor newArmor = new Armor("NewArmor", ArmorType.PLATE, ArmorPiece.CHEST);
+		
+		assertEquals("NewWeapon", newWeapon.getName());
+		assertEquals("NewArmor", newArmor.getName());
+	}
+	
+	@Test
+	public void WeaponConstructor_NoParameters_ShouldSucceed() {
+		Weapon newWeapon = new Weapon();
+		
+		assertEquals("someweapon", newWeapon.getName());
+		assertEquals(WeaponType.ONEHANDEDSWORD, newWeapon.getWeaponType());
+	}
+	
 	@Test
 	public void WeaponConstructor_ValidParameters_ShouldSucceed() {
 		Weapon newWeapon = new Weapon(WeaponType.ONEHANDEDAXE, "NewWeapon");

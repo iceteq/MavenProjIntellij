@@ -7,6 +7,7 @@ public abstract class BasicCharacter implements Character {
 
 	public static final double INITIAL_BASICCHARACTER_DAMAGE = 5;
 	public static final double INITIAL_BASICCHARACTER_DEFENSE = 0;
+	public static final int INITIAL_BASICCHARACTER_HEALTH = 300;
 	public static final int INITIAL_LEVEL = 1;
     
     QuestLog questLog;
@@ -20,9 +21,9 @@ public abstract class BasicCharacter implements Character {
     int level;
     
 
-    public BasicCharacter(int defaultMaxHealth) {
+    public BasicCharacter() {
 
-        this.maxHealth = defaultMaxHealth;
+        this.maxHealth = INITIAL_BASICCHARACTER_HEALTH;
         this.questLog = new QuestLog();
         this.damage = 100.0;
         
@@ -30,31 +31,39 @@ public abstract class BasicCharacter implements Character {
         	this.NPC = true;
         
         this.className = this.getClass().toString();
-        
-        this.maxHealth = defaultMaxHealth;
-        this.questLog = new QuestLog();
+
         this.damage = INITIAL_BASICCHARACTER_DAMAGE;
         this.defense = INITIAL_BASICCHARACTER_DEFENSE;
         this.level = INITIAL_LEVEL;
 
     }
 
-    public BasicCharacter() {
-        this(0);
-    }
-
+    @Override
     public int getMaxHealth() {
         return this.maxHealth;
     }
+
+    @Override
     public double getDamage() {
         return this.damage;
     }
 
     @Override
-    public void setMaxHealth(int newHealth) {
-        this.maxHealth = newHealth;
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+        this.damage = weapon.getWeaponDamage();
     }
-    
+
+    @Override
+    public Weapon getWeapon() {
+        return this.weapon;
+    }
+
+    @Override
+    public void setMaxHealth(int i) {
+        this.maxHealth = i;
+    }
+
     @Override
     public void setDamage(double newDamage) {
         this.damage = newDamage;
@@ -70,28 +79,55 @@ public abstract class BasicCharacter implements Character {
 		return questLog;
 	}
 	
+	
+	
 	@Override
-	public void setQuestLogForThisCharacter() {
-		this.questLog.setQuestLog(this);
+	public boolean getQuestFailed(Quest quest) {
+		return this.questLog.getQuestFailed(quest);
 	}
 	
 	@Override
-	public void addCompletedQuestForThisPlayer(Quest completedQuest) {
+	public void setQuestFailed(Quest quest, boolean trueOrFalse) {
+		this.questLog.setQuestFailed(quest, trueOrFalse, this);
+	}
+	
+	@Override
+	public void addQuestToNPC(Quest quest) {
+		this.questLog.addQuestToNPC(quest);
+	}
+
+	@Override
+	public void completeQuest(Quest completedQuest) {
 		this.questLog.addCompletedQuest(completedQuest, this);
 	}
 	
 	@Override
-	public void addQuestToAcceptForThisPlayer(Quest questToAccept) {
+	public void removeCompletedQuest(Quest quest) {
+		this.questLog.removeCompletedQuestFromPlayer(quest, this);
+	}
+	
+	@Override
+	public void removeAcceptedQuestIfFailed(Quest quest) {
+		this.questLog.removeFailedQuestFromPlayer(quest, this);
+	}
+	
+	@Override
+	public void acceptQuest(Quest questToAccept) {
 		this.questLog.addToAcceptedQuests(questToAccept, this);
 	}
-
+	
+	@Override
+	public Quest getNPCQuest(Quest quest) {
+		return this.questLog.getNPCQuest(quest, this);
+	}
+	
 	@Override
 	public String getTypeOfCharacter() {
 		return this.className;
 	}
 
 	@Override
-    public void setLevel(int level){
+    public void setLevelAndOtherStats(int level){
         this.level = level;
     }
 

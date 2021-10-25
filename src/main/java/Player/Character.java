@@ -5,7 +5,6 @@ import equipment.Weapon;
 public interface Character {
 
     int getMaxHealth();
-    void setMaxHealth(int newHealth);
     
     void setWeapon(Weapon weapon);
     
@@ -13,18 +12,23 @@ public interface Character {
     void setDamage(double newDamage);
 
     int getLevel();
-    void setLevel(int level);
+    void setLevelAndOtherStats(int level);
     
     QuestLog getQuestLog();
-    void setQuestLogForThisCharacter();
-    void addCompletedQuestForThisPlayer(Quest completedQuest);
-    void addQuestToAcceptForThisPlayer(Quest questToAccept);
+    void addQuestToNPC(Quest quest);
+    void removeCompletedQuest(Quest quest);
+    Quest getNPCQuest(Quest quest);
+    void completeQuest(Quest completedQuest);
+    void acceptQuest(Quest questToAccept);
     String getTypeOfCharacter();
     boolean isNPC();
+    boolean getQuestFailed(Quest quest);
+    void setQuestFailed(Quest quest, boolean trueOrFalse);
+    void removeAcceptedQuestIfFailed(Quest quest);
 
 
+    Weapon getWeapon();
 
-  
-
+    void setMaxHealth(int i);
 
 }
