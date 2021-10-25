@@ -171,6 +171,17 @@ public class QuestLog {
 		}
 	}
 	
+	public void printAcceptedQuests() {
+		for(Quest q: acceptedQuests) {
+			System.out.println(q.getName());
+		}
+	}
+	
+	public void printCompletedQuests() {
+		for(Quest q: completedQuests) {
+			System.out.println(q.getName());
+		}
+	}
 	
 	
 }
