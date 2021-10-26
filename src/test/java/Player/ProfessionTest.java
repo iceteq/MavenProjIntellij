@@ -74,4 +74,41 @@ class ProfessionTest {
         assertEquals(GrandHeal.class, archer.getHealingAbility().getClass());
     }
 
+    @Test
+    void knightCantMeditateYet() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            knight.setLevelAndOtherStats(9);
+        });
+    }
+    @Test
+    void archerCantMeditateYet() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            archer.setLevelAndOtherStats(9);
+        });
+    }
+
+    @Test
+    void knightCantHealYet() {
+        knight.setLevelAndOtherStats(19);
+        assertNotEquals(Heal.class, knight.getHealingAbility().getClass());
+    }
+
+    @Test
+    void knightCantGrandHealYet() {
+        knight.setLevelAndOtherStats(29);
+        assertNotEquals(GrandHeal.class, knight.getHealingAbility().getClass());
+    }
+
+    @Test
+    void archerCantHealYet() {
+        knight.setLevelAndOtherStats(19);
+        assertNotEquals(Heal.class, knight.getHealingAbility().getClass());
+    }
+
+    @Test
+    void archerCantGrandHealYet() {
+        knight.setLevelAndOtherStats(29);
+        assertNotEquals(GrandHeal.class, knight.getHealingAbility().getClass());
+    }
+
 }

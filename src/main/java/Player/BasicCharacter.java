@@ -71,15 +71,9 @@ public abstract class BasicCharacter implements Character {
     }
 
     @Override
-    public String toString() {
-        return "BasicCharacter{}";
-    }
-
-    @Override
     public QuestLog getQuestLog() {
         return questLog;
     }
-
 
     @Override
     public boolean getQuestFailed(Quest quest) {
@@ -132,9 +126,8 @@ public abstract class BasicCharacter implements Character {
     }
 
     @Override
-
     public void setLevelAndOtherStats(int level) {
-        this.setLevelAndOtherStats(level);
+        this.setLevel(level);
         setMaxHealthWithRegardToLevel();
     }
 

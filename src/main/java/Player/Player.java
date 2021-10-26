@@ -13,11 +13,9 @@ class Player extends BasicCharacter {
 	@Override
 	public void setLevelAndOtherStats(int level) {
 		this.level = level;
-		setMaxHealthWithRegardsToLevel();
+		setMaxHealthWithRegardToLevel();
 	}
 
-	private void setMaxHealthWithRegardsToLevel() {
-		this.maxHealth = 300 + this.getLevel() * 5;
-	}
+
 
 }

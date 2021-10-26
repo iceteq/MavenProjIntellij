@@ -40,7 +40,9 @@ public abstract class Profession extends Decorator  {
 
 	@Override
 	public void setLevelAndOtherStats(int level){
-		character.setLevelAndOtherStats(level);
+		character.setLevel(level);
+		setMaxHealthWithRegardToLevel();
+		updateHealingAbility();
 	};
 
 	@Override
@@ -70,7 +72,7 @@ public abstract class Profession extends Decorator  {
 
 	@Override
 	public void setLevel(int level) {
-		character.setLevelAndOtherStats(level);
+		character.setLevel(level);
 	}
 
 	public abstract void setMaxHealthWithRegardToLevel();

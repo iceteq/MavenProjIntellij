@@ -8,12 +8,13 @@ public class Archer extends Profession {
         super(ch);
         character.setMaxHealth(character.getMaxHealth());
         character.setDamage(INITIAL_KNIGHT_DAMAGE);
-        updateHealingAbility();
+        if (getLevel() >= 10)
+            updateHealingAbility();
     }
 
     @Override
     public void setLevelAndOtherStats(int level) {
-        character.setLevelAndOtherStats(level);
+        character.setLevel(level);
         setMaxHealthWithRegardToLevel();
         updateHealingAbility();
     }
