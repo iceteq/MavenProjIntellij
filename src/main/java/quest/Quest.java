@@ -1,4 +1,4 @@
-package Player;
+package quest;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class Quest {
 	private boolean questFailed;
 	
 	
-	Quest(String name, ArrayList<Object> requirements, int experience, int currency, String questDescription, boolean checkPoint) {
+	public Quest(String name, ArrayList<Object> requirements, int experience, int currency, String questDescription, boolean checkPoint) {
 		this.name = name;
 		if(hasValidObjects(requirements))
 			this.requirements = new ArrayList<>(requirements);

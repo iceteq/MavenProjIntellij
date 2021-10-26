@@ -1,7 +1,8 @@
-package Player;
+package quest;
 import java.util.ArrayList;
 
-import Player.Quest.QuestType;
+import Player.Character;
+import quest.Quest.QuestType;
 
 public class QuestLog {
 	
@@ -10,7 +11,7 @@ public class QuestLog {
 	private ArrayList<Quest> npcQuests = new ArrayList<>();
 	
 	
-	QuestLog() {
+	public QuestLog() {
 
 	}
 	

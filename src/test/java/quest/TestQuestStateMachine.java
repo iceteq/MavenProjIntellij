@@ -1,4 +1,4 @@
-package Player;
+package quest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,6 +6,15 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import Player.Archer;
+import Player.Character;
+import Player.Knight;
+import Player.NPC;
+import Player.Player;
+import quest.Quest;
+import quest.QuestDatabase;
+import quest.QuestingSimulator;
 
 class TestQuestStateMachine {
 	

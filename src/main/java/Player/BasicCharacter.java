@@ -2,6 +2,8 @@ package Player;
 
 import equipment.Armor;
 import equipment.Weapon;
+import quest.Quest;
+import quest.QuestLog;
 
 public abstract class BasicCharacter implements Character {
 

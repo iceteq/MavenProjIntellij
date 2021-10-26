@@ -1,8 +1,10 @@
-package Player;
+package quest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
+import Player.Character;
 
 public class QuestingSimulator {
 	

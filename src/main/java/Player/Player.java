@@ -2,7 +2,7 @@ package Player;
 
 import javax.swing.plaf.basic.BasicIconFactory;
 
-class Player extends BasicCharacter {
+public class Player extends BasicCharacter {
 
 
 	@Override

@@ -1,9 +1,9 @@
-package Player;
+package quest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import Player.Quest.QuestType;
+import quest.Quest.QuestType;
 
 public class QuestDatabase {
 	
@@ -11,7 +11,7 @@ public class QuestDatabase {
 	private ArrayList<Quest> knightQuests  = new ArrayList<>(); 
 	private ArrayList<Quest> archerQuests = new ArrayList<>();
 	
-	QuestDatabase() {
+	public QuestDatabase() {
 		createMainQuests();
 		createKnightQuests();
 		createArcherQuests();
