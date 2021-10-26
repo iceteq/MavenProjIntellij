@@ -12,7 +12,9 @@ import java.util.Random;
  *@see JNoise
  */
 public abstract class MapGenerator {
-
+  
+  private static final Random RANDOM = new Random();
+  
   //Create a noise map using the provided Long seed
   //Noise map is generated using Perlin's algorithm, with the interpolation set to linear.
   //Should only need to be used when generating a map.
@@ -49,7 +51,6 @@ public abstract class MapGenerator {
   //Will create a new map based on a random seed by calling
   //generateMap(int,int,seed);
   public GameMap generateMap(int width, int height) {
-    Random random = new Random();
-    return generateMap(width, height, random.nextLong());
+    return generateMap(width, height, RANDOM.nextLong());
   }
 }

@@ -1,5 +1,7 @@
 package map;
 
+import java.util.Objects;
+
 /**
  * MapTile.java - class to represent the tiles on a map, and what they contain.
  *
@@ -148,30 +150,25 @@ public class MapTile {
     this.occupied = occupiedStatus;
   }
 
-  //will output all the relevant data within the tile class. 
-  //Can be changed to:
-  //return valueOf(height);
-  //if needing a more condensed version, or if only wanting the
-  //necessary data for, for example, saving the map to the disk.
   @Override
-  public String toString() {
-    return "Height: " + height + ", Biome: " + biome.name 
-        + ", Accessibility: " + biome.accessibility + ", Symbol: " + biome.symbol;
+  public int hashCode() {
+    return Objects.hash(biome, height, occupied);
   }
 
-  //if object o is this object or an instance of MapTile
-  //with the same values, return true. Otherwise return false.
   @Override
-  public boolean equals(Object o) {
-
-    if (o == this) {
+  public boolean equals(Object obj) {
+    if (this == obj) {
       return true;
     }
-    if (!(o instanceof MapTile)) {
+    if (!(obj instanceof MapTile)) {
       return false;
     }
-    MapTile comparand = (MapTile) o;
-    return height == comparand.height
-        && biome == comparand.biome;
+    MapTile other = (MapTile) obj;
+    return biome == other.biome && height == other.height && occupied == other.occupied;
+  }
+
+  @Override
+  public String toString() {
+    return "MapTile [height=" + height + ", occupied=" + occupied + ", biome=" + biome + "]";
   }
 }

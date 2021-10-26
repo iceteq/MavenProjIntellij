@@ -278,33 +278,31 @@ public class GameMap {
     return null;
   }
 
-  //Will output a string with all the information in the class.
-  //Could be used for a save to disk function with some 
-  //changes (make it less readable, more information dense.)
-  //Currently only used for debugging purposes.
   @Override
-  public String toString() {
-    StringBuilder output = new StringBuilder();
-    output.append("Map height: " + map.length + ", Map width: " + map[0].length + "\r\n\r\n");
-    for (int x = 0; x < map[0].length; x++) {
-      for (int y = 0; y < map.length; y++) {
-        output.append(map[x][y].toString() + "\r\n");
-      }
-    }
-    return output.toString();
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + Arrays.deepHashCode(map);
+    result = prime * result + Objects.hash(characterLocations);
+    return result;
   }
 
-  //if object o is an instance of GameMap, and all the tiles in the map are equal
-  //return true
-  //else
-  //return false.
   @Override
-  public boolean equals(Object o) {
-    if ((o instanceof GameMap)) {
-      if (Arrays.deepEquals(map, ((GameMap) o).getMap())) {
-        return true;
-      }
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
     }
-    return false;
+    if (!(obj instanceof GameMap)) {
+      return false;
+    }
+    GameMap other = (GameMap) obj;
+    return Objects.equals(characterLocations, other.characterLocations) 
+        && Arrays.deepEquals(map, other.map);
+  }
+
+  @Override
+  public String toString() {
+    return "GameMap [map=" + Arrays.toString(map) 
+      + ", characterLocations=" + characterLocations + "]";
   }
 }
