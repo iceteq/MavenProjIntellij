@@ -44,37 +44,65 @@ public class TestMapGenerator {
   }
 
   @Test
-  public void testGenerateRandomMap() {
+  public void testGenerateRandomMap_ShouldNotReturnDefaultTile() {
     GameMap map = generator.generateMap(100, 100);
     MapTile defaultTile = new MapTile();
-    assertFalse(map.getTile(0, 0).equals(defaultTile));
+    assertFalse(map.getTile(1 / 30, 1 / 30).equals(defaultTile));
   }
 
   @Test
-  public void testGenerateMapNotTooSmall() {
+  public void testGenerateMap_WidthIndexTooSmall() {
     assertThrows(IllegalArgumentException.class, () -> {
-      generator.generateMap(GameMap.getMin_Dimension() - 1, GameMap.getMin_Dimension() - 1, 500L);
+      generator.generateMap(GameMap.getMin_Dimension() - 1, GameMap.getMax_Dimension(), 500L);
     });
   }
   
   @Test
-  public void testGenerateMapNotTooLarge() {
+  public void testGenerateMap_WidthIndexTooLarge() {
     assertThrows(IllegalArgumentException.class, () -> {
-      generator.generateMap(GameMap.getMax_Dimension() + 1, GameMap.getMax_Dimension() + 1, 500L);
-    });
-  }
-
-  @Test
-  public void testGenerateRandomMapNotTooSmall() {
-    assertThrows(IllegalArgumentException.class, () -> {
-      generator.generateMap(GameMap.getMin_Dimension() - 1, GameMap.getMin_Dimension() - 1);
+      generator.generateMap(GameMap.getMax_Dimension() + 1, GameMap.getMax_Dimension(), 500L);
     });
   }
   
   @Test
-  public void testGenerateRandomMapNotTooLarge() {
+  public void testGenerateMap_HeightIndexTooSmall() {
     assertThrows(IllegalArgumentException.class, () -> {
-      generator.generateMap(GameMap.getMax_Dimension() + 1, GameMap.getMax_Dimension() + 1);
+      generator.generateMap(GameMap.getMax_Dimension(), GameMap.getMin_Dimension() - 1, 500L);
+    });
+  }
+  
+  @Test
+  public void testGenerateMap_HeightIndexTooLarge() {
+    assertThrows(IllegalArgumentException.class, () -> {
+      generator.generateMap(GameMap.getMax_Dimension(), GameMap.getMax_Dimension() + 1, 500L);
+    });
+  }
+
+  @Test
+  public void testGenerateRandomMap_WidthIndexTooSmall() {
+    assertThrows(IllegalArgumentException.class, () -> {
+      generator.generateMap(GameMap.getMin_Dimension() - 1, GameMap.getMax_Dimension());
+    });
+  }
+  
+  @Test
+  public void testGenerateRandomMap_WidthIndexTooLarge() {
+    assertThrows(IllegalArgumentException.class, () -> {
+      generator.generateMap(GameMap.getMax_Dimension() + 1, GameMap.getMax_Dimension());
+    });
+  }
+  
+  @Test
+  public void testGenerateRandomMap_HeightIndexTooSmall() {
+    assertThrows(IllegalArgumentException.class, () -> {
+      generator.generateMap(GameMap.getMax_Dimension(), GameMap.getMin_Dimension() - 1);
+    });
+  }
+  
+  @Test
+  public void testGenerateRandomMap_HeightIndexTooLarge() {
+    assertThrows(IllegalArgumentException.class, () -> {
+      generator.generateMap(GameMap.getMax_Dimension(), GameMap.getMax_Dimension() + 1);
     });
   }
 }

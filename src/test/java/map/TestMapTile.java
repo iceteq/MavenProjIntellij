@@ -1,7 +1,5 @@
 package map;
 
-import map.MapTile;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -18,8 +16,8 @@ import org.junit.jupiter.api.Test;
  */
 public class TestMapTile {
 
-  private static final int TOO_LOW = MapTile.getMin_Height()-1;
-  private static final int TOO_HIGH = MapTile.getMax_Height()+1;
+  private static final int TOO_LOW = MapTile.getMin_Height() - 1;
+  private static final int TOO_HIGH = MapTile.getMax_Height() + 1;
 
   private static final MapTile mountainTile = new MapTile();
   private static final MapTile plainsTile = new MapTile();
@@ -143,6 +141,7 @@ public class TestMapTile {
     assertTrue(mountainTile.equals(mountainTile));
   }
 
+  @SuppressWarnings("unlikely-arg-type")
   @Test
   public void testEqualsAnotherObject() {
     assertFalse(mountainTile.equals(54));
@@ -212,14 +211,14 @@ public class TestMapTile {
   }
 
   @Test
-  public void testSetHeightTooHigh() {
+  public void testSet_HeightTooHigh() {
     MapTile tile = new MapTile();
     assertThrows(IllegalArgumentException.class, () -> {
       tile.setTile(TOO_LOW); });
   }
 
   @Test
-  public void testSetHeightTooLow() {
+  public void testSet_HeightTooLow() {
     MapTile tile = new MapTile();
     assertThrows(IllegalArgumentException.class, () -> {
       tile.setTile(TOO_HIGH);
@@ -227,7 +226,7 @@ public class TestMapTile {
   }
 
   @Test
-  public void testSetAlreadyAssigned() {
+  public void testSet_OnAlreadyAssignedTile() {
     MapTile tile = new MapTile();
     tile.setTile(MapTile.getMax_Height());
     assertThrows(IllegalStateException.class, () -> {
@@ -250,7 +249,7 @@ public class TestMapTile {
   }
 
   @Test
-  public void testSetOccupiedAlreadyOccupied() {
+  public void testSetOccupied_OnAlreadyOccupiedTile() {
     MapTile tile = new MapTile();
     tile.setTile(MapTile.getPlains_Max_Height());
     tile.setOccupied(true);
@@ -259,7 +258,7 @@ public class TestMapTile {
   }
 
   @Test
-  public void testSetVacantAlreadyVacant() {
+  public void testSetVacant_OnAlreadyVacantTile() {
     MapTile tile = new MapTile();
     tile.setTile(MapTile.getPlains_Max_Height());
     assertThrows(IllegalArgumentException.class, () -> {

@@ -47,21 +47,21 @@ public class TestGameMap {
   }
 
   @Test
-  public void testGetTileMaxIndex() {
+  public void testGetTileAtMaxIndex() {
     MapTile defaultTile = new MapTile();
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertEquals(defaultTile, gameMap.getTile(WIDTH - 1, HEIGHT - 1));
   }
 
   @Test
-  public void testGetTileMinIndex() {
+  public void testGetTileAtMinIndex() {
     MapTile defaultTile = new MapTile();
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertEquals(defaultTile, gameMap.getTile(0, 0));
   }
 
   @Test
-  public void testSetTiles() {
+  public void testSetTiles_NoneShouldBeDefault() {
     MapTile defaultTile = new MapTile();
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     for (int x = 0; x < gameMap.getMap()[0].length; x++) {
@@ -73,7 +73,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testSetTileAlreadySet() {
+  public void testSetTile_TileAlreadySet() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     gameMap.setTile(0, 0, 0);
     assertThrows(IllegalStateException.class, () -> {
@@ -82,35 +82,35 @@ public class TestGameMap {
   }
 
   @Test
-  public void testMakeMapWidthTooSmall() {
+  public void testMakeMap_WidthTooSmall() {
     assertThrows(IllegalArgumentException.class, () -> {
-      GameMap map = new GameMap(GameMap.getMin_Dimension() - 1, 0);
+      new GameMap(GameMap.getMin_Dimension() - 1, 0);
     });
   }
 
   @Test
-  public void testMakeMapHeightTooSmall() {
+  public void testMakeMap_HeightTooSmall() {
     assertThrows(IllegalArgumentException.class, () -> {
-      GameMap map = new GameMap(0, GameMap.getMin_Dimension() - 1);
+      new GameMap(0, GameMap.getMin_Dimension() - 1);
     });
   }
 
   @Test
-  public void testMakeMapWidthTooLarge() {
+  public void testMakeMap_WidthTooLarge() {
     assertThrows(IllegalArgumentException.class, () -> {
-      GameMap map = new GameMap(GameMap.getMax_Dimension() + 1, 0);
+      new GameMap(GameMap.getMax_Dimension() + 1, 0);
     });
   }
 
   @Test
-  public void testMakeMapHeightTooLarge() {
+  public void testMakeMap_HeightTooLarge() {
     assertThrows(IllegalArgumentException.class, () -> {
-      GameMap map = new GameMap(0, GameMap.getMax_Dimension() + 1);
+      new GameMap(0, GameMap.getMax_Dimension() + 1);
     });
   }
 
   @Test
-  public void testSetTileWidthIndexTooLow() {
+  public void testSetTile_WidthIndexTooLow() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.setTile(INDEX_TOO_LOW, 0, MapTile.getMax_Height());
@@ -118,7 +118,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testSetTileHeightIndexTooLow() {
+  public void testSetTile_HeightIndexTooLow() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.setTile(0, INDEX_TOO_LOW, MapTile.getMax_Height());
@@ -126,7 +126,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testSetTileWidthIndexTooHigh() {
+  public void testSetTile_WidthIndexTooHigh() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.setTile(INDEX_WIDTH_TOO_HIGH, 0, MapTile.getMax_Height());
@@ -134,7 +134,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testSetTileHeightIndexTooHigh() {
+  public void testSetTile_HeightIndexTooHigh() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.setTile(0, INDEX_HEIGHT_TOO_HIGH, MapTile.getMax_Height());
@@ -151,7 +151,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testPlaceCharacterOnOccupiedTile() {
+  public void testPlaceCharacter_OnOccupiedTile() {
     Character character = new NPC(50);
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     gameMap.setTile(WIDTH - 1, HEIGHT - 1, MapTile.getMax_Height());
@@ -174,7 +174,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testPlaceCharacterWidthTooHigh() {
+  public void testPlaceCharacter_WidthIndexTooHigh() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.placeCharacter(new NPC(50), WIDTH, 0);
@@ -182,7 +182,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testPlaceCharacterWidthTooLow() {
+  public void testPlaceCharacter_WidthIndexTooLow() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.placeCharacter(new NPC(50), INDEX_TOO_LOW, 0);
@@ -190,7 +190,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testPlaceCharacterHeightTooHigh() {
+  public void testPlaceCharacter_HeightIndexTooHigh() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.placeCharacter(new NPC(50), 0, HEIGHT);
@@ -198,7 +198,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testPlaceCharacterHeightTooLow() {
+  public void testPlaceCharacter_HeightIndexTooLow() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.placeCharacter(new NPC(50), 0, INDEX_TOO_LOW);
@@ -230,7 +230,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testWithinRangeOfTarget() {
+  public void testCharacterWithinRangeOfTarget() {
     Character character = new NPC(50);
     Character target = new NPC(50);
     int range = 15;
@@ -243,7 +243,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testNotWithinRangeOfTarget() {
+  public void testCharacterNotWithinRangeOfTarget() {
     Character character = new NPC(50);
     Character neighbour = new NPC(50);
     int range = 15;
@@ -258,7 +258,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testWithinRangeCharacterDoesntExist() {
+  public void testWithinRange_CharacterDoesntExist() {
     Character character = new NPC(50);
     Character target = new NPC(50);
     int range = 15;
@@ -271,7 +271,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testWithinRangeTargetDoesntExist() {
+  public void testWithinRange_TargetDoesntExist() {
     Character character = new NPC(50);
     Character target = new NPC(50);
     int range = 15;
@@ -284,7 +284,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testWithinRangeOfTile() {
+  public void testCharacterWithinRangeOfTile() {
     Character character = new NPC(50);
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
@@ -296,7 +296,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testNotWithinRangeOfTile() {
+  public void testCharacterNotWithinRangeOfTile() {
     Character character = new NPC(50);
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
@@ -308,7 +308,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testWithinRangeOfTileCharacterDoesntExist() {
+  public void testWithinRangeOfTile_CharacterDoesntExist() {
     Character character = new NPC(50);
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
@@ -338,7 +338,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testTilesWithinRangeOriginWidthTooLarge() {
+  public void testTilesWithinRange_OriginWidthIndexTooLarge() {
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -349,7 +349,7 @@ public class TestGameMap {
   }
   
   @Test
-  public void testTilesWithinRangeOriginWidthTooSmall() {
+  public void testTilesWithinRange_OriginWidthIndexTooSmall() {
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -360,7 +360,7 @@ public class TestGameMap {
   }
   
   @Test
-  public void testTilesWithinRangeOriginHeightTooLarge() {
+  public void testTilesWithinRange_OriginHeightIndexTooLarge() {
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -371,7 +371,7 @@ public class TestGameMap {
   }
   
   @Test
-  public void testTilesWithinRangeOriginHeightTooSmall() {
+  public void testTilesWithinRange_OriginHeightIndexTooSmall() {
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -382,7 +382,7 @@ public class TestGameMap {
   }
   
   @Test
-  public void testTilesWithinRangeTargetWidthTooLarge() {
+  public void testTilesWithinRange_TargetWidthIndexTooLarge() {
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -393,7 +393,7 @@ public class TestGameMap {
   }
   
   @Test
-  public void testTilesWithinRangeTargetWidthTooSmall() {
+  public void testTilesWithinRange_TargetWidthIndexTooSmall() {
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -404,7 +404,7 @@ public class TestGameMap {
   }
   
   @Test
-  public void testTilesWithinRangeTargetHeightTooLarge() {
+  public void testTilesWithinRange_TargetHeightIndexTooLarge() {
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -415,7 +415,7 @@ public class TestGameMap {
   }
   
   @Test
-  public void testTilesWithinRangeTargetHeightTooSmall() {
+  public void testTilesWithinRange_TargetHeightIndexTooSmall() {
     int range = 15;
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -426,13 +426,13 @@ public class TestGameMap {
   }
 
   @Test
-  public void testGetCharacterTileNotOccupied() {
+  public void testGetCharacterTile_NotOccupied() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertEquals(null, gameMap.getCharacter(WIDTH - 1, HEIGHT - 1));
   }
 
   @Test
-  public void testGetCharacterWidthTooHigh() {
+  public void testGetCharacter_WidthIndexTooHigh() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.getCharacter(INDEX_WIDTH_TOO_HIGH, HEIGHT - 1);
@@ -440,7 +440,7 @@ public class TestGameMap {
   }
   
   @Test
-  public void testGetCharacterWidthTooLow() {
+  public void testGetCharacter_WidthIndexTooLow() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.getCharacter(INDEX_TOO_LOW, HEIGHT - 1);
@@ -448,7 +448,7 @@ public class TestGameMap {
   }
   
   @Test
-  public void testGetCharacterHeightTooHigh() {
+  public void testGetCharacter_HeightIndexTooHigh() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.getCharacter(WIDTH - 1, INDEX_HEIGHT_TOO_HIGH);
@@ -456,7 +456,7 @@ public class TestGameMap {
   }
   
   @Test
-  public void testGetCharacterHeightTooLow() {
+  public void testGetCharacter_HeightIndexTooLow() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.getCharacter(WIDTH - 1, INDEX_TOO_LOW);
@@ -464,7 +464,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testGetTileWidthIndexTooLow() {
+  public void testGetTile_WidthIndexTooLow() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.getTile(INDEX_TOO_LOW, 0);
@@ -472,7 +472,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testGetTileHeightIndexTooLow() {
+  public void testGetTile_HeightIndexTooLow() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.getTile(0, INDEX_TOO_LOW);
@@ -480,7 +480,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testGetTileWidthIndexTooHigh() {
+  public void testGetTile_WidthIndexTooHigh() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.getTile(INDEX_WIDTH_TOO_HIGH, 0);
@@ -488,7 +488,7 @@ public class TestGameMap {
   }
 
   @Test
-  public void testGetTileHeightIndexTooHigh() {
+  public void testGetTile_HeightIndexTooHigh() {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     assertThrows(IndexOutOfBoundsException.class, () -> {
       gameMap.getTile(0, INDEX_HEIGHT_TOO_HIGH);
