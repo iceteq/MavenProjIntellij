@@ -7,4 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NPCTest {
 
+    @Test
+    void testToString() {
+        NPC npc = new NPC();
+        assertEquals("NPC{}", npc.toString());
+    }
 }
