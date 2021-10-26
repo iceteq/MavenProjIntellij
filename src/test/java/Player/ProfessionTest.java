@@ -55,4 +55,23 @@ class ProfessionTest {
         archer.setDamage(100);
         assertEquals(100, archer.getDamage());
     }
+
+    @Test
+    void updateHealingAbility() {
+
+        knight.setLevelAndOtherStats(10);
+        assertEquals(Meditate.class, knight.getHealingAbility().getClass());
+        knight.setLevelAndOtherStats(20);
+        assertEquals(Heal.class, knight.getHealingAbility().getClass());
+        knight.setLevelAndOtherStats(30);
+        assertEquals(GrandHeal.class, knight.getHealingAbility().getClass());
+
+        archer.setLevelAndOtherStats(10);
+        assertEquals(Meditate.class, archer.getHealingAbility().getClass());
+        archer.setLevelAndOtherStats(20);
+        assertEquals(Heal.class, archer.getHealingAbility().getClass());
+        archer.setLevelAndOtherStats(30);
+        assertEquals(GrandHeal.class, archer.getHealingAbility().getClass());
+    }
+
 }
