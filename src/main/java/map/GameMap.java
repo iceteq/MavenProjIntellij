@@ -18,8 +18,9 @@ public class GameMap {
   //MAX_DIMENSION was chosen arbitrarily, can be changed to anything.
   //MIN_DIMENSION was chosen to make it easier to read, as the starting point of the map is then 0,0
   //MIN_DIMENSION being 0 also limits the complexity of the code.
-  private static final int MIN_DIMENSION = 0;
+  private static final int MIN_INDEX = 0;
   private static final int MAX_DIMENSION = 200;
+  private static final int MIN_DIMENSION = 1;
 
   //the 2d array representing the tiled map.
   private MapTile[][] map;
@@ -44,14 +45,18 @@ public class GameMap {
 
   //get() methods for the maximum and minimum size of the map.
   //used in the testing methods.
-  protected static final int getMin_Dimension() {
-    return MIN_DIMENSION; 
+  protected static final int getMin_Index() {
+    return MIN_INDEX;
   }
   
   protected static final int getMax_Dimension() {
     return MAX_DIMENSION; 
   }
-
+  
+  protected static final int getMin_Dimension() {
+    return MIN_DIMENSION; 
+  }
+  
   //Will return true if i is within the inclusive range from MIN_DIMENSION to MAX_DIMENSION
   //and it is not null.
   //Used to check if map dimensions are valid.
@@ -65,7 +70,7 @@ public class GameMap {
   //Will return true if i is within the inclusive range from MIN_DIMENSION to MAX_DIMENSION
   //and is not null.
   private boolean validateIndex(int x, int y) {
-    if (x < MIN_DIMENSION | x >= map[0].length | y < MIN_DIMENSION | y >= map.length) {
+    if (x < MIN_INDEX | x >= map[0].length | y < MIN_INDEX | y >= map.length) {
       return false;
     }
     return true;
@@ -96,8 +101,8 @@ public class GameMap {
   //Will set all the tiles in a newly created map equal to DEFAULT.
   //Is only used in the constructor to generate a default map.
   private void setDefaultMap() {
-    for (int x = MIN_DIMENSION; x < map[0].length; x++) {
-      for (int y = MIN_DIMENSION; y < map.length; y++) {
+    for (int x = MIN_INDEX; x < map[0].length; x++) {
+      for (int y = MIN_INDEX; y < map.length; y++) {
         setTile(x, y);
       }
     }
