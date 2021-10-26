@@ -111,4 +111,8 @@ class ProfessionTest {
         assertNotEquals(GrandHeal.class, knight.getHealingAbility().getClass());
     }
 
+    @Test
+    void setLevelAndOtherStats() {
+        // ?
+    }
 }
