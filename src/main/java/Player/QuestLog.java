@@ -67,7 +67,7 @@ public class QuestLog {
 		
 		throw new IllegalArgumentException("No quest with that name found in npcQuests");
 	}
-
+	
 
 	public void addCompletedQuest(Quest quest, Character character) {
 		
@@ -171,17 +171,17 @@ public class QuestLog {
 		}
 	}
 	
-	public void printAcceptedQuests() {
-		for(Quest q: acceptedQuests) {
-			System.out.println(q.getName());
-		}
-	}
-	
-	public void printCompletedQuests() {
-		for(Quest q: completedQuests) {
-			System.out.println(q.getName());
-		}
-	}
+//	public void printAcceptedQuests() {
+//		for(Quest q: acceptedQuests) {
+//			System.out.println(q.getName());
+//		}
+//	}
+//	
+//	public void printCompletedQuests() {
+//		for(Quest q: completedQuests) {
+//			System.out.println(q.getName());
+//		}
+//	}
 	
 	
 }
