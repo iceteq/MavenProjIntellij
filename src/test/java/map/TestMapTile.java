@@ -2,6 +2,8 @@ package map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -117,23 +119,28 @@ public class TestMapTile {
   public void testGetSymbolPlains() {
     assertEquals(".", plainsTile.getSymbol());
   }
-
+  
+  //toString() format:
+  //"MapTile [height=" + height + ", occupied=" + occupied + ", biome=" + biome + "]"
   @Test
   public void testToStringMountain() {
-    assertEquals("Height: " + MapTile.getMountain_Max_Height() 
-        + ", Biome: mountain, Accessibility: flight, Symbol: ∧", mountainTile.toString());
+    assertEquals("MapTile [height=" + MapTile.getMountain_Max_Height()
+        + ", occupied=false, biome=MOUNTAIN]",
+        mountainTile.toString());
   }
 
   @Test
   public void testToStringOcean() {
-    assertEquals("Height: " + MapTile.getOcean_Max_Height() 
-        + ", Biome: ocean, Accessibility: swimming, Symbol: ˜", oceanTile.toString());
+    assertEquals("MapTile [height=" + MapTile.getOcean_Max_Height()
+        + ", occupied=false, biome=OCEAN]",
+        oceanTile.toString());
   }
 
   @Test
   public void testToStringPlains() {
-    assertEquals("Height: " + MapTile.getPlains_Max_Height() 
-        + ", Biome: plains, Accessibility: walking, Symbol: .", plainsTile.toString());
+    assertEquals("MapTile [height=" + MapTile.getPlains_Max_Height()
+        + ", occupied=false, biome=PLAINS]",
+        plainsTile.toString());
   }
 
   @Test
@@ -277,6 +284,29 @@ public class TestMapTile {
     MapTile tile = new MapTile();
     assertThrows(IllegalStateException.class, () -> {
       tile.setOccupied(false); });
+  }
+  
+  @Test
+  public void testHashCode() {
+    for (int i = 0; i < 200; i++) {
+      MapTile tile = new MapTile();
+      MapTile comparandTile = new MapTile();
+      tile.setTile(i);
+      comparandTile.setTile(i);
+      assertNotSame(tile, comparandTile);
+      assertEquals(tile.hashCode(), comparandTile.hashCode());
+    }
+  }
+  
+  @Test
+  public void testHashCodeDifferent() {
+    MapTile tile = new MapTile();
+    MapTile comparandTile = new MapTile();
+    
+    tile.setTile(5);
+    comparandTile.setTile(150);
+    
+    assertNotEquals(tile.hashCode(), comparandTile.hashCode());
   }
 
 }

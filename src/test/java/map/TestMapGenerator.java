@@ -1,7 +1,7 @@
 package map;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import de.articdive.jnoise.JNoise;
@@ -46,8 +46,7 @@ public class TestMapGenerator {
   @Test
   public void testGenerateRandomMap_ShouldNotReturnDefaultTile() {
     GameMap map = generator.generateMap(100, 100);
-    MapTile defaultTile = new MapTile();
-    assertFalse(map.getTile(1 / 30, 1 / 30).equals(defaultTile));
+    assertNotNull(map.getTile(1 / 30, 1 / 30));
   }
 
   @Test

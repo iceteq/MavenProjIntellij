@@ -2,11 +2,14 @@ package map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import Player.Character;
 import Player.NPC;
+import java.util.Arrays;
 import java.util.Random;
 import org.junit.jupiter.api.Test;
 
@@ -26,8 +29,23 @@ public class TestGameMap {
   private static final int INDEX_HEIGHT_TOO_HIGH = HEIGHT;
   private static final int INDEX_WIDTH_TOO_HIGH = WIDTH;
 
-  private Random random = new Random();
-
+  private static final Random RANDOM = new Random();
+  
+  @Test
+  public void testGetMin_Index() {
+    assertEquals(GameMap.getMin_Index(), 0);
+  }
+  
+  @Test
+  public void testGetMax_Dimension() {
+    assertEquals(GameMap.getMax_Dimension(), 200);
+  }
+  
+  @Test
+  public void testGetMin_Dimension() {
+    assertEquals(GameMap.getMin_Dimension(), 1);
+  }
+  
   @Test
   public void testDefaultGeneration() {
     MapTile defaultTile = new MapTile();
@@ -43,7 +61,7 @@ public class TestGameMap {
   public void testGetDefaultTile() {
     MapTile defaultTile = new MapTile();
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
-    assertEquals(defaultTile, gameMap.getTile(random.nextInt(WIDTH), random.nextInt(HEIGHT)));
+    assertEquals(defaultTile, gameMap.getTile(RANDOM.nextInt(WIDTH), RANDOM.nextInt(HEIGHT)));
   }
 
   @Test
@@ -66,7 +84,7 @@ public class TestGameMap {
     GameMap gameMap = new GameMap(WIDTH, HEIGHT);
     for (int x = 0; x < gameMap.getMap()[0].length; x++) {
       for (int y = 0; y < gameMap.getMap().length; y++) {
-        gameMap.setTile(x, y, random.nextInt(MapTile.getMax_Height() + 1));
+        gameMap.setTile(x, y, RANDOM.nextInt(MapTile.getMax_Height() + 1));
         assertFalse(defaultTile.equals(gameMap.getTile(x, y)));
       }
     }
@@ -561,16 +579,26 @@ public class TestGameMap {
     map.setTile(1, 1, 62);
     assertTrue(map.equals(map));
   }
+  
+  @SuppressWarnings("unlikely-arg-type")
+  @Test
+  public void testEquals_NotMap() {
+    GameMap map = new GameMap(WIDTH, HEIGHT);
+    map.setTile(0, 0, 98);
+    map.setTile(0, 1, 6);
+    map.setTile(1, 0, 199);
+    map.setTile(1, 1, 62);
+    assertFalse(map.equals(54));
+  }
 
+  //toString() format:
+  //"GameMap [map=" + Arrays.toString(map) + ", characterLocations=" + characterLocations + "]";
   @Test
   public void testDefaultMapToString() {
     GameMap map = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
-    assertEquals("Map height: 2, Map width: 2\r\n"
-        + "\r\n"
-        + "Height: 0, Biome: none, Accessibility: none, Symbol: \r\n"
-        + "Height: 0, Biome: none, Accessibility: none, Symbol: \r\n"
-        + "Height: 0, Biome: none, Accessibility: none, Symbol: \r\n"
-        + "Height: 0, Biome: none, Accessibility: none, Symbol: \r\n", map.toString());
+    assertEquals("GameMap [map=" + Arrays.toString(map.getMap())
+        + ", characterLocations={}]", 
+        map.toString());
   }
 
   @Test
@@ -580,12 +608,9 @@ public class TestGameMap {
     map.setTile(0, 1, MapTile.getOcean_Max_Height());
     map.setTile(1, 0, MapTile.getPlains_Max_Height());
     map.setTile(1, 1, MapTile.getPlains_Max_Height());
-    assertEquals("Map height: 2, Map width: 2\r\n"
-        + "\r\n"
-        + "Height: 200, Biome: mountain, Accessibility: flight, Symbol: ∧\r\n"
-        + "Height: 80, Biome: ocean, Accessibility: swimming, Symbol: ˜\r\n"
-        + "Height: 140, Biome: plains, Accessibility: walking, Symbol: .\r\n"
-        + "Height: 140, Biome: plains, Accessibility: walking, Symbol: .\r\n", map.toString());
+    assertEquals("GameMap [map=" + Arrays.toString(map.getMap())
+        + ", characterLocations={}]", 
+        map.toString());
   }
 
   @Test
@@ -604,5 +629,33 @@ public class TestGameMap {
     map.setTile(1, 1, MapTile.getPlains_Max_Height());
     assertEquals("∧˜\r\n"
         + "..\r\n", map.renderMap());
+  }
+  
+  @Test
+  public void testHashCode() {
+    final MapGenerator generator = new MapGenerator() {};
+    long seed;
+    for (int i = GameMap.getMin_Dimension(); i < 200; i++) {
+      seed = RANDOM.nextLong();
+      GameMap map = generator.generateMap(i, i, seed);
+      GameMap comparandMap = generator.generateMap(i, i, seed);
+      assertNotSame(map, comparandMap);
+      assertEquals(map.hashCode(), comparandMap.hashCode());
+    }
+  }
+  
+  @Test
+  public void testHashCodeDifferent() {
+    GameMap map = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
+    map.setTile(0, 0, 98);
+    map.setTile(0, 1, 6);
+    map.setTile(1, 0, 199);
+    map.setTile(1, 1, 62);
+    GameMap comparandMap = new GameMap(SMALLER_WIDTH, SMALLER_HEIGHT);
+    comparandMap.setTile(0, 0, 180);
+    comparandMap.setTile(0, 1, 82);
+    comparandMap.setTile(1, 0, 7);
+    comparandMap.setTile(1, 1, 131);
+    assertNotEquals(map.hashCode(), comparandMap.hashCode());
   }
 }
