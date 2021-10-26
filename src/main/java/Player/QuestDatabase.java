@@ -50,9 +50,9 @@ public class QuestDatabase {
 		
 		Quest archerQuest01 = new Quest("ArcherQuest01", createTestObjects(QuestType.ARCHER, 1), 100, 10, "Go do this and that noob", false);
 		this.archerQuests.add(archerQuest01);
-		Quest archerQuest02 = new Quest("archerQuest02", createTestObjects(QuestType.ARCHER, 1, searchMainQuest("MainQuest01"), searchMainQuest("MainQuest02"), archerQuest01), 500, 50, "Go do this and that noob", false);
+		Quest archerQuest02 = new Quest("ArcherQuest02", createTestObjects(QuestType.ARCHER, 1, searchMainQuest("MainQuest01"), searchMainQuest("MainQuest02"), archerQuest01), 500, 50, "Go do this and that noob", false);
 		this.archerQuests.add(archerQuest02);
-		Quest archerQuest03 = new Quest("archerQuest03", createTestObjects(QuestType.ARCHER, 1, searchMainQuest("MainQuest01"), searchMainQuest("MainQuest02"), archerQuest02), 1000, 100, "Go do this and that noob", false);
+		Quest archerQuest03 = new Quest("ArcherQuest03", createTestObjects(QuestType.ARCHER, 1, searchMainQuest("MainQuest01"), searchMainQuest("MainQuest02"), archerQuest02), 1000, 100, "Go do this and that noob", false);
 		this.archerQuests.add(archerQuest03);
 	}
 		
