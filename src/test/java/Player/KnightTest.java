@@ -3,6 +3,7 @@ package Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static Player.Profession.INITIAL_KNIGHT_DAMAGE;
 import static org.junit.jupiter.api.Assertions.*;
 
 class KnightTest {
@@ -27,11 +28,17 @@ class KnightTest {
 
     @Test
     void knightInitialDamageTest() {
-        knight.getDamage();
+        assertEquals(INITIAL_KNIGHT_DAMAGE, knight.getDamage());
     }
 
     @Test
-    void knightMaxHealthPerLevel() {
+    void setLevel() {
+        knight.setLevel(3);
+        assertEquals(3, knight.getLevel());
+    }
+
+    @Test
+    void setMaxHealthWithRegardsToLevel() {
         knight.setLevel(1);
         knight.setMaxHealthWithRegardToLevel();
         assertEquals(330, knight.getMaxHealth());
@@ -39,25 +46,6 @@ class KnightTest {
         knight.setLevel(100);
         knight.setMaxHealthWithRegardToLevel();
         assertEquals(3300, knight.getMaxHealth());
-    }
-
-
-    @Test
-    void setLevel() {
-    }
-
-    @Test
-    void setMaxHealthWithRegardsToLevel() {
-    }
-
-    @Test
-    void updateHealingAbility() {
-        knight.setLevelAndOtherStats(10);
-        assertEquals(Meditate.class, knight.getHealingAbility().getClass());
-        knight.setLevelAndOtherStats(20);
-        assertEquals(Heal.class, knight.getHealingAbility().getClass());
-        knight.setLevelAndOtherStats(30);
-        assertEquals(GrandHeal.class, knight.getHealingAbility().getClass());
     }
 
     @Test
