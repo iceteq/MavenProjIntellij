@@ -17,66 +17,67 @@ public abstract class Decorator implements Character {
     Character character;
     QuestLog questLog;
     String knightOrArcher;
-    
-    public Decorator(Character character){
+
+    public Decorator(Character character) {
         this.character = character;
         this.questLog = new QuestLog();
         this.knightOrArcher = this.getClass().toString();
 
     }
-    
-    @Override 
+
+    @Override
     public QuestLog getQuestLog() {
-    	return this.questLog;
+        return this.questLog;
     }
 
-    
+
     @Override
-	public void addQuestToNPC(Quest quest) {
-		this.questLog.addQuestToNPC(quest);
-	}
-    
-	public Quest getNPCQuest(Quest quest) {
-		return this.questLog.getNPCQuest(quest, this);
-	}
-    
-	@Override
-	public boolean getQuestFailed(Quest quest) {
-		return this.questLog.getQuestFailed(quest);
-	}
-	
-	@Override
-	public void setQuestFailed(Quest quest, boolean trueOrFalse) {
-		this.questLog.setQuestFailed(quest, trueOrFalse, this);
-	}
-	
+    public void addQuestToNPC(Quest quest) {
+        this.questLog.addQuestToNPC(quest);
+    }
+
+    public Quest getNPCQuest(Quest quest) {
+        return this.questLog.getNPCQuest(quest, this);
+    }
+
+    @Override
+    public boolean getQuestFailed(Quest quest) {
+        return this.questLog.getQuestFailed(quest);
+    }
+
+    @Override
+    public void setQuestFailed(Quest quest, boolean trueOrFalse) {
+        this.questLog.setQuestFailed(quest, trueOrFalse, this);
+    }
+
     @Override
     public void completeQuest(Quest completedQuest) {
-    	this.questLog.addCompletedQuest(completedQuest, this);
+        this.questLog.addCompletedQuest(completedQuest, this);
     }
-    
+
     @Override
-	public void removeCompletedQuest(Quest quest) {
-		this.questLog.removeCompletedQuestFromPlayer(quest, this);
-	}
-    
-	@Override
-	public void removeAcceptedQuestIfFailed(Quest quest) {
-		this.questLog.removeFailedQuestFromPlayer(quest, this);
-	}
-	
+    public void removeCompletedQuest(Quest quest) {
+        this.questLog.removeCompletedQuestFromPlayer(quest, this);
+    }
+
     @Override
-	public void acceptQuest(Quest questToAccept) {
-		this.questLog.addToAcceptedQuests(questToAccept, this);
-	}
-    @Override 
+    public void removeAcceptedQuestIfFailed(Quest quest) {
+        this.questLog.removeFailedQuestFromPlayer(quest, this);
+    }
+
+    @Override
+    public void acceptQuest(Quest questToAccept) {
+        this.questLog.addToAcceptedQuests(questToAccept, this);
+    }
+
+    @Override
     public String getTypeOfCharacter() {
-    	return knightOrArcher;
+        return knightOrArcher;
     }
-    
+
     @Override
     public boolean isNPC() {
-    	return character.isNPC();
+        return character.isNPC();
     }
 
     public abstract void setLevel(int level);

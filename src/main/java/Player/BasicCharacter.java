@@ -1,6 +1,5 @@
 package Player;
 
-import equipment.Armor;
 import equipment.Weapon;
 
 public abstract class BasicCharacter implements Character {
@@ -13,7 +12,6 @@ public abstract class BasicCharacter implements Character {
 
     QuestLog questLog;
     Weapon weapon;
-    Armor armor;
     String className;
     boolean NPC;
     double damage;

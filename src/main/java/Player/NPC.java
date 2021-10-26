@@ -14,5 +14,5 @@ public class NPC extends BasicCharacter {
         return "NPC{}";
     }
 
-    
+
 }
