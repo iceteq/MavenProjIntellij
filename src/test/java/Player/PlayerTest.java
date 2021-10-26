@@ -1,5 +1,6 @@
 package Player;
 
+import static Player.BasicCharacter.INITIAL_BASICCHARACTER_DAMAGE;
 import static org.junit.jupiter.api.Assertions.*;
 
 import equipment.Weapon;
@@ -28,7 +29,7 @@ class PlayerTest {
 
 	@Test
 	public void playerDamageNoWeapon(){
-		double expected = 100.0;
+		double expected = INITIAL_BASICCHARACTER_DAMAGE;
 		assertEquals(expected, player.getDamage());
 	}
 
@@ -45,8 +46,7 @@ class PlayerTest {
 	public void playerDamageWithWeapon(){
 		Weapon weapon = new Weapon(Weapon.WeaponType.ONEHANDEDSWORD, 0.0);
 		player.setWeapon(weapon);
-		double expected = 100 + 81;
-		assertEquals(expected, player.getDamage());
+		assertEquals(INITIAL_BASICCHARACTER_DAMAGE + 81, player.getDamage());
 	}
 
 	@Test

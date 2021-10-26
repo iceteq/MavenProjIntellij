@@ -1,5 +1,6 @@
 package Player;
 
+
 public class NPC extends BasicCharacter {
     public NPC(int health) {
         super();
@@ -12,8 +13,6 @@ public class NPC extends BasicCharacter {
     public String toString() {
         return "NPC{}";
     }
-    
-    
 
     
 }

@@ -11,9 +11,12 @@ public interface Character {
     double getDamage();
     void setDamage(double newDamage);
 
+    void setMaxHealthWithRegardToLevel();
+
     int getLevel();
     void setLevelAndOtherStats(int level);
-    
+    void setLevel(int level);
+
     QuestLog getQuestLog();
     void addQuestToNPC(Quest quest);
     void removeCompletedQuest(Quest quest);
