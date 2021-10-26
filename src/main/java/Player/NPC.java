@@ -1,6 +1,6 @@
 package Player;
 
-class NPC extends BasicCharacter {
+public class NPC extends BasicCharacter {
     public NPC(int health) {
         super();
     }
