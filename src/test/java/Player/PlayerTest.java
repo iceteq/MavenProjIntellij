@@ -46,7 +46,7 @@ class PlayerTest {
 	public void playerDamageWithWeapon(){
 		Weapon weapon = new Weapon(Weapon.WeaponType.ONEHANDEDSWORD, 0.0);
 		player.setWeapon(weapon);
-		assertEquals(INITIAL_BASICCHARACTER_DAMAGE + 81, player.getDamage());
+		assertEquals(INITIAL_BASICCHARACTER_DAMAGE + 81.0, player.getDamage());
 	}
 
 	@Test

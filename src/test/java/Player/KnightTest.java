@@ -38,7 +38,7 @@ class KnightTest {
     }
 
     @Test
-    void setMaxHealthWithRegardsToLevel() {
+    void setMaxHealthWithRegardToLevel() {
         knight.setLevel(1);
         knight.setMaxHealthWithRegardToLevel();
         assertEquals(330, knight.getMaxHealth());
@@ -48,22 +48,7 @@ class KnightTest {
         assertEquals(3300, knight.getMaxHealth());
     }
 
-    @Test
-    void cantMeditateYet() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            knight.setLevelAndOtherStats(9);
-        });
-    }
 
-    @Test
-    void cantHealYet() {
-        knight.setLevelAndOtherStats(19);
-        assertNotEquals(Heal.class, knight.getHealingAbility().getClass());
-    }
 
-    @Test
-    void cantGrandHealYet() {
-        knight.setLevelAndOtherStats(29);
-        assertNotEquals(GrandHeal.class, knight.getHealingAbility().getClass());
-    }
+
 }
