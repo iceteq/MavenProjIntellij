@@ -52,7 +52,7 @@ public abstract class BasicCharacter implements Character {
     @Override
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
-        this.damage = weapon.getWeaponDamage();
+        this.damage = INITIAL_BASICCHARACTER_DAMAGE + weapon.getWeaponDamage();
     }
 
     @Override
