@@ -1,4 +1,4 @@
-package Player;
+package quest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,12 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import Player.Quest.QuestType;
+import Player.Archer;
+import Player.Character;
+import Player.Knight;
+import Player.Player;
+import quest.Quest;
+import quest.Quest.QuestType;
 
 class TestDecisonTableAddToAcceptedQuests {
 

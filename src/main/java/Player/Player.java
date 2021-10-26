@@ -1,6 +1,10 @@
 package Player;
 
-class Player extends BasicCharacter {
+
+import javax.swing.plaf.basic.BasicIconFactory;
+
+public class Player extends BasicCharacter {
+
 
     @Override
     public String toString() {

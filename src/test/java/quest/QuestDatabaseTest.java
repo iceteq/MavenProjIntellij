@@ -1,8 +1,10 @@
-package Player;
+package quest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import quest.QuestDatabase;
 
 class QuestDatabaseTest {
 

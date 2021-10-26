@@ -1,6 +1,7 @@
 package Player;
 
 import equipment.Weapon;
+import quest.QuestLog;
 
 /**
  * Profession kan vara Knight eller Archer

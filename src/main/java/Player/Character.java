@@ -1,6 +1,8 @@
 package Player;
 
 import equipment.Weapon;
+import quest.Quest;
+import quest.QuestLog;
 
 public interface Character {
 

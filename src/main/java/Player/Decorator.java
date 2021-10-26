@@ -1,5 +1,8 @@
 package Player;
 
+import quest.Quest;
+import quest.QuestLog;
+
 /*
 211016 19:49:49
 Just nu finns det "profession" som dekorerar
