@@ -18,7 +18,8 @@ public class Knight extends Profession {
     /**
      * perhaps a bit vague as a method name.
      * it updates health and abilities,
-     * since those two things depend on level
+     * since those two things depend on level.
+     * Could be used everytime a character levels up.
      * @param level
      */
     @Override
@@ -30,10 +31,14 @@ public class Knight extends Profession {
     }
 
     /**
-     * basically, looks at the level of this character, and
-     * multiplies that by some value. The product is the bonus
-     * health that the character gets. Add that to be base health,
-     * or "initial health" as it's called here.
+     * since max health depends on level and profession,
+     * we need to have a profession specific multiplier
+     * KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL
+     *
+     * and to multiply it with the level itself.
+     *
+     * this should always be summed with the initial health, otherwise
+     * the healthpoint will just be equal to bonus health per level.
      */
     @Override
     public void setMaxHealthWithRegardToLevel() {
