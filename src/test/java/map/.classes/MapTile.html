@@ -1,0 +1,283 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: MapTile</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">map</a> ]
+</div>
+
+<h1>Coverage Summary for Class: MapTile (map)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MapTile</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (16/ 16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (43/ 43)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">MapTile$Biome</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/ 10)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/ 19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (53/ 53)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package map;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.Objects;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;/**
+<i>6</i>&nbsp; * MapTile.java - class to represent the tiles on a map, and what they contain.
+<i>7</i>&nbsp; *
+<i>8</i>&nbsp; *@author Philip Sjunnesson
+<i>9</i>&nbsp; *@see GameMap
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public class MapTile {
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;  //constants representing the maximum and minimum possible map height.
+<i>14</i>&nbsp;  //0 and 200 were chosen for readability reasons, Perlin Noise (linear)
+<i>15</i>&nbsp;  //generates values between -1 and 1, so these values could easily be changed as long
+<i>16</i>&nbsp;  //as it can be mapped to the range -1 to 1.
+<i>17</i>&nbsp;  private static final int MIN_HEIGHT = 0;
+<i>18</i>&nbsp;  private static final int MAX_HEIGHT = 200;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;  //constants representing the dividing lines between the different biomes
+<i>21</i>&nbsp;  //as they are generated on the map. Anything at 80 and below is ocean,
+<i>22</i>&nbsp;  //between 81 up to and including 140 is plains, and above that is mountains.
+<i>23</i>&nbsp;  //Values chosen from generating some maps and choosing values that look good.
+<i>24</i>&nbsp;  private static final int OCEAN_MAX_HEIGHT = 80;
+<i>25</i>&nbsp;  private static final int PLAINS_MAX_HEIGHT = 140;
+<i>26</i>&nbsp;  private static final int MOUNTAIN_MAX_HEIGHT = MAX_HEIGHT;
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;  //height represents the noise value for the specific tile, between 0 &amp; 200.
+<i>29</i>&nbsp;  private int height;
+<i>30</i>&nbsp;  //occupied represents if a tile is currently being occupied by a character.
+<i>31</i>&nbsp;  private boolean occupied;
+<i>32</i>&nbsp;  
+<i>33</i>&nbsp;  //Biome represents the hard coded biomes available on generation. 
+<i>34</i>&nbsp;  //DEFAULT is for map tiles that have not been assigned a height.
+<i>35</i>&nbsp;  //DEFAULT will therefore show if a map has been 
+<i>36</i>&nbsp;  //generated or not, and if it&#39;s been completely generated.
+<b class="fc"><i>37</i>&nbsp;  private enum Biome {</b>
+<b class="fc"><i>38</i>&nbsp;    OCEAN(&quot;ocean&quot;, &quot;swimming&quot;, &quot;˜&quot;),</b>
+<b class="fc"><i>39</i>&nbsp;    PLAINS(&quot;plains&quot;, &quot;walking&quot;, &quot;.&quot;),</b>
+<b class="fc"><i>40</i>&nbsp;    MOUNTAIN(&quot;mountain&quot;, &quot;flight&quot;, &quot;?&quot;),</b>
+<b class="fc"><i>41</i>&nbsp;    DEFAULT(&quot;none&quot;, &quot;none&quot;, &quot;?&quot;);</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    private String name;
+<i>44</i>&nbsp;    private String accessibility;
+<i>45</i>&nbsp;    private String symbol;
+<b class="fc"><i>46</i>&nbsp;    private Biome(String name, String accessibility, String symbol) {</b>
+<b class="fc"><i>47</i>&nbsp;      this.name = name;</b>
+<b class="fc"><i>48</i>&nbsp;      this.accessibility = accessibility;</b>
+<b class="fc"><i>49</i>&nbsp;      this.symbol = symbol;</b>
+<b class="fc"><i>50</i>&nbsp;    }</b>
+<i>51</i>&nbsp;  }
+<i>52</i>&nbsp;  
+<i>53</i>&nbsp;  private Biome biome;
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;  //will create a DEFAULT tile that can later receive a value.
+<b class="fc"><i>56</i>&nbsp;  protected MapTile() {</b>
+<b class="fc"><i>57</i>&nbsp;    this.biome = Biome.DEFAULT;</b>
+<b class="fc"><i>58</i>&nbsp;    this.height = 0;</b>
+<b class="fc"><i>59</i>&nbsp;    this.occupied = false;</b>
+<b class="fc"><i>60</i>&nbsp;  }</b>
+<i>61</i>&nbsp;
+<i>62</i>&nbsp;  //get methods for the scope of the map.
+<i>63</i>&nbsp;  //these values are used in the tests.
+<i>64</i>&nbsp;  protected static int getMin_Height() {
+<b class="fc"><i>65</i>&nbsp;    return MIN_HEIGHT;</b>
+<i>66</i>&nbsp;  }
+<i>67</i>&nbsp;  
+<i>68</i>&nbsp;  protected static int getMax_Height() {
+<b class="fc"><i>69</i>&nbsp;    return MAX_HEIGHT; </b>
+<i>70</i>&nbsp;  }
+<i>71</i>&nbsp;  
+<i>72</i>&nbsp;  protected static int getOcean_Max_Height() { 
+<b class="fc"><i>73</i>&nbsp;    return OCEAN_MAX_HEIGHT; </b>
+<i>74</i>&nbsp;  }
+<i>75</i>&nbsp;  
+<i>76</i>&nbsp;  protected static int getPlains_Max_Height() { 
+<b class="fc"><i>77</i>&nbsp;    return PLAINS_MAX_HEIGHT; </b>
+<i>78</i>&nbsp;  }
+<i>79</i>&nbsp;  
+<i>80</i>&nbsp;  protected static int getMountain_Max_Height() { 
+<b class="fc"><i>81</i>&nbsp;    return MOUNTAIN_MAX_HEIGHT; </b>
+<i>82</i>&nbsp;  }
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;  //will set the tile height equal to the provided value
+<i>86</i>&nbsp;  //as long as the tile is originally a DEFAULT tile
+<i>87</i>&nbsp;  //and that the height is within the allowed range.
+<i>88</i>&nbsp;  protected void setTile(int i) {
+<b class="fc"><i>89</i>&nbsp;    if (!(biome == Biome.DEFAULT)) {</b>
+<b class="fc"><i>90</i>&nbsp;      throw new IllegalStateException();</b>
+<i>91</i>&nbsp;    }
+<b class="fc"><i>92</i>&nbsp;    switch ((MIN_HEIGHT &lt;= i &amp;&amp; i &lt;= OCEAN_MAX_HEIGHT) ? 0 : </b>
+<i>93</i>&nbsp;      //if i is the ocean height range then go to 0
+<b class="fc"><i>94</i>&nbsp;      (OCEAN_MAX_HEIGHT &lt; i &amp;&amp; i &lt;= PLAINS_MAX_HEIGHT) ? 1 : </b>
+<i>95</i>&nbsp;        //if i is in the plains height range then go to 1
+<b class="fc"><i>96</i>&nbsp;        (PLAINS_MAX_HEIGHT &lt; i &amp;&amp; i &lt;= MOUNTAIN_MAX_HEIGHT) ? 2 : 3) { </b>
+<i>97</i>&nbsp;      //if i is in the mountain height range then go to 2
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;      case 0:
+<b class="fc"><i>100</i>&nbsp;        this.biome = Biome.OCEAN;</b>
+<b class="fc"><i>101</i>&nbsp;        break;</b>
+<i>102</i>&nbsp;      case 1:
+<b class="fc"><i>103</i>&nbsp;        this.biome = Biome.PLAINS;</b>
+<b class="fc"><i>104</i>&nbsp;        break;</b>
+<i>105</i>&nbsp;      case 2:
+<b class="fc"><i>106</i>&nbsp;        this.biome = Biome.MOUNTAIN;</b>
+<b class="fc"><i>107</i>&nbsp;        break;</b>
+<i>108</i>&nbsp;      default:
+<b class="fc"><i>109</i>&nbsp;        throw new IllegalArgumentException();</b>
+<i>110</i>&nbsp;    }
+<b class="fc"><i>111</i>&nbsp;    this.height = i;</b>
+<b class="fc"><i>112</i>&nbsp;  }</b>
+<i>113</i>&nbsp;
+<i>114</i>&nbsp;  //get methods for the tile class.
+<i>115</i>&nbsp;  public int getHeight() {
+<b class="fc"><i>116</i>&nbsp;    return height;</b>
+<i>117</i>&nbsp;  }
+<i>118</i>&nbsp;  
+<i>119</i>&nbsp;  public String getAccessibility() {
+<b class="fc"><i>120</i>&nbsp;    return biome.accessibility;</b>
+<i>121</i>&nbsp;  }
+<i>122</i>&nbsp;  
+<i>123</i>&nbsp;  public String getBiome() {
+<b class="fc"><i>124</i>&nbsp;    return biome.name;</b>
+<i>125</i>&nbsp;  }
+<i>126</i>&nbsp;  
+<i>127</i>&nbsp;  public String getSymbol() {
+<b class="fc"><i>128</i>&nbsp;    return biome.symbol;</b>
+<i>129</i>&nbsp;  }
+<i>130</i>&nbsp;  
+<i>131</i>&nbsp;  public boolean isOccupied() {
+<b class="fc"><i>132</i>&nbsp;    return occupied;</b>
+<i>133</i>&nbsp;  }
+<i>134</i>&nbsp;
+<i>135</i>&nbsp;  /**
+<i>136</i>&nbsp;   * Set the tile as being occupied by a character.
+<i>137</i>&nbsp;   *
+<i>138</i>&nbsp;   * @param occupiedStatus a variable of type Boolean.
+<i>139</i>&nbsp;   * @exception IllegalStateException if the tile has not been set before occupying.
+<i>140</i>&nbsp;   * @exception IllegalArgumentException if the tile is already set 
+<i>141</i>&nbsp;   *     to the status it is being assigned.
+<i>142</i>&nbsp;   */
+<i>143</i>&nbsp;  public void setOccupied(boolean occupiedStatus) {
+<b class="fc"><i>144</i>&nbsp;    if (biome == Biome.DEFAULT) {</b>
+<b class="fc"><i>145</i>&nbsp;      throw new IllegalStateException();</b>
+<i>146</i>&nbsp;    }
+<b class="fc"><i>147</i>&nbsp;    if (occupied == occupiedStatus) {</b>
+<b class="fc"><i>148</i>&nbsp;      throw new IllegalArgumentException();</b>
+<i>149</i>&nbsp;    }
+<b class="fc"><i>150</i>&nbsp;    this.occupied = occupiedStatus;</b>
+<b class="fc"><i>151</i>&nbsp;  }</b>
+<i>152</i>&nbsp;
+<i>153</i>&nbsp;  @Override
+<i>154</i>&nbsp;  public int hashCode() {
+<b class="fc"><i>155</i>&nbsp;    return Objects.hash(biome, height, occupied);</b>
+<i>156</i>&nbsp;  }
+<i>157</i>&nbsp;
+<i>158</i>&nbsp;  @Override
+<i>159</i>&nbsp;  public boolean equals(Object obj) {
+<b class="fc"><i>160</i>&nbsp;    if (this == obj) {</b>
+<b class="fc"><i>161</i>&nbsp;      return true;</b>
+<i>162</i>&nbsp;    }
+<b class="fc"><i>163</i>&nbsp;    if (!(obj instanceof MapTile)) {</b>
+<b class="fc"><i>164</i>&nbsp;      return false;</b>
+<i>165</i>&nbsp;    }
+<b class="fc"><i>166</i>&nbsp;    MapTile other = (MapTile) obj;</b>
+<b class="fc"><i>167</i>&nbsp;    return biome == other.biome &amp;&amp; height == other.height &amp;&amp; occupied == other.occupied;</b>
+<i>168</i>&nbsp;  }
+<i>169</i>&nbsp;
+<i>170</i>&nbsp;  @Override
+<i>171</i>&nbsp;  public String toString() {
+<b class="fc"><i>172</i>&nbsp;    return &quot;MapTile [height=&quot; + height + &quot;, occupied=&quot; + occupied + &quot;, biome=&quot; + biome + &quot;]&quot;;</b>
+<i>173</i>&nbsp;  }
+<i>174</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-27 14:57</div>
+</div>
+</body>
+</html>

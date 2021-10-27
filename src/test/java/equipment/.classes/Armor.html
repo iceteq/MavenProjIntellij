@@ -1,0 +1,188 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Armor</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">equipment</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Armor (equipment)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Armor</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/ 9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Armor$ArmorPiece</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Armor$ArmorType</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/ 19)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package equipment;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;public class Armor extends Equipment {
+<i>4</i>&nbsp;	
+<b class="fc"><i>5</i>&nbsp;	public enum ArmorType {PLATE(1.00), MAIL(0.75), LEATHER(0.5), CLOTH(0.25);</b>
+<i>6</i>&nbsp;		
+<i>7</i>&nbsp;		private double armorTypeModifier;
+<i>8</i>&nbsp;
+<b class="fc"><i>9</i>&nbsp;		private ArmorType(double armorTypeModifier) {</b>
+<b class="fc"><i>10</i>&nbsp;			this.armorTypeModifier = armorTypeModifier;</b>
+<b class="fc"><i>11</i>&nbsp;		}</b>
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;		public double getArmorTypeModifier() {
+<b class="fc"><i>14</i>&nbsp;			return armorTypeModifier;</b>
+<i>15</i>&nbsp;		}
+<i>16</i>&nbsp;	
+<i>17</i>&nbsp;	}
+<i>18</i>&nbsp;	
+<b class="fc"><i>19</i>&nbsp;	public enum ArmorPiece {HEAD(1.15), SHOULDERS(1.15), GLOVES(1.05), BOOTS(1.05), BELT(1.05), LEGS(1.25), CHEST(1.3); //Shield?</b>
+<i>20</i>&nbsp;		
+<i>21</i>&nbsp;		private double armorPieceModifier;
+<i>22</i>&nbsp;		
+<b class="fc"><i>23</i>&nbsp;		private ArmorPiece(double armorPieceModifier) {</b>
+<b class="fc"><i>24</i>&nbsp;			this.armorPieceModifier = armorPieceModifier;</b>
+<b class="fc"><i>25</i>&nbsp;		}</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;		public double getArmorPieceModifier() {
+<b class="fc"><i>28</i>&nbsp;			return armorPieceModifier;</b>
+<i>29</i>&nbsp;		}		
+<i>30</i>&nbsp;	
+<i>31</i>&nbsp;	} 
+<i>32</i>&nbsp;	
+<i>33</i>&nbsp;	private static final double BASE_ARMOR_VALUE = 1000.00;
+<i>34</i>&nbsp;	private ArmorType type;
+<i>35</i>&nbsp;	private ArmorPiece piece;
+<i>36</i>&nbsp;	private double armorValue;
+<i>37</i>&nbsp;	
+<i>38</i>&nbsp;	public Armor(String name, ArmorType type, ArmorPiece piece) {
+<b class="fc"><i>39</i>&nbsp;		super(name);</b>
+<b class="fc"><i>40</i>&nbsp;		this.type = type;</b>
+<b class="fc"><i>41</i>&nbsp;		this.piece = piece;</b>
+<b class="fc"><i>42</i>&nbsp;		this.armorValue = initialiseArmorValue();</b>
+<b class="fc"><i>43</i>&nbsp;	}</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;	public ArmorType getType() {
+<b class="fc"><i>46</i>&nbsp;		return type;</b>
+<i>47</i>&nbsp;	}
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;	public ArmorPiece getPiece() {
+<b class="fc"><i>50</i>&nbsp;		return piece;</b>
+<i>51</i>&nbsp;	}
+<i>52</i>&nbsp;	
+<i>53</i>&nbsp;	private double initialiseArmorValue() {
+<b class="fc"><i>54</i>&nbsp;		return BASE_ARMOR_VALUE * this.type.getArmorTypeModifier() * this.piece.getArmorPieceModifier() + ( 100 + Math.random() * 500); //playerLevel kan också komma in här på lämpligt sätt.</b>
+<i>55</i>&nbsp;	}
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;	public double getArmorValue() {
+<b class="fc"><i>58</i>&nbsp;		return armorValue;</b>
+<i>59</i>&nbsp;	}
+<i>60</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-27 14:57</div>
+</div>
+</body>
+</html>

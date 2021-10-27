@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Weapon</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">equipment</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Weapon (equipment)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Weapon</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/ 13)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Weapon$WeaponType</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/ 19)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package equipment;
+<i>2</i>&nbsp;public class Weapon extends Equipment {
+<i>3</i>&nbsp;
+<b class="fc"><i>4</i>&nbsp;	public enum WeaponType {ONEHANDEDSWORD(0.80), ONEHANDEDMACE(1.00), ONEHANDEDAXE(1.20), </b>
+<b class="fc"><i>5</i>&nbsp;		TWOHANDEDSWORD(1.50), TWOHANDEDMACE(1.75), TWOHANDEDAXE(2.00); //Shield?/AttackSpeed?</b>
+<i>6</i>&nbsp;		
+<i>7</i>&nbsp;		
+<i>8</i>&nbsp;		private double weaponDamageModifier;
+<i>9</i>&nbsp;		
+<b class="fc"><i>10</i>&nbsp;		private WeaponType(double weaponDamageModifier) {</b>
+<b class="fc"><i>11</i>&nbsp;			this.weaponDamageModifier = weaponDamageModifier;</b>
+<b class="fc"><i>12</i>&nbsp;		}</b>
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;		public double getWeaponDamageModifier() {
+<b class="fc"><i>15</i>&nbsp;			return weaponDamageModifier;</b>
+<i>16</i>&nbsp;		}
+<i>17</i>&nbsp;	
+<i>18</i>&nbsp;	}
+<i>19</i>&nbsp;	
+<i>20</i>&nbsp;	private static final double BASE_DAMAGE = 100.00;
+<i>21</i>&nbsp;	private WeaponType type;
+<i>22</i>&nbsp;	private double weaponDamage;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;	public Weapon(WeaponType type, double mathRandom) {
+<b class="fc"><i>25</i>&nbsp;		this(type, &quot;randomname&quot;, mathRandom);</b>
+<b class="fc"><i>26</i>&nbsp;	}</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;	public Weapon(WeaponType type, String name) {
+<b class="fc"><i>29</i>&nbsp;		this(type, name, Math.random());</b>
+<b class="fc"><i>30</i>&nbsp;	}</b>
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;	// default weapon for testing
+<i>33</i>&nbsp;	public Weapon() {
+<b class="fc"><i>34</i>&nbsp;		this(WeaponType.ONEHANDEDSWORD, &quot;someweapon&quot;, 0.0);</b>
+<b class="fc"><i>35</i>&nbsp;	}</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;	// mathRandom is for unit testing, to control
+<i>38</i>&nbsp;	public Weapon(WeaponType type, String name, double mathRandom) {
+<b class="fc"><i>39</i>&nbsp;		super(name);</b>
+<b class="fc"><i>40</i>&nbsp;		this.type = type;</b>
+<b class="fc"><i>41</i>&nbsp;		this.weaponDamage = initialiseWeaponDamageValue(mathRandom);</b>
+<b class="fc"><i>42</i>&nbsp;	}</b>
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;	public WeaponType getWeaponType() {
+<b class="fc"><i>45</i>&nbsp;		return this.type;</b>
+<i>46</i>&nbsp;	}
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;	private double initialiseWeaponDamageValue(double mathRandom) {
+<b class="fc"><i>51</i>&nbsp;		return BASE_DAMAGE * this.type.getWeaponDamageModifier() + (1 + mathRandom * 50); //playerLevel kan också komma in här på lämpligt sätt.</b>
+<i>52</i>&nbsp;		
+<i>53</i>&nbsp;	}
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;	public double getWeaponDamage() {
+<b class="fc"><i>56</i>&nbsp;		return weaponDamage;</b>
+<i>57</i>&nbsp;	}
+<i>58</i>&nbsp;}
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-27 14:57</div>
+</div>
+</body>
+</html>

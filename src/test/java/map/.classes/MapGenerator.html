@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: MapGenerator</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">map</a> ]
+</div>
+
+<h1>Coverage Summary for Class: MapGenerator (map)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MapGenerator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package map;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import de.articdive.jnoise.JNoise;
+<i>4</i>&nbsp;import de.articdive.jnoise.interpolation.InterpolationType;
+<i>5</i>&nbsp;import java.util.Random;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * MapGenerator.java - class to create and return a procedurally generated map.
+<i>9</i>&nbsp; *
+<i>10</i>&nbsp; *@author Philip Sjunnesson
+<i>11</i>&nbsp; *@see GameMap
+<i>12</i>&nbsp; *@see JNoise
+<i>13</i>&nbsp; */
+<b class="fc"><i>14</i>&nbsp;public abstract class MapGenerator {</b>
+<i>15</i>&nbsp;  
+<b class="fc"><i>16</i>&nbsp;  private static final Random RANDOM = new Random();</b>
+<i>17</i>&nbsp;  
+<i>18</i>&nbsp;  //Create a noise map using the provided Long seed
+<i>19</i>&nbsp;  //Noise map is generated using Perlin&#39;s algorithm, with the interpolation set to linear.
+<i>20</i>&nbsp;  //Should only need to be used when generating a map.
+<i>21</i>&nbsp;  private JNoise generateNoise(Long seed) {
+<b class="fc"><i>22</i>&nbsp;    return JNoise.newBuilder()</b>
+<b class="fc"><i>23</i>&nbsp;        .perlin()</b>
+<b class="fc"><i>24</i>&nbsp;        .setInterpolation(InterpolationType.LINEAR)</b>
+<b class="fc"><i>25</i>&nbsp;        .setSeed(seed)</b>
+<b class="fc"><i>26</i>&nbsp;        .build();</b>
+<i>27</i>&nbsp;  }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;  /**
+<i>30</i>&nbsp;   * Create a procedurally generated map based on a provided seed.
+<i>31</i>&nbsp;   *
+<i>32</i>&nbsp;   * @param width a variable of type Integer.
+<i>33</i>&nbsp;   * @param height a variable of type Integer.
+<i>34</i>&nbsp;   * @param seed a variable of type Long.
+<i>35</i>&nbsp;   * @return a GameMap data type.
+<i>36</i>&nbsp;   */
+<i>37</i>&nbsp;  public GameMap generateMap(int width, int height, Long seed) {
+<b class="fc"><i>38</i>&nbsp;    JNoise noise = generateNoise(seed);</b>
+<b class="fc"><i>39</i>&nbsp;    GameMap map = new GameMap(height, width);</b>
+<b class="fc"><i>40</i>&nbsp;    for (int x = GameMap.getMin_Dimension(); x &lt; width; x++) {</b>
+<b class="fc"><i>41</i>&nbsp;      for (int y = GameMap.getMin_Dimension(); y &lt; height; y++) {</b>
+<i>42</i>&nbsp;        //With Perlin noise, the noise value at whole integers (e.g 1,1)
+<i>43</i>&nbsp;        //is always equal to 0, therefore the x&amp;y values in the for loop
+<i>44</i>&nbsp;        //are divided by 30.
+<b class="fc"><i>45</i>&nbsp;        map.setTile(x, y, (int) ((noise.getNoise(((double) x) / 30, ((double) y) / 30) + 1) * 100));</b>
+<i>46</i>&nbsp;      }
+<i>47</i>&nbsp;    }
+<b class="fc"><i>48</i>&nbsp;    return map;</b>
+<i>49</i>&nbsp;  }
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;  //Will create a new map based on a random seed by calling
+<i>52</i>&nbsp;  //generateMap(int,int,seed);
+<i>53</i>&nbsp;  public GameMap generateMap(int width, int height) {
+<b class="fc"><i>54</i>&nbsp;    return generateMap(width, height, RANDOM.nextLong());</b>
+<i>55</i>&nbsp;  }
+<i>56</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-27 14:57</div>
+</div>
+</body>
+</html>

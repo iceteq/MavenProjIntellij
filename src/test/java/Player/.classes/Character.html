@@ -1,0 +1,99 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Character</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">Player</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Character (Player)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">Character</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package Player;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import equipment.Weapon;
+<i>4</i>&nbsp;import quest.Quest;
+<i>5</i>&nbsp;import quest.QuestLog;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public interface Character {
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;    int getMaxHealth();
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    void setWeapon(Weapon weapon);
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    double getDamage();
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    void setDamage(double newDamage);
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    void setMaxHealthWithRegardToLevel();
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    int getLevel();
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    void setLevelAndOtherStats(int level);
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    void setLevel(int level);
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    QuestLog getQuestLog();
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    void addQuestToNPC(Quest quest);
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    void removeCompletedQuest(Quest quest);
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    Quest getNPCQuest(Quest quest);
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    void completeQuest(Quest completedQuest);
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    void acceptQuest(Quest questToAccept);
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    String getTypeOfCharacter();
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    boolean isNPC();
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    boolean getQuestFailed(Quest quest);
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    void setQuestFailed(Quest quest, boolean trueOrFalse);
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    void removeAcceptedQuestIfFailed(Quest quest);
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    Weapon getWeapon();
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    void setMaxHealth(int i);
+<i>51</i>&nbsp;
+<i>52</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-27 14:57</div>
+</div>
+</body>
+</html>
