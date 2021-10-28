@@ -34,7 +34,6 @@ public class QuestingSimulator {
 		}
 
 
-
 		boolean failed;
 		Quest mainQuest01 = database.getMainQuests().get(0);
 
@@ -43,24 +42,12 @@ public class QuestingSimulator {
 
 		if(number == 1) {
 			failed = false;
-
-//			printQuestStatus(player);
-//			System.out.println("Start Passed: " + mainQuest01.getName());
-//			System.out.println("----------------");
-
 			runIfPassed(player, failed, mainQuest01);
 		}	
 		else {
 			failed = true;
-
-//			printQuestStatus(player);
-//			System.out.println("Start Failed: " + mainQuest01.getName());
-//			System.out.println("----------------");
-
 			runIfFailed(player, failed, mainQuest01);
 		}
-
-
 
 	}
 
@@ -71,20 +58,15 @@ public class QuestingSimulator {
 		player.completeQuest(quest);
 
 		if(player.getQuestLog().getCompletedQuests().containsAll(fullQuestLine)) {
-//			System.out.println("Finished!");
 			return;
 		}
-
-
 
 		failed = hasFailed(failed);
 
 		nextQuest = setAndGetNextQuest(player, quest, nextQuest);
 
 		runIfPassedOrFailed(player, failed, nextQuest);
-
-
-
+		
 	}
 
 	public void runIfFailed(Character player, boolean failed, Quest quest) {
@@ -123,21 +105,10 @@ public class QuestingSimulator {
 
 	private void runIfPassedOrFailed(Character player, boolean failed, Quest quest) {
 		if(failed) {
-
-//			printQuestStatus(player);
-//			System.out.println("Failed: "  + quest.getName());
-//			System.out.println("-----------------");
-
 			runIfFailed(player, failed, quest);
-
 		}
 
 		else {
-
-//			printQuestStatus(player);
-//			System.out.println("Passed: "  + quest.getName());
-//			System.out.println("-----------------");
-
 			runIfPassed(player, failed, quest);
 		}
 	}
@@ -226,10 +197,5 @@ public class QuestingSimulator {
 		
 		return previousQuest;
 
-
 	}
-//	private void printQuestStatus(Character player) {
-//		System.out.println("Completed: ");
-//		player.getQuestLog().printCompletedQuests();
-//	}
 }

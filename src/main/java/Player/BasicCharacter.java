@@ -76,16 +76,6 @@ public abstract class BasicCharacter implements Character {
     }
 
     @Override
-    public boolean getQuestFailed(Quest quest) {
-        return this.questLog.getQuestFailed(quest);
-    }
-
-    @Override
-    public void setQuestFailed(Quest quest, boolean trueOrFalse) {
-        this.questLog.setQuestFailed(quest, trueOrFalse, this);
-    }
-
-    @Override
     public void addQuestToNPC(Quest quest) {
         this.questLog.addQuestToNPC(quest);
     }
@@ -98,11 +88,6 @@ public abstract class BasicCharacter implements Character {
     @Override
     public void removeCompletedQuest(Quest quest) {
         this.questLog.removeCompletedQuestFromPlayer(quest, this);
-    }
-
-    @Override
-    public void removeAcceptedQuestIfFailed(Quest quest) {
-        this.questLog.removeFailedQuestFromPlayer(quest, this);
     }
 
     @Override

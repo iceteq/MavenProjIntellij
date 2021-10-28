@@ -27,11 +27,6 @@ public abstract class Profession extends Decorator {
     }
 
     @Override
-    public QuestLog getQuestLog() {
-        return questLog;
-    }
-
-    @Override
     public int getMaxHealth() {
         return character.getMaxHealth();
     }

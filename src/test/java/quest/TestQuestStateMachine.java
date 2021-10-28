@@ -1,5 +1,11 @@
 package quest;
 
+
+import Player.Archer;
+import Player.Character;
+import Player.Knight;
+import Player.NPC;
+import Player.Player;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -7,14 +13,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import Player.Archer;
-import Player.Character;
-import Player.Knight;
-import Player.NPC;
-import Player.Player;
-import quest.Quest;
-import quest.QuestDatabase;
-import quest.QuestingSimulator;
+
 
 class TestQuestStateMachine {
 	
@@ -64,7 +63,6 @@ class TestQuestStateMachine {
 			
 				simulator.startQuesting(player);
 				assertTrue(player.getQuestLog().getCompletedQuests().containsAll(mainQuests));
-
 	
 	}
 	
@@ -75,7 +73,6 @@ class TestQuestStateMachine {
 				simulator.startQuesting(playerKnight);
 				assertTrue(playerKnight.getQuestLog().getCompletedQuests().containsAll(mainAndKnightQuests));
 
-				
 	}
 	
 	@Test
@@ -84,7 +81,6 @@ class TestQuestStateMachine {
 				simulator.startQuesting(playerArcher);
 				assertTrue(playerArcher.getQuestLog().getCompletedQuests().containsAll(mainAndArcherQuests));
 
-		
 	}
 
 

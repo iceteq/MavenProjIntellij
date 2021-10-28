@@ -17,10 +17,14 @@ public interface Character {
     void setMaxHealthWithRegardToLevel();
 
     int getLevel();
+    
+    void setMaxHealth(int i);
 
     void setLevelAndOtherStats(int level);
 
     void setLevel(int level);
+    
+    Weapon getWeapon();
 
     QuestLog getQuestLog();
 
@@ -37,16 +41,9 @@ public interface Character {
     String getTypeOfCharacter();
 
     boolean isNPC();
+    
+    
 
-    boolean getQuestFailed(Quest quest);
-
-    void setQuestFailed(Quest quest, boolean trueOrFalse);
-
-    void removeAcceptedQuestIfFailed(Quest quest);
-
-
-    Weapon getWeapon();
-
-    void setMaxHealth(int i);
+    
 
 }

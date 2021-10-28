@@ -18,64 +18,53 @@ new Archer(new Player())
 public abstract class Decorator implements Character {
 
     Character character;
-    QuestLog questLog;
     String knightOrArcher;
 
     public Decorator(Character character) {
         this.character = character;
-        this.questLog = new QuestLog();
         this.knightOrArcher = this.getClass().toString();
 
     }
 
     @Override
     public QuestLog getQuestLog() {
-        return this.questLog;
+        return character.getQuestLog();
     }
 
 
     @Override
     public void addQuestToNPC(Quest quest) {
-        this.questLog.addQuestToNPC(quest);
+        character.getQuestLog().addQuestToNPC(quest);
     }
 
     public Quest getNPCQuest(Quest quest) {
-        return this.questLog.getNPCQuest(quest, this);
-    }
-
-    @Override
-    public boolean getQuestFailed(Quest quest) {
-        return this.questLog.getQuestFailed(quest);
-    }
-
-    @Override
-    public void setQuestFailed(Quest quest, boolean trueOrFalse) {
-        this.questLog.setQuestFailed(quest, trueOrFalse, this);
+        return character.getQuestLog().getNPCQuest(quest, character);
     }
 
     @Override
     public void completeQuest(Quest completedQuest) {
-        this.questLog.addCompletedQuest(completedQuest, this);
+    	character.getQuestLog().addCompletedQuest(completedQuest, this);
     }
 
     @Override
     public void removeCompletedQuest(Quest quest) {
-        this.questLog.removeCompletedQuestFromPlayer(quest, this);
+    	character.getQuestLog().removeCompletedQuestFromPlayer(quest, character);
+      
     }
 
-    @Override
-    public void removeAcceptedQuestIfFailed(Quest quest) {
-        this.questLog.removeFailedQuestFromPlayer(quest, this);
-    }
+
 
     @Override
     public void acceptQuest(Quest questToAccept) {
-        this.questLog.addToAcceptedQuests(questToAccept, this);
+    	character.getQuestLog().addToAcceptedQuests(questToAccept, this);
+       
     }
 
     @Override
     public String getTypeOfCharacter() {
-        return knightOrArcher;
+    	String type = character.getTypeOfCharacter();
+    	type = knightOrArcher;
+        return type;
     }
 
     @Override

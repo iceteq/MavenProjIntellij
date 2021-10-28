@@ -1,5 +1,7 @@
 package quest;
+
 import java.util.ArrayList;
+
 
 import Player.Character;
 import quest.Quest.QuestType;
@@ -23,30 +25,6 @@ public class QuestLog {
 		return new ArrayList<>(acceptedQuests);
 	}
 	
-	public boolean getQuestFailed(Quest quest) {
-		return quest.isQuestFailed();
-	}
-
-	public void setQuestFailed(Quest quest, boolean trueOrFalse, Character character) {
-		
-		if(character.isNPC())
-			throw new IllegalArgumentException("Character must be a player");
-		
-		for(Quest q: acceptedQuests) {
-			if(q == quest)
-				q.setQuestFailed(trueOrFalse);
-		}
-	}
-	
-	public void removeFailedQuestFromPlayer(Quest quest, Character character) {
-		
-		if(character.isNPC())
-			throw new IllegalArgumentException("Character must be a player");
-		
-		if(quest.isQuestFailed() && acceptedQuests.contains(quest))
-			acceptedQuests.remove(quest);
-			
-	}
 	
 	public void addQuestToNPC(Quest quest) {
 		this.npcQuests.add(quest);
@@ -84,47 +62,38 @@ public class QuestLog {
 			if(quest.getQuestType().name().equals("ALL")) {
 				this.completedQuests.add(quest);
 			}
-			
 			else if(quest.getQuestType().name().equals("KNIGHT")) {
 				this.completedQuests.add(quest);
 			}
-			
 			else  {
 				throw new IllegalArgumentException("Character type is Knight. Quest type is Archer");
-			}
-				
+			}	
 		}
 		else if(character.getTypeOfCharacter().contains("Archer"))  {
 			
 			if(quest.getQuestType().name().equals("ALL")) {
 				this.completedQuests.add(quest);
 			}
-			
 			else if(quest.getQuestType().name().equals("ARCHER")) {
 				this.completedQuests.add(quest);
 			}
-			
 			else {
 				throw new IllegalArgumentException("Character type is Archer. Quest type is Knight");
 			}
-			
 		}
 		else {
 			
 			if(quest.getQuestType().name().equals("ALL")) {
 				this.completedQuests.add(quest);
 			}
-			
 			else {
 				throw new IllegalArgumentException("Character is of no Class. Quest type is of "
 						+ quest.getQuestType().name() + " type");
 			}
-			
 		}
 		
 		acceptedQuests.remove(quest);
-		
-			
+					
 	}
 	
 	public void removeCompletedQuestFromPlayer(Quest quest, Character character) {
@@ -170,19 +139,6 @@ public class QuestLog {
 		else {
 			throw new IllegalStateException("Player doesn't meet requirements");
 		}
-	}
-	
-//	public void printAcceptedQuests() {
-//		for(Quest q: acceptedQuests) {
-//			System.out.println(q.getName());
-//		}
-//	}
-//	
-//	public void printCompletedQuests() {
-//		for(Quest q: completedQuests) {
-//			System.out.println(q.getName());
-//		}
-//	}
-	
+	}	
 	
 }
