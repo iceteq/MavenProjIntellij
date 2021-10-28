@@ -80,12 +80,6 @@ class ProfessionTest {
             knight.setLevelAndOtherStats(9);
         });
     }
-    @Test
-    void archerCantMeditateYet() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            archer.setLevelAndOtherStats(9);
-        });
-    }
 
     @Test
     void knightCantHealYet() {
@@ -111,4 +105,19 @@ class ProfessionTest {
         assertNotEquals(GrandHeal.class, knight.getHealingAbility().getClass());
     }
 
+    @Test
+    void archerCantMeditateYet() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            archer.setLevelAndOtherStats(9);
+        });
+    }
+
+    @Test
+    void setLevelAndOtherStats() {
+        // ?
+    }
+
+    @Test
+    void testUpdateHealingAbility() {
+    }
 }

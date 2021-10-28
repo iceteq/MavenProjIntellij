@@ -85,7 +85,7 @@ public abstract class Profession extends Decorator {
         return healingAbility;
     }
 
-    void updateHealingAbility() {
+    public void updateHealingAbility() {
 
         int level = character.getLevel();
 

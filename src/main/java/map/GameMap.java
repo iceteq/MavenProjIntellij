@@ -61,7 +61,7 @@ public class GameMap {
   //and it is not null.
   //Used to check if map dimensions are valid.
   private boolean validateDimensions(int i) {
-    if (i < MIN_DIMENSION | i > MAX_DIMENSION) {
+    if (i < MIN_DIMENSION || i > MAX_DIMENSION) {
       return false;
     }
     return true;
@@ -70,7 +70,7 @@ public class GameMap {
   //Will return true if i is within the inclusive range from MIN_DIMENSION to MAX_DIMENSION
   //and is not null.
   private boolean validateIndex(int x, int y) {
-    if (x < MIN_INDEX | x >= map[0].length | y < MIN_INDEX | y >= map.length) {
+    if (x < MIN_INDEX || x >= map[0].length || y < MIN_INDEX || y >= map.length) {
       return false;
     }
     return true;
