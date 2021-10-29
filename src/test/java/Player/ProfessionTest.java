@@ -63,6 +63,9 @@ class ProfessionTest {
         assertEquals(100, archer.getDamage());
     }
 
+    /**
+     * should add Boundary values
+     */
     @Test
     void knightUpdateHealingAbility() {
 
@@ -93,17 +96,8 @@ class ProfessionTest {
     @Test
     void knightMaxHealthAtLevelOne(){
         knight.setLevel(1);
+        knight.setMaxHealthWithRegardToLevel();
         assertEquals(330, knight.getMaxHealth());
-    }
-    @Test
-    void archerMaxHealthAtLevelOne(){
-        archer.setLevel(1);
-        assertEquals(315, archer.getMaxHealth());
-    }
-    @Test
-    void basicCharacterMaxHealthAtLevelOne(){
-        basicCharacter.setLevel(1);
-        assertEquals(305, basicCharacter.getMaxHealth());
     }
 
     @Test
@@ -112,6 +106,22 @@ class ProfessionTest {
         knight.setMaxHealthWithRegardToLevel();
         assertEquals(360, knight.getMaxHealth());
     }
+
+
+    @Test
+    void archerMaxHealthAtLevelOne(){
+        archer.setLevel(1);
+        knight.setMaxHealthWithRegardToLevel();
+        assertEquals(315, archer.getMaxHealth());
+    }
+    @Test
+    void basicCharacterMaxHealthAtLevelOne(){
+        basicCharacter.setLevel(1);
+        knight.setMaxHealthWithRegardToLevel();
+        assertEquals(305, basicCharacter.getMaxHealth());
+    }
+
+
     @Test
     void archerMaxHealthAtLevelTwo(){
         archer.setLevel(2);

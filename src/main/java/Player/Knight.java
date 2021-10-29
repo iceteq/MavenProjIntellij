@@ -42,7 +42,9 @@ public class Knight extends Profession {
      */
     @Override
     public void setMaxHealthWithRegardToLevel() {
-        character.setMaxHealth(KNIGHT_BASE_MAXHEALTH + (character.getLevel() * KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL));
+        character.setMaxHealth(KNIGHT_BASE_MAXHEALTH
+                + (character.getLevel()
+                * KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL));
     }
 
 }

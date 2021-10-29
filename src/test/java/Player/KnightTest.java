@@ -17,7 +17,9 @@ class KnightTest {
 
     @Test
     void knightInitialMaxHealthTest() {
-        assertEquals(KNIGHT_BASE_MAXHEALTH + KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL, knight.getMaxHealth());
+        assertEquals(KNIGHT_BASE_MAXHEALTH
+                + KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL
+                , knight.getMaxHealth());
     }
 
     @Test
