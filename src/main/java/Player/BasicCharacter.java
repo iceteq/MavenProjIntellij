@@ -8,8 +8,9 @@ public abstract class BasicCharacter implements Character {
 
     public static final double INITIAL_BASICCHARACTER_DAMAGE = 5;
     public static final double INITIAL_BASICCHARACTER_DEFENSE = 0;
-    public static final int INITIAL_BASICCHARACTER_HEALTH = 300;
     public static final int BASICCHARACTER_MAXHEALTH_INCREASE_PER_LEVEL = 5;
+    public static final int BASICCHARACTER_BASE_HEALTH = 300;
+
     public static final int INITIAL_LEVEL = 1;
 
     QuestLog questLog;
@@ -24,7 +25,7 @@ public abstract class BasicCharacter implements Character {
 
     public BasicCharacter() {
 
-        this.maxHealth = INITIAL_BASICCHARACTER_HEALTH;
+        this.maxHealth = BASICCHARACTER_BASE_HEALTH + BASICCHARACTER_MAXHEALTH_INCREASE_PER_LEVEL;
         this.questLog = new QuestLog();
         this.damage = 100.0;
 
@@ -118,7 +119,7 @@ public abstract class BasicCharacter implements Character {
 
     @Override
     public void setMaxHealthWithRegardToLevel() {
-        this.setMaxHealth(INITIAL_BASICCHARACTER_HEALTH + (this.getLevel() * BASICCHARACTER_MAXHEALTH_INCREASE_PER_LEVEL));
+        this.setMaxHealth(BASICCHARACTER_BASE_HEALTH + (this.getLevel() * BASICCHARACTER_MAXHEALTH_INCREASE_PER_LEVEL));
     }
 
     @Override

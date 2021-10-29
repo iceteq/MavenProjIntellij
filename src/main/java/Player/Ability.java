@@ -4,12 +4,15 @@ public abstract class Ability {
 
 }
 
+class NoHealingAbility extends Ability {
 
-class Meditate extends Ability {
+}
+
+class MiniHeal extends Ability {
     // like heal, but slow
 }
 
-class Heal extends Meditate {
+class Heal extends MiniHeal {
     // like meditate, but instant
 }
 

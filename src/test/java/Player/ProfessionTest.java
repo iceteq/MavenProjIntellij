@@ -4,17 +4,20 @@ import equipment.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static Player.Profession.KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProfessionTest {
     Profession knight;
     Profession archer;
+    BasicCharacter basicCharacter;
     Weapon weapon;
 
     @BeforeEach
     void setUp() {
         knight = new Knight(new Player());
         archer = new Archer(new Player());
+        basicCharacter = new Player();
         weapon = new Weapon();
     }
 
@@ -34,8 +37,12 @@ class ProfessionTest {
         knight = new Knight(new Player());
         archer = new Archer(new Player());
 
-        assertEquals(Profession.KNIGHT_INITIAL_MAXHEALTH, knight.getMaxHealth());
-        assertEquals(Profession.ARCHER_INITIAL_MAXHEALTH, archer.getMaxHealth());
+        assertEquals(Profession.KNIGHT_BASE_MAXHEALTH
+                + KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL
+                , knight.getMaxHealth());
+        assertEquals(Profession.ARCHER_BASE_MAXHEALTH
+                + Profession.ARCHER_MAXHEALTH_INCREASE_PER_LEVEL
+                , archer.getMaxHealth());
     }
 
     @Test
@@ -57,17 +64,26 @@ class ProfessionTest {
     }
 
     @Test
-    void updateHealingAbility() {
+    void knightUpdateHealingAbility() {
 
+        knight.setLevelAndOtherStats(1);
+        assertEquals(NoHealingAbility.class, knight.getHealingAbility().getClass());
         knight.setLevelAndOtherStats(10);
-        assertEquals(Meditate.class, knight.getHealingAbility().getClass());
+        assertEquals(MiniHeal.class, knight.getHealingAbility().getClass());
         knight.setLevelAndOtherStats(20);
         assertEquals(Heal.class, knight.getHealingAbility().getClass());
         knight.setLevelAndOtherStats(30);
         assertEquals(GrandHeal.class, knight.getHealingAbility().getClass());
 
+    }
+
+    @Test
+    void archerUpdateHealingAbility() {
+
+        archer.setLevelAndOtherStats(1);
+        assertEquals(NoHealingAbility.class, archer.getHealingAbility().getClass());
         archer.setLevelAndOtherStats(10);
-        assertEquals(Meditate.class, archer.getHealingAbility().getClass());
+        assertEquals(MiniHeal.class, archer.getHealingAbility().getClass());
         archer.setLevelAndOtherStats(20);
         assertEquals(Heal.class, archer.getHealingAbility().getClass());
         archer.setLevelAndOtherStats(30);
@@ -75,42 +91,41 @@ class ProfessionTest {
     }
 
     @Test
-    void knightCantMeditateYet() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            knight.setLevelAndOtherStats(9);
-        });
+    void knightMaxHealthAtLevelOne(){
+        knight.setLevel(1);
+        assertEquals(330, knight.getMaxHealth());
+    }
+    @Test
+    void archerMaxHealthAtLevelOne(){
+        archer.setLevel(1);
+        assertEquals(315, archer.getMaxHealth());
+    }
+    @Test
+    void basicCharacterMaxHealthAtLevelOne(){
+        basicCharacter.setLevel(1);
+        assertEquals(305, basicCharacter.getMaxHealth());
     }
 
     @Test
-    void knightCantHealYet() {
-        knight.setLevelAndOtherStats(19);
-        assertNotEquals(Heal.class, knight.getHealingAbility().getClass());
+    void knightMaxHealthAtLevelTwo(){
+        knight.setLevel(2);
+        knight.setMaxHealthWithRegardToLevel();
+        assertEquals(360, knight.getMaxHealth());
+    }
+    @Test
+    void archerMaxHealthAtLevelTwo(){
+        archer.setLevel(2);
+        archer.setMaxHealthWithRegardToLevel();
+        assertEquals(330, archer.getMaxHealth());
+    }
+    @Test
+    void basicCharacterMaxHealthAtLevelTwo(){
+        basicCharacter.setLevel(2);
+        basicCharacter.setMaxHealthWithRegardToLevel();
+        assertEquals(310, basicCharacter.getMaxHealth());
     }
 
-    @Test
-    void knightCantGrandHealYet() {
-        knight.setLevelAndOtherStats(29);
-        assertNotEquals(GrandHeal.class, knight.getHealingAbility().getClass());
-    }
 
-    @Test
-    void archerCantHealYet() {
-        knight.setLevelAndOtherStats(19);
-        assertNotEquals(Heal.class, knight.getHealingAbility().getClass());
-    }
-
-    @Test
-    void archerCantGrandHealYet() {
-        knight.setLevelAndOtherStats(29);
-        assertNotEquals(GrandHeal.class, knight.getHealingAbility().getClass());
-    }
-
-    @Test
-    void archerCantMeditateYet() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            archer.setLevelAndOtherStats(9);
-        });
-    }
 
     @Test
     void setLevelAndOtherStats() {

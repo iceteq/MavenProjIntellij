@@ -1,7 +1,6 @@
 package Player;
 
 import equipment.Weapon;
-import quest.QuestLog;
 
 /**
  * Profession kan vara Knight eller Archer
@@ -15,8 +14,8 @@ public abstract class Profession extends Decorator {
     public static final int KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL = 30;
     public static final int ARCHER_MAXHEALTH_INCREASE_PER_LEVEL = 15;
 
-    public static final int KNIGHT_INITIAL_MAXHEALTH = 300;
-    public static final int ARCHER_INITIAL_MAXHEALTH = 300;
+    public static final int KNIGHT_BASE_MAXHEALTH = 300;
+    public static final int ARCHER_BASE_MAXHEALTH = 300;
 
     public static final int MINIMUM_LEVEL_TO_HAVE_HEALING_ABILITY = 10;
 
@@ -96,10 +95,10 @@ public abstract class Profession extends Decorator {
             healingAbility = new Heal();
             return;
         } else if (level >= 10) {
-            healingAbility = new Meditate();
+            healingAbility = new MiniHeal();
             return;
         } else if (level >= 0) {
-            throw new IllegalArgumentException("can't set an ability for someone below level 10");
+            healingAbility = new NoHealingAbility();
         }
 
     }

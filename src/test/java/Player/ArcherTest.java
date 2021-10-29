@@ -14,16 +14,6 @@ class ArcherTest {
         archer = new Archer(new Player());
     }
 
-    @Test
-    void setMaxHealthWithRegardToLevel() {
-        archer.setLevel(1);
-        archer.setMaxHealthWithRegardToLevel();
-        assertEquals(315, archer.getMaxHealth());
-
-        archer.setLevel(100);
-        archer.setMaxHealthWithRegardToLevel();
-        assertEquals(1800, archer.getMaxHealth());
-    }
 
 
 }
