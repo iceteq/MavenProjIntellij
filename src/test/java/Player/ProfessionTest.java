@@ -71,10 +71,13 @@ class ProfessionTest {
 
         knight.setLevelAndOtherStats(1);
         assertEquals(NoHealingAbility.class, knight.getHealingAbility().getClass());
+        // good idea to test level 9 too
         knight.setLevelAndOtherStats(10);
         assertEquals(MiniHeal.class, knight.getHealingAbility().getClass());
+        // good idea to test level 19 too
         knight.setLevelAndOtherStats(20);
         assertEquals(Heal.class, knight.getHealingAbility().getClass());
+        // good idea to test level 29 too
         knight.setLevelAndOtherStats(30);
         assertEquals(GrandHeal.class, knight.getHealingAbility().getClass());
 
