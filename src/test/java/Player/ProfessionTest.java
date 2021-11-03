@@ -96,6 +96,7 @@ class ProfessionTest {
         assertEquals(GrandHeal.class, archer.getHealingAbility().getClass());
     }
 
+
     @Test
     void knightMaxHealthAtLevelOne(){
         knight.setLevel(1);
@@ -141,11 +142,25 @@ class ProfessionTest {
 
 
     @Test
-    void setLevelAndOtherStats() {
-        // ?
+    void setKnightLevelAndOtherStats() {
+        knight.setLevelAndOtherStats(1);
+        assertEquals(1, knight.getLevel(), "wrong level");
+        assertEquals(NoHealingAbility.class, knight.getHealingAbility().getClass(), "wrong healing ability at lvl 1");
+        assertEquals(330, knight.getMaxHealth());
+    }
+    @Test
+    void setArcherLevelAndOtherStats() {
+        archer.setLevelAndOtherStats(1);
+        assertEquals(1, archer.getLevel(), "wrong level");
+        assertEquals(NoHealingAbility.class, archer.getHealingAbility().getClass(), "wrong healing ability at lvl 1");
+        assertEquals(315, archer.getMaxHealth());
+    }
+    @Test
+    void setBasicCharacterLevelAndOtherStats() {
+        basicCharacter.setLevelAndOtherStats(1);
+        assertEquals(1, basicCharacter.getLevel(), "wrong level");
+
+        assertEquals(305, basicCharacter.getMaxHealth());
     }
 
-    @Test
-    void testUpdateHealingAbility() {
-    }
 }
