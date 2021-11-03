@@ -9,9 +9,8 @@ public class Knight extends Profession {
         super(ch);
         character.setMaxHealth(KNIGHT_BASE_MAXHEALTH + KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL);
         character.setDamage(INITIAL_KNIGHT_DAMAGE);
-        if (getLevel() >= MINIMUM_LEVEL_TO_HAVE_HEALING_ABILITY) {
-            updateHealingAbility();
-        }
+        updateHealingAbility();
+
 
     }
 

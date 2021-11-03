@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class PlayerTest {
 
-	Player player;
+	BasicCharacter player;
 
 	@BeforeEach
 	void setUp() {
@@ -62,8 +62,14 @@ class PlayerTest {
 		player.setLevelAndOtherStats(1);
 		assertEquals(305, player.getMaxHealth());
 
-		player.setLevelAndOtherStats(100);
-		assertEquals(800, player.getMaxHealth());
+		player.setLevelAndOtherStats(2);
+		assertEquals(310, player.getMaxHealth());
+	}
+
+	@Test
+	void playerSetLevel() {
+		player.setLevel(1);
+		assertEquals(1, player.getLevel());
 	}
 
 }

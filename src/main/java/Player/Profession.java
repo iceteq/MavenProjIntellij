@@ -35,14 +35,6 @@ public abstract class Profession extends Decorator {
         return character.getLevel();
     }
 
-    @Override
-    public void setLevelAndOtherStats(int level) {
-        character.setLevel(level);
-        setMaxHealthWithRegardToLevel();
-        updateHealingAbility();
-    }
-
-    ;
 
     @Override
     public Weapon getWeapon() {
@@ -97,7 +89,7 @@ public abstract class Profession extends Decorator {
         } else if (level >= 10) {
             healingAbility = new MiniHeal();
             return;
-        } else if (level >= 0) {
+        } else if (level >= 1) {
             healingAbility = new NoHealingAbility();
         }
 

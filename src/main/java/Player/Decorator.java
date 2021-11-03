@@ -43,27 +43,26 @@ public abstract class Decorator implements Character {
 
     @Override
     public void completeQuest(Quest completedQuest) {
-    	character.getQuestLog().addCompletedQuest(completedQuest, this);
+        character.getQuestLog().addCompletedQuest(completedQuest, this);
     }
 
     @Override
     public void removeCompletedQuest(Quest quest) {
-    	character.getQuestLog().removeCompletedQuestFromPlayer(quest, character);
-      
-    }
+        character.getQuestLog().removeCompletedQuestFromPlayer(quest, character);
 
+    }
 
 
     @Override
     public void acceptQuest(Quest questToAccept) {
-    	character.getQuestLog().addToAcceptedQuests(questToAccept, this);
-       
+        character.getQuestLog().addToAcceptedQuests(questToAccept, this);
+
     }
 
     @Override
     public String getTypeOfCharacter() {
-    	String type = character.getTypeOfCharacter();
-    	type = knightOrArcher;
+        String type = character.getTypeOfCharacter();
+        type = knightOrArcher;
         return type;
     }
 
