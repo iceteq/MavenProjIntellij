@@ -14,7 +14,7 @@ public class Armor extends Equipment {
         public double getArmorTypeModifier() {
             return armorTypeModifier;
         }
-	
+
     }
 
     public enum ArmorPiece {
