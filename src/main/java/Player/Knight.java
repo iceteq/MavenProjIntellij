@@ -10,8 +10,6 @@ public class Knight extends Profession {
         character.setMaxHealth(KNIGHT_BASE_MAXHEALTH + KNIGHT_MAXHEALTH_INCREASE_PER_LEVEL);
         character.setDamage(INITIAL_KNIGHT_DAMAGE);
         updateHealingAbility();
-
-
     }
 
     /**
@@ -26,6 +24,11 @@ public class Knight extends Profession {
         character.setLevel(level);
         setMaxHealthWithRegardToLevel();
         updateHealingAbility();
+
+    }
+
+    @Override
+    public void setName(String name) {
 
     }
 

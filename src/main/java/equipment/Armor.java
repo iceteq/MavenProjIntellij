@@ -59,4 +59,6 @@ public class Armor extends Equipment {
     public double getArmorValue() {
         return armorValue;
     }
+
+
 }

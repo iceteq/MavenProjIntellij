@@ -6,6 +6,8 @@ import quest.QuestLog;
 
 public interface Character {
 
+    void setName(String name);
+
     int getMaxHealth();
 
     void setWeapon(Weapon weapon);

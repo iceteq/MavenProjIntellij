@@ -7,6 +7,8 @@ import equipment.Weapon;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Executable;
+
 class PlayerTest {
 
 	BasicCharacter player;
@@ -71,5 +73,64 @@ class PlayerTest {
 		player.setLevel(1);
 		assertEquals(1, player.getLevel());
 	}
+
+	@Test
+	void setName() {
+		player.setName("Abe");
+		assertEquals(player.getName(), "Abe");
+	}
+	@Test
+	void setName2() {
+		player.setName("Abbbe");
+		assertEquals(player.getName(), "Abe");
+	}
+	@Test
+	void setName3() {
+		player.setName("Aaabe");
+		assertEquals(player.getName(), "Abe");
+	}
+	@Test
+	void setName4() {
+		player.setName("abe");
+		assertEquals(player.getName(), "Abe");
+	}
+	@Test
+	void setName5() {
+		player.setName("Aa");
+		assertEquals(player.getName(), "Abe");
+	}
+	@Test
+	void setName6() {
+		player.setName("Bb");
+		assertEquals(player.getName(), "Abe");
+	}
+	@Test
+	void setName7() {
+		player.setName("Abe");
+		assertEquals(player.getName(), "Abe");
+	}
+	@Test
+	void setName8() {
+		player.setName("Abababababa");
+		assertEquals(player.getName(), "Abe");
+	}
+	@Test
+	void setName9() {
+		player.setName("A");
+		assertEquals(player.getName(), "");
+	}
+	@Test
+	void setName10() {
+		assertThrows(NullPointerException.class, () -> {
+			player.setName(null);
+		});
+	}
+	@Test
+	void setName11() {
+		player.setName("");
+		assertEquals(player.getName(), "Abe");
+	}
+
+
 
 }

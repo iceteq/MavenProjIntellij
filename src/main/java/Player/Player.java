@@ -1,8 +1,12 @@
 package Player;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.plaf.basic.BasicIconFactory;
 
 public class Player extends BasicCharacter {
+
+
+
 
 
     /**
@@ -16,6 +20,11 @@ public class Player extends BasicCharacter {
     public void setLevelAndOtherStats(int level) {
         this.level = level;
         setMaxHealthWithRegardToLevel();
+    }
+
+    @Override
+    public Object getName() {
+        return this.name;
     }
 
     /**

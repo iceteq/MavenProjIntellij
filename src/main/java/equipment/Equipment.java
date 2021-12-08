@@ -1,6 +1,6 @@
 package equipment;
 
-public abstract class Equipment {
+public abstract class Equipment implements Carriable {
 	
 	private String name;
 	
@@ -10,5 +10,12 @@ public abstract class Equipment {
 	
 	public String getName() {
 		return this.name;	
+	}
+
+	@Override
+	public String toString() {
+		return "Equipment{" +
+				"name='" + name + '\'' +
+				'}';
 	}
 }

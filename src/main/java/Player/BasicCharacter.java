@@ -4,6 +4,9 @@ import equipment.Weapon;
 import quest.Quest;
 import quest.QuestLog;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public abstract class BasicCharacter implements Character {
 
     public static final double INITIAL_BASICCHARACTER_DAMAGE = 5;
@@ -13,6 +16,13 @@ public abstract class BasicCharacter implements Character {
 
     public static final int INITIAL_LEVEL = 1;
 
+
+    public static final String THREE_CONSONANTS_IN_A_ROW = "[b-df-hj-np-tv-z]{3}";
+    public static final String THREE_VOWELS_IN_A_ROW = "[AEIOUaeiou]{3}";
+    public static final String ONE_CONSONANT = "[b-df-hj-np-tv-z]{1}";
+    public static final String ONE_VOWEL = "[AEIOUaeiou]{1}";
+    public static final String FIRST_LETTER_LOWER_CASE = "^[a-z].*";
+
     QuestLog questLog;
     Weapon weapon;
     String className;
@@ -21,6 +31,9 @@ public abstract class BasicCharacter implements Character {
     int maxHealth;
     double defense;
     int level;
+    String name;
+
+    // kan jag komma åt inventory TEST här
 
 
     public BasicCharacter() {
@@ -39,7 +52,49 @@ public abstract class BasicCharacter implements Character {
         this.level = INITIAL_LEVEL;
 
     }
+    @Override
+    public void setName(String name) {
+        // checks what rules name breaks
+        if (name == null){
+            throw new NullPointerException("name can't be null");
+        }
+        if (name == ""){
+            System.out.println("please choose a name");
+            return;
+        }
+        if  (found(THREE_CONSONANTS_IN_A_ROW, name)){
+            System.out.println("3 consonants in a row");
+            return;
+        }
+        if (found(THREE_VOWELS_IN_A_ROW, name)) {
+            System.out.println("3 vowels in a row");
+            return;
+        }
+        if (!found(ONE_CONSONANT, name)) {
+            System.out.println("no consonant");
+            return;
+        }
+        if (!found(ONE_VOWEL, name)){
+            System.out.println("no vowel");
+            return;
+        }
+        if (found(FIRST_LETTER_LOWER_CASE, name)){
+            System.out.println("must have capital letter");
+            return;
+        }
 
+
+
+        if (name.length() > 1 && name.length() < 11)
+            this.name = name;
+    }
+
+
+    private boolean found(String pattern, String target){
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(target);
+        return m.find();
+    }
     @Override
     public int getMaxHealth() {
         return this.maxHealth;
@@ -55,6 +110,7 @@ public abstract class BasicCharacter implements Character {
         this.weapon = weapon;
         this.damage = INITIAL_BASICCHARACTER_DAMAGE + weapon.getWeaponDamage();
     }
+
 
     @Override
     public Weapon getWeapon() {
@@ -133,4 +189,5 @@ public abstract class BasicCharacter implements Character {
     }
 
 
+    public abstract Object getName();
 }

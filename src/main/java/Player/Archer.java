@@ -20,6 +20,12 @@ public class Archer extends Profession {
         updateHealingAbility();
     }
 
+
+    @Override
+    public void setName(String name) {
+
+    }
+
     @Override
     public void setMaxHealthWithRegardToLevel() {
         character.setMaxHealth(ARCHER_BASE_MAXHEALTH + (character.getLevel() * ARCHER_MAXHEALTH_INCREASE_PER_LEVEL));
