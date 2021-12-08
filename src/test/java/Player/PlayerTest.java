@@ -4,6 +4,7 @@ import static Player.BasicCharacter.INITIAL_BASICCHARACTER_DAMAGE;
 import static org.junit.jupiter.api.Assertions.*;
 
 import equipment.Weapon;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -74,50 +75,46 @@ class PlayerTest {
 		assertEquals(1, player.getLevel());
 	}
 
+
 	@Test
 	void setName() {
 		player.setName("Abe");
-		assertEquals(player.getName(), "Abe");
+		assertEquals("Abe", player.getName());
 	}
 	@Test
 	void setName2() {
 		player.setName("Abbbe");
-		assertEquals(player.getName(), "Abe");
+		assertEquals(null, player.getName());
 	}
 	@Test
 	void setName3() {
 		player.setName("Aaabe");
-		assertEquals(player.getName(), "Abe");
+		assertEquals(null, player.getName());
 	}
 	@Test
 	void setName4() {
 		player.setName("abe");
-		assertEquals(player.getName(), "Abe");
+		assertEquals(null, player.getName());
 	}
 	@Test
 	void setName5() {
 		player.setName("Aa");
-		assertEquals(player.getName(), "Abe");
+		assertEquals(null, player.getName());
 	}
 	@Test
 	void setName6() {
 		player.setName("Bb");
-		assertEquals(player.getName(), "Abe");
-	}
-	@Test
-	void setName7() {
-		player.setName("Abe");
-		assertEquals(player.getName(), "Abe");
+		assertEquals(null, player.getName());
 	}
 	@Test
 	void setName8() {
 		player.setName("Abababababa");
-		assertEquals(player.getName(), "Abe");
+		assertEquals(null, player.getName());
 	}
 	@Test
 	void setName9() {
 		player.setName("A");
-		assertEquals(player.getName(), "");
+		assertEquals(null, player.getName());
 	}
 	@Test
 	void setName10() {
@@ -128,7 +125,7 @@ class PlayerTest {
 	@Test
 	void setName11() {
 		player.setName("");
-		assertEquals(player.getName(), "Abe");
+		assertEquals(null, player.getName());
 	}
 
 
