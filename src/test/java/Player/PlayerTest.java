@@ -69,12 +69,25 @@ class PlayerTest {
 		assertEquals(310, player.getMaxHealth());
 	}
 
+
+	/**
+	 * Below are a set of tests for player names.
+	 * Most of the tests comes in pairs:
+	 * 1. Check that a wrongly formatted name can't be set.
+	 * 2. Check that the regex pattern used above actually works.
+	 *
+	 * For example:
+	 * Name should start with capital, so "abe" should fail.
+	 * But there could hypothetically be something else in the
+	 * "setName("abe")" call that made it fail. So I also test
+	 * setName's helper method "matchesPattern" to make sure
+	 * that it finds the pattern that I want.
+	 */
 	@Test
 	void playerSetLevel() {
 		player.setLevel(1);
 		assertEquals(1, player.getLevel());
 	}
-
 
 	@Test
 	void setName() {
@@ -82,48 +95,76 @@ class PlayerTest {
 		assertEquals("Abe", player.getName());
 	}
 	@Test
-	void setName2() {
+	void nameHasTooManyConsonantsInARow() {
 		player.setName("Abbbe");
 		assertEquals(null, player.getName());
 	}
 	@Test
-	void setName3() {
+	void regexFoundTooManyConsonants(){
+		assertTrue(player.matchesPattern(BasicCharacter.THREE_CONSONANTS_IN_A_ROW, "Abbbe"));
+	}
+
+	@Test
+	void nameHasTooManyVowelsInARow() {
 		player.setName("Aaabe");
 		assertEquals(null, player.getName());
 	}
 	@Test
-	void setName4() {
+	void regexFoundThreeVowelsInARow(){
+		assertTrue(player.matchesPattern(BasicCharacter.THREE_VOWELS_IN_A_ROW, "Aaabe"));
+	}
+
+	@Test
+	void nameDoesntBeginWithCapitalLetter() {
 		player.setName("abe");
 		assertEquals(null, player.getName());
 	}
+
 	@Test
-	void setName5() {
+	void regexFoundNameBeginningWithLowerCase(){
+		assertTrue(player.matchesPattern(BasicCharacter.FIRST_LETTER_LOWER_CASE, "abe"));
+	}
+
+	@Test
+	void nameLacksConsonant() {
 		player.setName("Aa");
 		assertEquals(null, player.getName());
 	}
+
 	@Test
-	void setName6() {
+	void regexFoundNameWithAtLeastOneConsonant(){
+		assertTrue(player.matchesPattern(BasicCharacter.AT_LEAST_ONE_CONSONANT, "Aa"));
+	}
+
+	@Test
+	void nameLacksVowels() {
 		player.setName("Bb");
 		assertEquals(null, player.getName());
 	}
 	@Test
-	void setName8() {
+	void regexFoundNameWithAtLeastOneVowel(){
+		assertTrue(player.matchesPattern(BasicCharacter.AT_LEAST_ONE_VOWEL, "Bb"));
+	}
+
+
+	@Test
+	void tooLongName() {
 		player.setName("Abababababa");
 		assertEquals(null, player.getName());
 	}
 	@Test
-	void setName9() {
+	void tooShortName() {
 		player.setName("A");
 		assertEquals(null, player.getName());
 	}
 	@Test
-	void setName10() {
+	void nameInputIsNull() {
 		assertThrows(NullPointerException.class, () -> {
 			player.setName(null);
 		});
 	}
 	@Test
-	void setName11() {
+	void nameInputIsEmpty() {
 		player.setName("");
 		assertEquals(null, player.getName());
 	}

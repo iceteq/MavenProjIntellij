@@ -24,7 +24,7 @@ class InventoryTest {
     }
 
     @Test
-    void slotsAreSetCorrectly() {
+    void testInventoryHasThreeSlots() {
         assertEquals(inventory.getItems().length, 3);
     }
 
@@ -96,7 +96,7 @@ class InventoryTest {
     }
 
     @Test
-    void removingItemShouldMoveAllItemsForward() {
+    void removingItemShouldMoveItemsForward() {
         inventory = new Inventory(new Carriable[]{fillItem1, fillItem2, fillItem3});
         inventory.remove(fillItem2);
         System.out.println(Arrays.toString(inventory.getItems()));

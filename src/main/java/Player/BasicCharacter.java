@@ -16,11 +16,11 @@ public abstract class BasicCharacter implements Character {
 
     public static final int INITIAL_LEVEL = 1;
 
-
+    // patterns that names must follow
     public static final String THREE_CONSONANTS_IN_A_ROW = "[b-df-hj-np-tv-z]{3}";
     public static final String THREE_VOWELS_IN_A_ROW = "[AEIOUaeiou]{3}";
-    public static final String ONE_CONSONANT = "[b-df-hj-np-tv-z]{1}";
-    public static final String ONE_VOWEL = "[AEIOUaeiou]{1}";
+    public static final String AT_LEAST_ONE_CONSONANT = "[b-df-hj-np-tv-z]{1}";
+    public static final String AT_LEAST_ONE_VOWEL = "[AEIOUaeiou]{1}";
     public static final String FIRST_LETTER_LOWER_CASE = "^[a-z].*";
 
     QuestLog questLog;
@@ -59,38 +59,36 @@ public abstract class BasicCharacter implements Character {
             throw new NullPointerException("name can't be null");
         }
         if (name == ""){
-            System.out.println("please choose a name");
+            System.out.println("Error: please choose a name");
             return;
         }
-        if  (found(THREE_CONSONANTS_IN_A_ROW, name)){
-            System.out.println("3 consonants in a row");
+        if  (matchesPattern(THREE_CONSONANTS_IN_A_ROW, name)){
+            System.err.println("Error: 3 consonants in a row");
             return;
         }
-        if (found(THREE_VOWELS_IN_A_ROW, name)) {
-            System.out.println("3 vowels in a row");
+        if (matchesPattern(THREE_VOWELS_IN_A_ROW, name)) {
+            System.err.println("Error: 3 vowels in a row");
             return;
         }
-        if (!found(ONE_CONSONANT, name)) {
-            System.out.println("no consonant");
+        if (!matchesPattern(AT_LEAST_ONE_CONSONANT, name)) {
+            System.err.println("Error: no consonant");
             return;
         }
-        if (!found(ONE_VOWEL, name)){
-            System.out.println("no vowel");
+        if (!matchesPattern(AT_LEAST_ONE_VOWEL, name)){
+            System.err.println("Error: no vowel");
             return;
         }
-        if (found(FIRST_LETTER_LOWER_CASE, name)){
-            System.out.println("must have capital letter");
+        if (matchesPattern(FIRST_LETTER_LOWER_CASE, name)){
+            System.err.println("Error: must have capital letter");
             return;
         }
-
-
 
         if (name.length() > 1 && name.length() < 11)
             this.name = name;
     }
 
 
-    private boolean found(String pattern, String target){
+    boolean matchesPattern(String pattern, String target){
         Pattern p = Pattern.compile(pattern);
         Matcher m = p.matcher(target);
         return m.find();

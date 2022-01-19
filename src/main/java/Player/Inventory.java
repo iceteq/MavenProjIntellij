@@ -46,8 +46,6 @@ public class Inventory {
         }
     }
 
-
-
     public void remove(Carriable item) {
         for (int i = 0; i < items.length; i++) {
             if (items[i].equals(item)) {
@@ -62,7 +60,13 @@ public class Inventory {
         }
     }
 
+    /**
+     * What: reverse order of inventory contents.
+     * How: move items to new array, then replacing old with new
+     * Why: ...
+     */
     public void reverseOrder() {
+
         Carriable[] temp = new Carriable[items.length];
 
         int reverseIterator = items.length - 1;
@@ -84,6 +88,8 @@ public class Inventory {
             return;
         }
 
+        // 1. backward forward should prob be left right
+        // 2. shouldnt be able to have empty slots to the left (might be some unnecessary code here)
         if (this.getSlotItem(targetSlot) == null) {
             setItemOnSlot(targetSlot, item);
             return;
