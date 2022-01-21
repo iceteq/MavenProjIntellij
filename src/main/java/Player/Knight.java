@@ -29,7 +29,7 @@ public class Knight extends Profession {
 
     @Override
     public void setName(String name) {
-
+        character.setName(name);
     }
 
     /**

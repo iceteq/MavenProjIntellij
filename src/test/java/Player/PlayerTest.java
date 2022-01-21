@@ -12,7 +12,7 @@ import java.lang.reflect.Executable;
 
 class PlayerTest {
 
-	Player player;
+	BasicCharacter player;
 
 	@BeforeEach
 	void setUp() {

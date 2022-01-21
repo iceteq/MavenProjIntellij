@@ -35,13 +35,10 @@ public abstract class Profession extends Decorator {
         return character.getLevel();
     }
 
-
     @Override
     public Weapon getWeapon() {
         return character.getWeapon();
     }
-
-    ;
 
     @Override
     public double getDamage() {

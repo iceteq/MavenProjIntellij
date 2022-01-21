@@ -23,7 +23,7 @@ public class Archer extends Profession {
 
     @Override
     public void setName(String name) {
-
+        character.setName(name);
     }
 
     @Override

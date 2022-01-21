@@ -24,8 +24,5 @@ public class NPC extends BasicCharacter {
     }
 
 
-    @Override
-    public void setName(String name) {
 
-    }
 }
