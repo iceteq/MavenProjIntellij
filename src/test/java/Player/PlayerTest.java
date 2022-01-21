@@ -12,7 +12,7 @@ import java.lang.reflect.Executable;
 
 class PlayerTest {
 
-	BasicCharacter player;
+	Player player;
 
 	@BeforeEach
 	void setUp() {
@@ -101,7 +101,7 @@ class PlayerTest {
 	}
 	@Test
 	void regexFoundTooManyConsonants(){
-		assertTrue(player.matchesPattern(BasicCharacter.THREE_CONSONANTS_IN_A_ROW, "Abbbe"));
+		assertTrue(player.matchesPattern(Player.THREE_CONSONANTS_IN_A_ROW, "Abbbe"));
 	}
 
 	@Test
@@ -110,8 +110,8 @@ class PlayerTest {
 		assertEquals(null, player.getName());
 	}
 	@Test
-	void regexFoundThreeVowelsInARow(){
-		assertTrue(player.matchesPattern(BasicCharacter.THREE_VOWELS_IN_A_ROW, "Aaabe"));
+	void regexFoundTooManyVowelsInARow(){
+		assertTrue(player.matchesPattern(Player.THREE_VOWELS_IN_A_ROW, "Aaabe"));
 	}
 
 	@Test
@@ -120,10 +120,10 @@ class PlayerTest {
 		assertEquals(null, player.getName());
 	}
 
-	@Test
-	void regexFoundNameBeginningWithLowerCase(){
-		assertTrue(player.matchesPattern(BasicCharacter.FIRST_LETTER_LOWER_CASE, "abe"));
-	}
+		@Test
+		void regexFoundNameBeginningWithLowerCase(){
+			assertTrue(player.matchesPattern(Player.FIRST_LETTER_LOWER_CASE, "abe"));
+		}
 
 	@Test
 	void nameLacksConsonant() {
@@ -132,8 +132,8 @@ class PlayerTest {
 	}
 
 	@Test
-	void regexFoundNameWithAtLeastOneConsonant(){
-		assertTrue(player.matchesPattern(BasicCharacter.AT_LEAST_ONE_CONSONANT, "Aa"));
+	void regexFoundNoConsonant(){
+		assertFalse(player.matchesPattern(Player.AT_LEAST_ONE_CONSONANT, "Aa"));
 	}
 
 	@Test
@@ -142,8 +142,8 @@ class PlayerTest {
 		assertEquals(null, player.getName());
 	}
 	@Test
-	void regexFoundNameWithAtLeastOneVowel(){
-		assertTrue(player.matchesPattern(BasicCharacter.AT_LEAST_ONE_VOWEL, "Bb"));
+	void regexFoundNoVowel(){
+		assertFalse(player.matchesPattern(Player.AT_LEAST_ONE_VOWEL, "Bb"));
 	}
 
 
