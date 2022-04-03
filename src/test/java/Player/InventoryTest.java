@@ -17,6 +17,10 @@ class InventoryTest {
     Carriable fillItem1 = new Armor("fillItem1", Armor.ArmorType.CLOTH, Armor.ArmorPiece.CHEST);
     Carriable fillItem2 = new Armor("fillItem2", Armor.ArmorType.CLOTH, Armor.ArmorPiece.CHEST);
     Carriable fillItem3 = new Armor("fillItem3", Armor.ArmorType.CLOTH, Armor.ArmorPiece.CHEST);
+    Carriable fillItem4 = new Armor("fillItem4", Armor.ArmorType.CLOTH, Armor.ArmorPiece.CHEST);
+
+    // to be used for comparisons.
+    Carriable expected[];
 
     @BeforeEach
     void setUp() {
@@ -143,6 +147,14 @@ class InventoryTest {
         assertEquals(true, inventory.contains(fillItem1));
         assertEquals(true, inventory.contains(fillItem2));
         assertEquals(true, inventory.contains(fillItem3));
+    }
+
+    @Test
+    void moveInventoryItemToOtherSpotTest(){
+        inventory = new Inventory(new Carriable[]{fillItem1, fillItem2, fillItem3});
+        inventory.moveInventoryItemToOtherSpot(0, 2);
+        expected = new Carriable[]{fillItem2, fillItem3, fillItem1};
+        assertTrue(Arrays.equals(expected, inventory.getItems()), "\ninventory is \n" + Arrays.toString(inventory.getItems()) + "\n and expected is \n" + Arrays.toString(expected));
     }
 
 
