@@ -31,7 +31,6 @@ public abstract class Decorator implements Character {
         return character.getQuestLog();
     }
 
-
     @Override
     public void addQuestToNPC(Quest quest) {
         character.getQuestLog().addQuestToNPC(quest);

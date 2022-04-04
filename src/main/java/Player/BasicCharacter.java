@@ -51,7 +51,11 @@ public abstract class BasicCharacter implements Character {
         this.level = INITIAL_LEVEL;
 
     }
-    @Override
+
+    public String getName() {
+        return this.name;
+    }
+
     public void setName(String name) {
         // checks what rules name breaks
         if (name == null){
@@ -185,6 +189,4 @@ public abstract class BasicCharacter implements Character {
         return NPC;
     }
 
-
-    public abstract Object getName();
 }

@@ -9,7 +9,12 @@ class NPCTest {
     NPC npc;
     @BeforeEach
     void setUp() {
-        npc = new NPC();
+        npc = new NPC(50);
+    }
+
+    @Test
+    void hasCorrectHp(){
+        assertEquals(305, npc.maxHealth);
     }
 
     @Test

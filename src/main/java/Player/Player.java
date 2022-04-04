@@ -19,11 +19,6 @@ public class Player extends BasicCharacter {
         setMaxHealthWithRegardToLevel();
     }
 
-    @Override
-    public Object getName() {
-        return this.name;
-    }
-
     /**
      * Can be expanded to include things like HP, damage, weapon etc
      * @return

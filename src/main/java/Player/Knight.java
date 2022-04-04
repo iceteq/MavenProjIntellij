@@ -27,10 +27,10 @@ public class Knight extends Profession {
 
     }
 
-    @Override
-    public void setName(String name) {
-        character.setName(name);
-    }
+//    @Override
+//    public void setName(String name) {
+//        character.setName(name);
+//    }
 
     /**
      * since max health depends on level and profession,

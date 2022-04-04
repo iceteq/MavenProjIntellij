@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class Inventory {
 
-    private Carriable[] items;
+    Carriable[] items;
 
     /**
      * Vad: Intierar en array med tom array av carriable.
@@ -274,10 +274,5 @@ public class Inventory {
         return false;
     }
 
-    @Override
-    public String toString() {
-        return "Inventory{" +
-                "items=" + Arrays.toString(items) +
-                '}';
-    }
+
 }

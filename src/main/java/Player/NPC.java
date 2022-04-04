@@ -9,11 +9,6 @@ public class NPC extends BasicCharacter {
     public NPC() {
     }
 
-    @Override
-    public Object getName() {
-        return null;
-    }
-
     /**
      * toString is currently a placeholder. Can be extended to include real information about an NPC, like their HP
      * @return

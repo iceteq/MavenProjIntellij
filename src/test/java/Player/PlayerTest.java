@@ -4,11 +4,9 @@ import static Player.BasicCharacter.INITIAL_BASICCHARACTER_DAMAGE;
 import static org.junit.jupiter.api.Assertions.*;
 
 import equipment.Weapon;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Executable;
 
 class PlayerTest {
 

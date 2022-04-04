@@ -6,7 +6,9 @@ import quest.QuestLog;
 
 public interface Character {
 
-    void setName(String name);
+    //void setName(String name);
+
+    //void getName();
 
     int getMaxHealth();
 
